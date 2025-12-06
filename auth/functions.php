@@ -26,8 +26,8 @@ function validateForm($contact, $address, $location, $pass, $conpass){
 
     return $errors; 
 }
-function showErr($err){
-   return "<div class='alert alert-warning alert-dismissible w-50 fade show' role='alert'>
+function showErr($err , $class){
+   return "<div class='alert alert-$class alert-dismissible w-50 fade show' role='alert'>
  $err
   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
 </div>";
