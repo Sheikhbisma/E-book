@@ -4,7 +4,6 @@
 include '../auth/dbconnect.php';
 // INSERT BOOK
 if (isset($_POST['submit'])) {
-
     $title = $_POST['title'];
     $author = $_POST['author'];
     $category = $_POST['category'];

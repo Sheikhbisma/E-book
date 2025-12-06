@@ -7,7 +7,7 @@ if(isset($_POST['loginbtn'])){
     $email = sanitize_data($_POST['email']);
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM customer_register WHERE customer_email='$email' and customer_pass='$password'";
+    $sql = "SELECT * FROM customer_register WHERE customer_email='$email'";
     $result = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result) > 0){
@@ -15,7 +15,7 @@ if(isset($_POST['loginbtn'])){
 
         if(password_verify($password, $row['customer_pass'])){
             $_SESSION['username'] = $row['customer_email'];
-            header('Location: login.php');
+            header('Location: dashboard.php');
             exit;
         } else {
             $_SESSION['msg'] = showErr('Invalid username or password');
@@ -34,8 +34,8 @@ if(isset($_POST['loginbtn'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     
-    <?php require('../components/meta-links.php') ?>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <?php include('../components/meta-links.php') ?>
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 </head>
 <body>
@@ -66,7 +66,7 @@ if(isset($_SESSION['success_msg'])){
 </div>
 
     <?php include '../components/script.php'; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
 </body>
 </html>
