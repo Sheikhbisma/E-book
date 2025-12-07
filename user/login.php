@@ -15,6 +15,7 @@ if(isset($_POST['loginbtn'])){
 
         if(password_verify($password, $row['customer_pass'])){
             $_SESSION['username'] = $row['customer_email'];
+            $_SESSION['userid'] = $row['customer_id'];
             header('Location: dashboard.php');
             exit;
         } else {
