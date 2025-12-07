@@ -19,10 +19,10 @@ if(isset($_POST['loginbtn'])){
             header('Location: dashboard.php');
             exit;
         } else {
-            $_SESSION['msg'] = showErr('Invalid username or password');
+            $_SESSION['msg'] = showErr('Invalid username or password' , "danger");
         }
     } else {
-        $_SESSION['msg'] = showErr('Invalid username or password');
+        $_SESSION['msg'] = showErr('Invalid username or password' , "danger");
     }
 }
 
