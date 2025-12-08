@@ -1,136 +1,68 @@
-<?php include("user-sidebar.php"); ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
-    /* PROFILE HEADER */
-    .profile-header {
-        position: relative;
-        height: 220px;
-        background: linear-gradient(135deg,#007bff,#6610f2);
-        border-radius: 18px;
-        overflow: hidden;
-        margin-bottom: 70px;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
 
-    .profile-img {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        border: 5px solid white;
-        position: absolute;
-        bottom: -70px;
-        left: 50%;
-        transform: translateX(-50%);
-        object-fit: cover;
-        background: white;
-    }
+    <!-- META + CSS -->
+    <?php include '../components/meta-links.php'; ?>
+</head>
 
-    .profile-name {
-        text-align: center;
-        margin-top: 80px;
-    }
+<body>
 
-    .profile-name h3 {
-        font-weight: 700;
-        margin-bottom: 5px;
-    }
+    <!-- SIDEBAR -->
+    <?php include "user-sidebar.php"; ?>
 
-    .profile-name p {
-        color: #6c757d;
-        margin-bottom: 0;
-    }
+    <!-- MAIN CONTENT AREA -->
+    <div class="content-area">
 
-    /* INFO SECTION */
-    .info-card {
-        max-width: 700px;
-        margin: 40px auto 40px auto;
-        background: #ffffff;
-        border-radius: 18px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        padding: 30px;
-    }
+        <!-- PROFILE HEADER -->
+        <div class="profile-header text-center">
+            <img src="https://via.placeholder.com/140" class="profile-img" alt="Profile">
+            <h3 class="mt-3 mb-0">Ali Khan</h3>
+            <p class="text-muted mb-1">Web Developer</p>
+            <small class="text-muted">Member since 2023</small>
+        </div>
 
-    .info-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;
-        flex-wrap: wrap;
-    }
+        <!-- PERSONAL INFORMATION CARD -->
+        <div class="info-card mt-4">
+            <h4 class="mb-4">Personal Information</h4>
 
-    .info-label {
-        font-weight: 500;
-        color: #6c757d;
-    }
+            <div class="info-row">
+                <span class="info-label">Full Name:</span>
+                <span class="info-value">Ali Khan</span>
+            </div>
 
-    .info-value {
-        font-weight: 600;
-        color: #343a40;
-    }
+            <div class="info-row">
+                <span class="info-label">Email:</span>
+                <span class="info-value">ali@example.com</span>
+            </div>
 
-    /* LOGOUT BUTTON */
-    .logout-container {
-        text-align: center;
-        margin-bottom: 50px;
-    }
+            <div class="info-row">
+                <span class="info-label">Phone:</span>
+                <span class="info-value">+92 300 1234567</span>
+            </div>
 
-    .logout-btn {
-        background: #ff4d4f;
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+            <div class="info-row">
+                <span class="info-label">Location:</span>
+                <span class="info-value">Lahore, Pakistan</span>
+            </div>
+        </div>
 
-    .logout-btn:hover {
-        background: #e33c3c;
-    }
+        <!-- LOGOUT BUTTON -->
+        <div class="logout-container text-center mt-4">
+            <form action="logout.php" method="post">
+                <button class="logout-btn">Logout</button>
+            </form>
+        </div>
 
-    @media(max-width:600px){
-        .info-row { flex-direction: column; gap: 5px; }
-    }
-</style>
+    </div> <!-- CONTENT END -->
 
-<!-- PROFILE HEADER -->
-<div class="profile-header">
-    <img src="https://via.placeholder.com/140" class="profile-img">
-</div>
+    <!-- SCRIPTS -->
+    <?php include '../components/script.php'; ?>
 
-<div class="profile-name">
-    <h3>Ali Khan</h3>
-    <p>Web Developer</p>
-    <p class="small text-muted">Member since 2023</p>
-</div>
+</body>
 
-<!-- INFO SECTION -->
-<div class="info-card">
-    <h4 class="mb-4">Personal Information</h4>
-
-    <div class="info-row">
-        <div class="info-label">Full Name:</div>
-        <div class="info-value">Ali Khan</div>
-    </div>
-
-    <div class="info-row">
-        <div class="info-label">Email:</div>
-        <div class="info-value">ali@example.com</div>
-    </div>
-
-    <div class="info-row">
-        <div class="info-label">Phone:</div>
-        <div class="info-value">+92 300 1234567</div>
-    </div>
-
-    <div class="info-row">
-        <div class="info-label">Location:</div>
-        <div class="info-value">Lahore, Pakistan</div>
-    </div>
-</div>
-
-<!-- LOGOUT BUTTON CENTERED -->
-<div class="logout-container">
-    <form action="logout.php" method="post">
-        <button type="submit" class="logout-btn">Logout</button>
-    </form>
-</div>
+</html>

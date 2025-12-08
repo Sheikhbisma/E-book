@@ -1,4 +1,4 @@
-<!-- <?php
+ <?php
 include '../auth/dbconnect.php';
 include '../auth/check.php';
 include '../auth/functions.php';
@@ -16,7 +16,7 @@ if(isset($_POST['loginbtn'])){
         if(password_verify($password, $row['customer_pass'])){
             $_SESSION['username'] = $row['customer_email'];
             $_SESSION['userid'] = $row['customer_id'];
-            header('Location: dashboard.php');
+            header('Location: ../index.php');
             exit;
         } else {
             $_SESSION['msg'] = showErr('Invalid username or password' , "danger");
@@ -36,12 +36,20 @@ if(isset($_POST['loginbtn'])){
     <title>Login</title>
     
     <?php include('../components/meta-links.php') ?>
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 </head>
-<body>
+<style>
+    body {
+    background:
+        url('../images/bg.png'),
+        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
+    font-family: 'Cinzel', serif !important;
 
-<div class="login-box">
+}
+</style>
+<body>
+<div class="container">
+<div class="login-box  b-card">
     <?php 
 if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];
@@ -54,20 +62,19 @@ if(isset($_SESSION['success_msg'])){
           </div>";
     unset($_SESSION['success_msg']);
 }
-?> -->
-    <!-- <h2>Login</h2>
+?> 
+    <h2>Login</h2>
     <form action="" method="post">
         <input type="email" name="email" placeholder=" Email" class="form-control" required>
         <input type="password" name="password" placeholder="Enter your password" class="form-control" required>
-        <button type="submit" name="loginbtn" class="btn-login">Login</button>
+        <button type="submit" name="loginbtn" class="btn-login btn-custom">Login</button>
     </form>
     <div class="signup-link">
         Don't have an account? <a href="register.php">Register</a>
     </div>
-</div> -->
+</div> 
+</div>
+     <?php include '../components/script.php'; ?> 
 
-      /* <?php include '../components/script.php'; ?> */
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
-
-<!-- </body>
-</html> -->
+</body>
+</html>

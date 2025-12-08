@@ -49,130 +49,154 @@ $result = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Add Book</title>
+    <?php include 'inc/link.php'; ?>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+<style>
+
+</style>
+<?php include './sidebar.php'; ?>
 
 <body class="bg-light">
 
-    <div class="container mt-5">
+    <div class="content-area">
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
-            unset($_SESSION['msg']); // Remove after displaying
+            unset($_SESSION['msg']);
         }
-
         ?>
-        <!-- SIMPLE FORM -->
-        <div class="card shadow p-4 mx-auto" style="max-width: 600px;">
-            <h3 class="text-center mb-4">Add New Book</h3>
+        <div class="container">
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <header class="header p-4 mb-5 bg-white rounded">
 
-                <div class="mb-3">
-                    <label class="form-label">Book Title</label>
-                    <input type="text" class="form-control" name="title" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Author</label>
-                    <input type="text" class="form-control" name="author" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Category</label>
-                    <select class="form-select" name="category" required>
-                        <option selected disabled>Select category</option>
-                        <option value="Comics">Comics</option>
-                        <option value="Story Books">Story Books</option>
-                        <option value="Novels">Novels</option>
-                        <option value="General Knowledge">General Knowledge</option>
-                        <option value="Children Books">Children Books</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea class="form-control" name="description" rows="3" required></textarea>
-                </div>
-
-
-                <!-- ADDED FIELDS -->
-                <div class="mb-3">
-                    <label class="form-label">Price</label>
-                    <input type="number" class="form-control" name="price" required>
-                </div>
-
-
-                <div class="mb-3">
-                    <label class="form-label">Upload PDF</label>
-                    <input type="file" class="form-control" name="pdf_file" accept="application/pdf">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Upload Cover Image</label>
-                    <input type="file" class="form-control" name="cover_image" accept=".jpg , .jpeg , .png">
-                </div>
-
-
-                <button type="submit" name="submit" class="btn btn-primary w-100">
-                    Add Book
+                <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i>Add New Book</h1>
+                <!-- Button -->
+                <button type="button" class="btn btn-custom btn-lg" data-bs-toggle="modal" data-bs-target="#addbooks">
+                    <i class="bi bi-plus-lg"></i> Add New Book
                 </button>
 
-            </form>
-        </div>
+                <div class="modal fade" id="addbooks" tabindex="-1" aria-labelledby="addBooksLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content shadow">
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title" id="addBooksLabel">Add New Book</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
 
-        <!-- TABLE -->
-        <div class="card shadow p-4 mt-4">
+                            <div class="modal-body">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <div class="row g-3 text-start">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Book Title</label>
+                                            <input type="text" class="form-control" name="title" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Author</label>
+                                            <input type="text" class="form-control" name="author" required>
+                                        </div>
 
-            <h3 class="text-center mb-4">All Books</h3>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Category</label>
+                                            <select class="form-select" name="category" required>
+                                                <option selected disabled>Select category</option>
+                                                <option value="Comics">Comics</option>
+                                                <option value="Story Books">Story Books</option>
+                                                <option value="Novels">Novels</option>
+                                                <option value="General Knowledge">General Knowledge</option>
+                                                <option value="Children Books">Children Books</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Price</label>
+                                            <input type="number" class="form-control" name="price" required>
+                                        </div>
 
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Category</th>
-                        <th>Description</th>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Upload PDF</label>
+                                            <input type="file" class="form-control" name="pdf_file" accept="application/pdf">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Upload Cover Image</label>
+                                            <input type="file" class="form-control" name="cover_image" accept=".jpg,.jpeg,.png">
+                                        </div>
 
-                        <!-- Added Columns Order -->
-                        <th>Price</th>
-                        <th>PDF Path</th>
-                        <th>Cover Image</th>
+                                        <div class="col-12">
+                                            <label class="form-label">Description</label>
+                                            <textarea class="form-control" name="description" rows="3" required></textarea>
+                                        </div>
 
-                        <th>Created At</th>
-                    </tr>
-                </thead>
+                                        <div class="col-12 text-center mt-3">
+                                            <button type="submit" name="submit" class="btn btn-success w-50">
+                                                <i class="bi bi-plus-lg"></i> Add Book
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
 
-                <tbody>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </header>
+
+
+            <!-- BOOK CARDS -->
+            <h2 class="mb-4 text-center fw-bold">All Books</h3>
+                <div class="row g-4">
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <tr>
-                            <td><?= $row['id']; ?></td>
-                            <td><?= $row['title']; ?></td>
-                            <td><?= $row['author']; ?></td>
-                            <td><?= $row['category']; ?></td>
-                            <td><?= $row['description']; ?></td>
+                        <div class="col-md-6 col-sm-12 ">
+                            <div class="card b-card h-100 mb-3 shadow-sm" style="max-width: 540px; border-radius: 12px;">
+                                <div class="row g-0 align-items-center">
+                                    <!-- Image -->
+                                    <div class="col-md-4 position-relative">
+                                        <img src="../images/cover.png" class="img-fluid rounded-start h-100" alt="Book Cover">
+                                    </div>
 
-                            <td><?= $row['price']; ?></td>
-                            <td><?= $row['pdf_path']; ?></td>
+                                    <!-- Card Body -->
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <!-- Title & Author -->
+                                            <h5 class="card-title fw-bold"><?php echo $row['title'] ?></h5>
+                                            <p class="card-subtitle text-muted mb-2"><?php echo $row['author'] ?></p>
 
-                            <td>
-                                <?php if ($row['cover_image']) { ?>
-                                    <img src="../<?= $row['cover_image']; ?>" width="60">
-                                <?php } ?>
-                            </td>
+                                            <!-- Description -->
+                                            <p class="card-text" style="font-size: 0.9rem; max-height: 40px; overflow: hidden; text-overflow: ellipsis;">
+                                                <?php echo substr($row['description'], 0, 82) ."..." ?>
+                                            </p>
 
-                            <td><?= $row['created_at']; ?></td>
-                        </tr>
+                                            <!-- Category + Price -->
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="badge text-dark"><?php echo $row['category'] ?></span>
+                                                <span class="fw-bold text-dark fs-5">$<?php echo $row['price'] ?></span>
+                                            </div>
+
+                                            <!-- Buttons -->
+                                            <div class="d-flex justify-content-between">
+                                                <a href="#" class="btn btn-sm btn-edit flex-fill me-1"><i class="fas fa-edit"></i>Edit</a>
+                                                <a href="#" class="btn btn-sm btn-delete flex-fill me-1"><i class="fas fa-trash"></i>Delete</a>
+                                                <a href="#" class="btn btn-sm btn-pdf flex-fill"><i class="fas fa-book-open"></i>PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     <?php } ?>
-                </tbody>
-            </table>
+                </div>
+
+
 
         </div>
-
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <?php include '../components/script.php' ?>
 </body>
 
 </html>

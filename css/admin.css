@@ -1,0 +1,159 @@
+:root {
+    --wood-dark: #5D4037;
+    /* Dark walnut */
+    --wood-medium: #8D6E63;
+    /* Medium brown */
+    --wood-light: #D7CCC8;
+    /* Light pine */
+    --accent-gold: #D4AF37;
+    /* Gold accents */
+    --paper-cream: #FFF8E1;
+    /* Paper color */
+    --headings:#FFE082;
+}
+h1,h2,h3{
+     color: var(--headings);
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem !important;
+}
+body {
+    background:
+        url('../images/bg.png'),
+        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
+    font-family: 'Cinzel', serif !important;
+
+}
+
+/* ADMIN SIDEBAR */
+.admin-sidebar {
+    width: 240px;
+    height: 100vh;
+    background:
+        url('../images/header.png'),
+        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.admin-sidebar .sidebar-header {
+    text-align: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+
+.admin-sidebar .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    flex-grow: 1;
+}
+
+.admin-sidebar .sidebar-menu li {
+    margin-bottom: 5px;
+}
+
+.admin-sidebar .sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.admin-sidebar .sidebar-menu li a i {
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+/* Hover Effect */
+.admin-sidebar .sidebar-menu li a:hover {
+    background: var(--wood-medium);
+    color: var(--paper-cream);
+}
+
+
+
+/* Responsive */
+@media(max-width: 768px) {
+    .admin-sidebar {
+        width: 60px;
+        padding-top: 15px;
+    }
+
+    .admin-sidebar .sidebar-header h3,
+    .admin-sidebar .sidebar-menu li a span {
+        display: none;
+    }
+
+    .admin-sidebar .sidebar-menu li a i {
+        margin: 0 auto;
+    }
+}
+
+.content-area {
+    margin-left: 240px;
+    /* sidebar width */
+}
+
+/* books card */
+.b-card {
+    background: url('../images/card.png'),
+        var(--paper-cream);
+    border: 1px solid #c8b89a;
+}
+
+/* admin panel */
+.header {
+    background:
+        url('https://www.transparenttextures.com/patterns/dark-wood.png'),
+        linear-gradient(to bottom, #5D4037, #3E2723);
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 8px solid var(--wood-medium);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.btn-custom {
+    background-color: var(--accent-gold) !important;
+    color: var(--wood-dark);
+}
+
+
+.btn-pdf {
+    background: #5D4037 !important;
+    color: #FFE082 !important;
+}
+
+.btn-edit {
+    background: #8D6E63 !important;
+    color: white !important;
+}
+
+.btn-delete {
+    background: #A1887F !important;
+    color: white !important;
+}
+
+.card-title {
+    color: #3E2723;
+    font-size: 25px !important;
+
+}
+
+.badge {
+    background-color: var(--headings) !important;
+}

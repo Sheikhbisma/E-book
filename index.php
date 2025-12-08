@@ -5,21 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>E-Book World | Elegant Dark Theme 2025</title>
-<!-- bootstrap css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- custom CSS must come AFTER bootstrap -->
-<link rel="stylesheet" href="./css/user.css">
+    <link rel="stylesheet" href="./css/user.css">
 
- </head>
+
+</head>
 <style>
-    
+    body {
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #000000, #222222);
+        color: #fff;
+        margin: 0;
+        padding-top: 70px;
+        /* navbar height */
+    }
 </style>
+
 <body>
 
-<?php 
-include './components/header.php';
-?>
+    <?php
+    include './components/header.php';
+    ?>
     <!-- Hero -->
     <div class="hero">
         <div class="hero-content">
@@ -196,11 +203,11 @@ include './components/header.php';
         </div>
     </section>
 
-   <?php 
-include './components/footer.php';
-?>
-<!-- bootstrap js bundle -->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <?php
+    include './components/footer.php';
+    ?>
+    <!-- bootstrap js bundle -->
+<?php include '../components/script.php'; ?>
 </body>
 
 </html>
