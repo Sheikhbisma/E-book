@@ -9,38 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Panel</title>
 
-    <!-- BOOTSTRAP CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background-color: #f5f6fa;
-        }
-        .sidebar {
-            height: 100vh;
-            background: #273c75;
-            color: white;
-            padding-top: 20px;
-            position: fixed;
-            width: 220px;
-            top: 0;
-            left: 0;
-        }
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 12px 20px;
-            display: block;
-        }
-        .sidebar a:hover {
-            background: #40739e;
-        }
-        .content-area {
-            margin-left: 240px;
-            padding: 25px;
-        }
-    </style>
+<?php include '../components/meta-links.php'; ?>
+  
 </head>
 
 <body>
@@ -59,6 +29,6 @@
 
 <!-- CONTENT START -->
 <div class="content-area">
-    
+    <?php include '../components/script.php'; ?>
 </body>
 </html>

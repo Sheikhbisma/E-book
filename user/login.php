@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 include '../auth/dbconnect.php';
 include '../auth/check.php';
 include '../auth/functions.php';
@@ -54,8 +54,8 @@ if(isset($_SESSION['success_msg'])){
           </div>";
     unset($_SESSION['success_msg']);
 }
-?>
-    <h2>Login</h2>
+?> -->
+    <!-- <h2>Login</h2>
     <form action="" method="post">
         <input type="email" name="email" placeholder=" Email" class="form-control" required>
         <input type="password" name="password" placeholder="Enter your password" class="form-control" required>
@@ -64,10 +64,10 @@ if(isset($_SESSION['success_msg'])){
     <div class="signup-link">
         Don't have an account? <a href="register.php">Register</a>
     </div>
-</div>
+</div> -->
 
-    <?php include '../components/script.php'; ?>
+      /* <?php include '../components/script.php'; ?> */
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
-</body>
-</html>
+<!-- </body>
+</html> -->
