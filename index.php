@@ -81,10 +81,10 @@
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#new">New Releases</a></li>
-        <li class="nav-item"><a class="nav-link" href="#best">Best Sellers</a></li>
+        <li class="nav-item"><a class="nav-link" href="./books/index.php">Books</a></li>
         <li class="nav-item"><a class="nav-link" href="#competitions">Competitions</a></li>
         <li class="nav-item"><a class="nav-link" href="#winners">Winners</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="./user/login.php">Login</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
       </ul>
     </div>
@@ -254,7 +254,7 @@
       <div class="col-md-4">
         <h5>Explore</h5>
         <a href="#new">New Releases</a><br>
-        <a href="#best">Best Sellers</a><br>
+        <a href="./books/index.php">Books</a><br>
         <a href="#competitions">Competitions</a><br>
         <a href="#winners">Winners</a>
       </div>
