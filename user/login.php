@@ -8,6 +8,7 @@ if(isset($_POST['loginbtn'])){
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM customer_register WHERE customer_email='$email'";
+    $sql = "SELECT * FROM customer_register WHERE customer_email='$email'";
     $result = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result) > 0){

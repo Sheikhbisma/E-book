@@ -4,7 +4,6 @@ include '../auth/functions.php';
 include '../auth/check.php';
 // INSERT BOOK
 if (isset($_POST['submit'])) {
-
     $title = $_POST['title'];
     $author = $_POST['author'];
     $category = $_POST['category'];
@@ -40,7 +39,7 @@ if (isset($_POST['submit'])) {
 }
 
 // FETCH BOOKS
-$result = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC");
+$result = mysqli_query($conn, "SELECT * FROM books ");
 ?>
 <!DOCTYPE html>
 <html lang="en">
