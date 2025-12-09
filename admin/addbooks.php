@@ -153,7 +153,7 @@ $result = mysqli_query($conn, "SELECT * FROM books ");
                                 <div class="row g-0 align-items-center">
                                     <!-- Image -->
                                     <div class="col-md-4 position-relative">
-                                        <img src="../images/cover.png" class="img-fluid rounded-start h-100" alt="Book Cover">
+                                        <img src="../<?php echo $row['cover_image'] ?>" class="img-fluid rounded-start h-100" alt="Book Cover">
                                     </div>
 
                                     <!-- Card Body -->
