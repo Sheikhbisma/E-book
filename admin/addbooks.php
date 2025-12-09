@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
 }
 
 // FETCH BOOKS
-$result = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC");
+$result = mysqli_query($conn, "SELECT * FROM books ");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,56 +121,70 @@ $result = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC");
             </form>
         </div>
 
-        <!-- TABLE -->
-        <div class="card shadow p-4 mt-4">
+    <!-- ===================== BOOKS TABLE ===================== -->
+<div class="card shadow p-4 mt-4">
 
-            <h3 class="text-center mb-4">All Books</h3>
+    <h3 class="text-center mb-4">All Books</h3>
 
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
+    <!-- TABLE RESPONSIVE WRAPPER (Fix width issue) -->
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped" style="table-layout: fixed; word-wrap: break-word;">
+            <!-- table-layout: fixed → table wide nahi hota -->
+            <!-- word-wrap: break-word → long text wrap hota hai -->
+
+            <thead class="table-dark">
+                <tr>
+                    <th style="width:50px;">ID</th>
+                    <th style="width:120px;">Title</th>
+                    <th style="width:120px;">Author</th>
+                    <th style="width:110px;">Category</th>
+                    <th style="width:200px;">Description</th>
+                    <th style="width:70px;">Price</th>
+                    <th style="width:120px;">PDF</th>
+                    <th style="width:90px;">Cover</th>
+                    <th style="width:130px;">Created At</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Category</th>
-                        <th>Description</th>
 
-                        <!-- Added Columns Order -->
-                        <th>Price</th>
-                        <th>PDF Path</th>
-                        <th>Cover Image</th>
+                        <td><?= $row['id']; ?></td>
 
-                        <th>Created At</th>
+                        <td><?= $row['title']; ?></td>
+
+                        <td><?= $row['author']; ?></td>
+
+                        <td><?= $row['category']; ?></td>
+
+                        <!-- WRAPPED DESCRIPTION, NO LENGTH CUT -->
+                        <td><?= $row['description']; ?></td>
+
+                        <td><?= $row['price']; ?></td>
+
+                        <!-- ONLY FILENAME SHOW (Fix wide issue) -->
+                        <td><?= basename($row['pdf_path']); ?></td>
+
+                        <td>
+                            <?php if ($row['cover_image']) { ?>
+                                <img src="../<?= $row['cover_image']; ?>" width="60" height="80" style="object-fit:cover;">
+                            <?php } ?>
+                        </td>
+
+                        <!-- CREATED_AT COLUMN -->
+                        <td><?= $row['created_at']; ?></td>
+
                     </tr>
-                </thead>
+                <?php } ?>
+            </tbody>
+        </table>
 
-                <tbody>
-                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <tr>
-                            <td><?= $row['id']; ?></td>
-                            <td><?= $row['title']; ?></td>
-                            <td><?= $row['author']; ?></td>
-                            <td><?= $row['category']; ?></td>
-                            <td><?= $row['description']; ?></td>
+    </div> <!-- end table-responsive -->
 
-                            <td><?= $row['price']; ?></td>
-                            <td><?= $row['pdf_path']; ?></td>
+</div>
 
-                            <td>
-                                <?php if ($row['cover_image']) { ?>
-                                    <img src="../<?= $row['cover_image']; ?>" width="60">
-                                <?php } ?>
-                            </td>
-
-                            <td><?= $row['created_at']; ?></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-
-        </div>
-
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
