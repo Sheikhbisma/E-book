@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <h4 class="text-center mb-4">User Panel</h4>
+    <h2 class="text-center mb-4 fw-bold">User Panel</h2>
 
     <a href="dashboard.php">📊 Dashboard</a>
     <a href="profile.php">👤 Profile</a>

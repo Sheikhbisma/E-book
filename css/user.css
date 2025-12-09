@@ -6,18 +6,34 @@
     --paper-cream: #FFF8E1;
     --headings:#FFE082;
 }
+body {
+    background:
+        url('../images/bg.png'),
+        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
+    font-family: 'Cinzel', serif !important;
+
+}
+
   .btn-custom {
     background-color: var(--wood-dark) !important;
     color: var(--wood-dark);
 }
-h1,h2,h3{
+h1,h3{
      color: var(--wood-dark) !important;
     font-family: 'Cinzel', serif;
+}
+h2{
+    color: var(--accent-gold);
+}
+.card-title{
+    color: var(--wood-dark);
 }
   /* user sidebar */
   .sidebar {
       height: 100vh;
-      background: #273c75;
+       background:
+        url('../images/header.png'),
+        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
       color: white;
       padding-top: 20px;
       position: fixed;
@@ -27,15 +43,16 @@ h1,h2,h3{
   }
 
   .sidebar a {
-      color: white;
+      color: var(--paper-cream);
       text-decoration: none;
-      font-size: 16px;
+      font-size: 20px;
       padding: 12px 20px;
       display: block;
   }
 
   .sidebar a:hover {
-      background: #40739e;
+      background: var(--wood-medium);
+    color: var(--paper-cream);
   }
 
   .content-area {
@@ -138,10 +155,7 @@ h1,h2,h3{
 
   /* GLASS EFFECT */
   .glass-card {
-      background: rgba(255, 255, 255, 0.25);
       border-radius: 20px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       padding: 25px;
       border: 1px solid rgba(255, 255, 255, 0.4);
       transition: all 0.3s;
@@ -236,7 +250,6 @@ h1,h2,h3{
   /* Section Titles */
   .section-title {
       font-weight: 700;
-      color: #fff;
       border-left: 5px solid #fff;
       padding-left: 12px;
       margin-bottom: 25px;
@@ -313,7 +326,11 @@ h1,h2,h3{
     height: 100vh;
     margin: 0;
 }
-
+.card{
+          background: url('../images/card.png'),
+        var(--paper-cream) !important;
+    border: 1px solid #c8b89a;
+}
 /* Login Card Box */
 .login-box {
     width: 380px;

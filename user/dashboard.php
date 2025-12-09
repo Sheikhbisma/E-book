@@ -9,12 +9,7 @@
     <?php include '../components/meta-links.php'; ?>
 
 </head>
-<style>
-    body {
-        background: linear-gradient(135deg, #d7e1ec, #f5f5f7);
-        color: #000 !important;
-    }
-</style>
+
 
 <body>
     <?php include("user-sidebar.php"); ?>
@@ -25,11 +20,11 @@
         <div class="row g-4">
 
             <div class="col-md-3">
-                <div class="glass-card">
+                <div class="glass-card card">
                     <div class="d-flex">
                         <div class="icon-round bg-primary me-3"><i class="bi bi-book"></i></div>
                         <div>
-                            <h5 class="fw-bold mb-0">42 Books</h5>
+                            <h5 class="fw-bold mb-0 card-title">42 Books</h5>
                             <small class="text-muted">Total books in your library</small>
                         </div>
                     </div>
@@ -37,11 +32,11 @@
             </div>
 
             <div class="col-md-3">
-                <div class="glass-card">
+                <div class="glass-card card">
                     <div class="d-flex">
                         <div class="icon-round bg-success me-3"><i class="bi bi-check2-circle"></i></div>
                         <div>
-                            <h5 class="fw-bold mb-0">18 Completed</h5>
+                            <h5 class="fw-bold mb- card-title">18 Completed</h5>
                             <small class="text-muted">Keep up the good work!</small>
                         </div>
                     </div>
@@ -49,11 +44,11 @@
             </div>
 
             <div class="col-md-3">
-                <div class="glass-card">
+                <div class="glass-card card">
                     <div class="d-flex">
                         <div class="icon-round bg-warning me-3"><i class="bi bi-hourglass-split"></i></div>
                         <div>
-                            <h5 class="fw-bold mb-0">24 Pending</h5>
+                            <h5 class="fw-bold mb-0 card-title">24 Pending</h5>
                             <small class="text-muted">You can finish them 🔥</small>
                         </div>
                     </div>
@@ -61,11 +56,11 @@
             </div>
 
             <div class="col-md-3">
-                <div class="glass-card">
+                <div class="glass-card card">
                     <div class="d-flex">
                         <div class="icon-round bg-info me-3"><i class="bi bi-award"></i></div>
                         <div>
-                            <h5 class="fw-bold mb-0">5 Achievements</h5>
+                            <h5 class="fw-bold mb-0 card-title">5 Achievements</h5>
                             <small class="text-muted">New badges unlocked</small>
                         </div>
                     </div>
@@ -81,8 +76,8 @@
 
             <!-- Progress -->
             <div class="col-md-6">
-                <div class="glass-card">
-                    <h4 class="section-title text-dark">📚 Reading Progress</h4>
+                <div class="glass-card card">
+                    <h4 class="section-title card-title ">📚 Reading Progress</h4>
 
                     <p class="mb-1">PHP Basics <span class="float-end">80%</span></p>
                     <div class="progress mb-3">
@@ -103,8 +98,8 @@
 
             <!-- Notifications -->
             <div class="col-md-6">
-                <div class="glass-card">
-                    <h4 class="section-title text-dark">🔔 Notifications</h4>
+                <div class="glass-card card">
+                    <h4 class="section-title card-title">🔔 Notifications</h4>
 
                     <ul class="list-group">
                         <li class="list-group-item border-0">📘 New Book Added: <b>Laravel Essentials</b></li>
@@ -122,8 +117,8 @@
 
             <!-- Recent Orders Table -->
             <div class="col-md-7">
-                <div class="glass-card">
-                    <h4 class="section-title text-dark">🛒 Recent Orders</h4>
+                <div class="glass-card card">
+                    <h4 class="section-title card-title">🛒 Recent Orders</h4>
 
                     <table class="table table-hover">
                         <thead class="table-dark">
@@ -158,8 +153,8 @@
 
             <!-- Activity Log -->
             <div class="col-md-5">
-                <div class="glass-card">
-                    <h4 class="section-title text-dark">📌 Activity Log</h4>
+                <div class="glass-card card">
+                    <h4 class="section-title card-title">📌 Activity Log</h4>
                     <ul>
                         <li>Started: <b>JavaScript Fundamentals</b></li>
                         <li>Finished: <b>PHP Basics</b></li>
