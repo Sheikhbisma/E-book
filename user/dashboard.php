@@ -45,7 +45,10 @@
     }
 </style>
 
-<h2 class="mb-4 main-title">👋 Welcome Back</h2>
+
+
+<h2 class="mb-4 main-title"> Welcome Back</h2>
+
 
 <!-- TOP STATS -->
 <div class="row g-4">
@@ -80,7 +83,10 @@
                 <div class="icon-round bg-warning me-3"><i class="bi bi-hourglass-split"></i></div>
                 <div>
                     <h5 class="fw-bold mb-0">24 Pending</h5>
-                    <small class="text-muted">You can finish them 🔥</small>
+
+
+                    <small class="text-muted">You can finish them </small>
+
                 </div>
             </div>
         </div>
@@ -108,7 +114,10 @@
     <!-- Progress -->
     <div class="col-md-6">
         <div class="glass-card">
-            <h4 class="section-title">📚 Reading Progress</h4>
+
+
+            <h4 class="section-title"> Reading Progress</h4>
+
 
             <p class="mb-1">PHP Basics <span class="float-end">80%</span></p>
             <div class="progress mb-3">
@@ -130,12 +139,14 @@
     <!-- Notifications -->
     <div class="col-md-6">
         <div class="glass-card">
-            <h4 class="section-title">🔔 Notifications</h4>
+
+            <h4 class="section-title"> Notifications</h4>
 
             <ul class="list-group">
-                <li class="list-group-item border-0">📘 New Book Added: <b>Laravel Essentials</b></li>
-                <li class="list-group-item border-0">🏆 Achievement Unlocked: <b>Pro Reader</b></li>
-                <li class="list-group-item border-0">🔄 Profile updated successfully</li>
+                <li class="list-group-item border-0">New Book Added: <b>Laravel Essentials</b></li>
+                <li class="list-group-item border-0"> Achievement Unlocked: <b>Pro Reader</b></li>
+                <li class="list-group-item border-0"> Profile updated successfully</li>
+
             </ul>
         </div>
     </div>
@@ -149,7 +160,10 @@
     <!-- Recent Orders Table -->
     <div class="col-md-7">
         <div class="glass-card">
-            <h4 class="section-title">🛒 Recent Orders</h4>
+
+
+            <h4 class="section-title"> Recent Orders</h4>
+
 
             <table class="table table-hover">
                 <thead class="table-dark">
@@ -185,7 +199,10 @@
     <!-- Activity Log -->
     <div class="col-md-5">
         <div class="glass-card">
-            <h4 class="section-title">📌 Activity Log</h4>
+
+
+            <h4 class="section-title"> Activity Log</h4>
+
             <ul>
                 <li>Started: <b>JavaScript Fundamentals</b></li>
                 <li>Finished: <b>PHP Basics</b></li>
