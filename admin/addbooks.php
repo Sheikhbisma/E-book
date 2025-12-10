@@ -206,6 +206,7 @@ if (isset($_GET['book_id'])) {
 
 
     <?php include '../components/script.php' ?>
+    <script src="../js/admin.js"></script>
 </body>
 
 </html>
