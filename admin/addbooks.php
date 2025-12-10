@@ -6,9 +6,9 @@ include '../auth/check.php';
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];
     $author = $_POST['author'];
-    $category = $_POST['category'];
+    $category = $_POST['category']  ;
     $desc = $_POST['description'];
-    $price = $_POST['price'];
+    $price = $_POST['price']; 
 
     // PDF Upload
     $pdf_path = "";
