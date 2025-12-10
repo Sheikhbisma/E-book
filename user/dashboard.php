@@ -14,7 +14,7 @@
 <body>
     <?php include("user-sidebar.php"); ?>
     <div class="content-area text-dark">
-        <h2 class="mb-4 main-title">👋 Welcome Back</h2>
+        <h2 class="mb-4 main-title golden">👋 Welcome Back</h2>
 
         <!-- TOP STATS -->
         <div class="row g-4">
