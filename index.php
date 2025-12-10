@@ -1,5 +1,4 @@
-    <?php include './components/homecontent.php' ?>
-
+<?php include './components/homecontent.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,113 +11,19 @@
     
     <style>
         :root {
-            --wood-dark: #5D4037;
-            --wood-medium: #8D6E63;
-            --wood-light: #D7CCC8;
-            --accent-gold: #D4AF37;
-            --paper-cream: #FFF8E1;
             --headings: #FFE082;
-            --bg-dark: #1A252F;
         }
 
         * {
             font-family: 'Cormorant Garamond', serif;
         }
 
-    
-
-        h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6 {
             font-family: 'Cinzel', serif;
             color: var(--headings) !important;
         }
 
-        /* Navbar */
-        .navbar {
-            background: 
-                url('https://www.transparenttextures.com/patterns/dark-wood.png'),
-                linear-gradient(to bottom, var(--wood-dark), #3E2723);
-            border-bottom: 3px solid var(--accent-gold);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .navbar-brand {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: var(--headings) !important;
-            font-weight: 700;
-        }
-
-        .nav-link {
-            color: var(--wood-light) !important;
-            font-weight: 600;
-            padding: 0.5rem 1.5rem !important;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--accent-gold) !important;
-            border-bottom: 2px solid var(--accent-gold);
-        }
-/* Footer */
-        footer {
-            background: 
-                url('https://www.transparenttextures.com/patterns/dark-wood.png'),
-                linear-gradient(to top, var(--wood-dark), #3E2723);
-            border-top: 5px solid var(--wood-medium);
-            margin-top: 4rem;
-            padding: 3rem 0;
-            color: var(--wood-light);
-        }
-
-        footer h5 {
-            color: var(--headings) !important;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        footer a {
-            color: var(--wood-light) !important;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-
-        footer a:hover {
-            color: var(--accent-gold) !important;
-            transform: translateX(5px);
-        }
-
-        footer .small {
-            color: var(--wood-light);
-            opacity: 0.8;
-        }
-
-        /* Utility Classes */
-        .cream { color: var(--paper-cream) !important; }
-        .woodendark { color: var(--wood-dark) !important; }
-        .golden { color: var(--accent-gold) !important; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            
-            .book-card img {
-                height: 250px;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+</style>
 </head>
 <body>
   <?php include './components/header.php' ?>
@@ -143,7 +48,7 @@
     <section id="new" class="container py-5">
         <h2 class="section-title cream"><i class="fas fa-star me-2"></i>📘 New Releases</h2>
         <div class="row g-4">
-            <!-- include php file -->
+            <!-- fetch books -->
            <?php while($new_release = mysqli_fetch_assoc($new)){ ?>
                    <div class="col-md-3">
                 <div class="book-card card">
@@ -157,83 +62,28 @@
             </div>
 
             <?php } ?>
-            <div class="col-md-3">
-                <div class="book-card card">
-                    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=600&fit=crop" alt="Book 2" loading="lazy">
-                    <h6 class="woodendark">Science Today</h6>
-                    <div class="text-center pb-3">
-                        <span class="badge bg-success me-1">New</span>
-                        <span class="badge bg-info">Science</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="book-card card">
-                    <img src="https://images.unsplash.com/photo-1526318472351-c6f1b411b196?w=400&h=600&fit=crop" alt="Book 3" loading="lazy">
-                    <h6 class="woodendark">Dream of Oceans</h6>
-                    <div class="text-center pb-3">
-                        <span class="badge bg-success me-1">New</span>
-                        <span class="badge bg-warning">Adventure</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="book-card card">
-                    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&h=600&fit=crop" alt="Book 4" loading="lazy">
-                    <h6 class="woodendark">Ancient Secrets</h6>
-                    <div class="text-center pb-3">
-                        <span class="badge bg-success me-1">New</span>
-                        <span class="badge bg-secondary">History</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </section>
 
     <!-- Best Sellers -->
     <section id="best" class="container py-5">
         <h2 class="section-title cream"><i class="fas fa-fire me-2"></i>🔥 Best Sellers</h2>
         <div class="row g-4">
-            <div class="col-md-3">
+              <!-- fetch books -->
+           <?php while($best_seller = mysqli_fetch_assoc($best)){ ?>
+                   <div class="col-md-3">
                 <div class="book-card card">
-                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop" alt="Book 6" loading="lazy">
-                    <h6 class="woodendark">Mystery of the Night</h6>
+                    <img src="./<?php echo $best_seller['cover_image'] ?>" alt="Book 1" loading="lazy">
+                    <h6 class="woodendark"><?php echo $best_seller['title'] ?></h6>
                     <div class="text-center pb-3">
-                        <span class="badge bg-danger me-1">Bestseller</span>
-                        <span class="badge bg-dark">Mystery</span>
+                        <span class="badge bg-success me-1">Best Seller</span>
+                        <span class="badge bg-primary"><?php echo $best_seller['category'] ?></span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="book-card card">
-                    <img src="https://images.unsplash.com/photo-1496104679561-38d6cd969e10?w=400&h=600&fit=crop" alt="Book 7" loading="lazy">
-                    <h6 class="woodendark">Art of Living</h6>
-                    <div class="text-center pb-3">
-                        <span class="badge bg-danger me-1">Bestseller</span>
-                        <span class="badge bg-success">Self-Help</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="book-card card">
-                    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=600&fit=crop" alt="Book 8" loading="lazy">
-                    <h6 class="woodendark">Great Thinkers</h6>
-                    <div class="text-center pb-3">
-                        <span class="badge bg-danger me-1">Bestseller</span>
-                        <span class="badge bg-primary">Philosophy</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="book-card card">
-                    <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=400&h=600&fit=crop" alt="Book 9" loading="lazy">
-                    <h6 class="woodendark">World of Wonders</h6>
-                    <div class="text-center pb-3">
-                        <span class="badge bg-danger me-1">Bestseller</span>
-                        <span class="badge bg-info">Science</span>
-                    </div>
-                </div>
-            </div>
+
+            <?php } ?>
+
         </div>
     </section>
 
@@ -379,44 +229,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5><i class="fas fa-compass me-2"></i>Explore</h5>
-                    <a href="#new"><i class="fas fa-arrow-right me-1"></i>New Releases</a><br>
-                    <a href="#best"><i class="fas fa-arrow-right me-1"></i>Best Sellers</a><br>
-                    <a href="#competitions"><i class="fas fa-arrow-right me-1"></i>Competitions</a><br>
-                    <a href="#winners"><i class="fas fa-arrow-right me-1"></i>Winners</a><br>
-                    <a href="./books/index.php"><i class="fas fa-arrow-right me-1"></i>All Books</a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <h5><i class="fas fa-user me-2"></i>User</h5>
-                    <a href="#"><i class="fas fa-sign-in-alt me-1"></i>Login</a><br>
-                    <a href="#"><i class="fas fa-user-plus me-1"></i>Register</a><br>
-                    <a href="#"><i class="fas fa-heart me-1"></i>Wishlist</a><br>
-                    <a href="#"><i class="fas fa-history me-1"></i>Reading History</a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <h5><i class="fas fa-info-circle me-2"></i>About</h5>
-                    <p class="small">A premium e-book portal designed with elegance. Discover timeless stories, participate in literary competitions, and join a community of passionate readers.</p>
-                    <div class="d-flex gap-3 mt-3">
-                        <a href="#" class="text-light fs-5"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-light fs-5"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-light fs-5"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-light fs-5"><i class="fab fa-goodreads"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr style="border-color: var(--wood-medium);">
-            <p class="text-center small mt-4">&copy; 2026 E-Book World | Premium Literary Platform</p>
-        </div>
-    </footer>
-
+<!-- footer -->
+ <?php include './components/footer.php' ?>    
     <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
+<?php include './components/script.php' ?>    
 
 </body>
 </html>

@@ -29,9 +29,80 @@ body {
     color: var(--headings);
     font-weight: bold;
 }
-.card-title{
-    color: var(--wood-dark);
-}
+   /* Navbar */
+        .navbar {
+            background: 
+                url('https://www.transparenttextures.com/patterns/dark-wood.png'),
+                linear-gradient(to bottom, var(--wood-dark), #3E2723);
+            border-bottom: 3px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--headings) !important;
+            font-weight: 700;
+            padding-left: 10px;
+        }
+
+        .nav-link {
+            color: var(--wood-light) !important;
+            font-weight: 600;
+            /* padding: 0.5rem 1.5rem !important; */
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            font-family: 'Merriweather', serif;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-gold) !important;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+        
+        /* Cart icon with badge */
+        .cart-icon {
+            position: relative;
+        }
+        
+
+        
+        /* User dropdown */
+        .dropdown-menu {
+            background: 
+                url('../images/header.png'),
+                linear-gradient(to bottom, var(--wood-dark), #3E2723);
+            border: 1px solid var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .dropdown-item {
+            color: var(--wood-light);
+            font-family: 'Merriweather', serif;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+            color: var(--accent-gold);
+        }
+        
+      
+      
+        /* Mobile responsiveness */
+        @media (max-width: 992px) {
+            .nav-link {
+                padding: 0.75rem 1rem !important;
+            }
+            
+           
+            .navbar-nav {
+                padding-top: 10px;
+            }
+        }
+        /* all headers */
 .header{
      background:
         url('../images/header.png'),
@@ -429,4 +500,55 @@ body {
 .signup-link a:hover {
     text-decoration: underline;
 }
+/* Footer */
+        footer {
+            background: 
+                url('https://www.transparenttextures.com/patterns/dark-wood.png'),
+                linear-gradient(to top, var(--wood-dark), #3E2723);
+            border-top: 5px solid var(--wood-medium);
+            margin-top: 4rem;
+            padding: 3rem 0;
+            color: var(--wood-light);
+        }
 
+        footer h5 {
+            color: var(--headings) !important;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        footer a {
+            color: var(--wood-light) !important;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        footer a:hover {
+            color: var(--accent-gold) !important;
+            transform: translateX(5px);
+        }
+
+        footer .small {
+            color: var(--wood-light);
+            opacity: 0.8;
+        }
+         /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .book-card img {
+                height: 250px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
