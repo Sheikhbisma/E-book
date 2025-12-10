@@ -1,20 +1,23 @@
  <?php
+//  include database, functions
 include '../auth/dbconnect.php';
 include '../auth/check.php';
 include '../auth/functions.php';
+// if login button isset
 if(isset($_POST['loginbtn'])){
+    // sanitize data function that prevents sql injections
 
     $email = sanitize_data($_POST['email']);
     $password = $_POST['password'];
-
-    $sql = "SELECT * FROM customer_register WHERE customer_email='$email'";
+    //  check if email exist
     $sql = "SELECT * FROM customer_register WHERE customer_email='$email'";
     $result = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result) > 0){
         $row = mysqli_fetch_assoc($result);
-
+// if email exist verify password from database
         if(password_verify($password, $row['customer_pass'])){
+            // store data in sessions
             $_SESSION['username'] = $row['customer_email'];
             $_SESSION['userid'] = $row['customer_id'];
             header('Location: ../index.php');
@@ -49,7 +52,7 @@ if(isset($_POST['loginbtn'])){
 }
 </style>
 <body>
-<div class="container">
+<div class="containers">
 <div class="login-box  b-card">
     <?php 
 if(isset($_SESSION['msg'])){
