@@ -11,6 +11,7 @@
         <li><a href="./freebooks.php"><i class="bi bi-gear"></i> Free books</a></li>
         <li><a href="./view-orders.php"><i class="bi bi-cart"></i> Orders</a></li>
         <li><a href="reports.php"><i class="bi bi-bar-chart"></i> Reports</a></li>
-        <li><a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+        <li><a href="./freebooks.php"><i class="bi bi-gear"></i> Free books</a></li>
+        <li><a href="./inc/logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
     </ul>
 </div>

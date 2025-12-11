@@ -4,7 +4,6 @@ include '../auth/functions.php';
 include '../auth/check.php';
 // INSERT BOOK
 if (isset($_POST['submit'])) {
-
     $title = $_POST['title'];
     $author = $_POST['author'];
     $category = $_POST['category'];
@@ -40,7 +39,17 @@ if (isset($_POST['submit'])) {
 }
 
 // FETCH BOOKS
-$result = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC");
+$result = mysqli_query($conn, "SELECT * FROM books ");
+$update = false;
+
+if (isset($_GET['book_id'])) {
+    $update = true;
+    $id = $_GET['id'];
+
+    $res = mysqli_query($conn, "SELECT * FROM books WHERE id = '$id'");
+    $book = mysqli_fetch_assoc($res);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,11 +98,11 @@ $result = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC");
                                     <div class="row g-3 text-start">
                                         <div class="col-md-6">
                                             <label class="form-label">Book Title</label>
-                                            <input type="text" class="form-control" name="title" required>
+                                            <input type="text" class="form-control" value="<?php echo $book['title'] ?? '' ?>" name="title" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Author</label>
-                                            <input type="text" class="form-control" name="author" required>
+                                            <input type="text" value="<?php echo $book['author'] ?? '' ?>" class="form-control" name="author" required>
                                         </div>
 
                                         <div class="col-md-6">
@@ -154,7 +163,7 @@ $result = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC");
                                 <div class="row g-0 align-items-center">
                                     <!-- Image -->
                                     <div class="col-md-4 position-relative">
-                                        <img src="../images/cover.png" class="img-fluid rounded-start h-100" alt="Book Cover">
+                                        <img src="../<?php echo $row['cover_image'] ?>" style="height: 200px; width:200px;" class="img-fluid rounded-start " alt="Book Cover">
                                     </div>
 
                                     <!-- Card Body -->
@@ -177,7 +186,7 @@ $result = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC");
 
                                             <!-- Buttons -->
                                             <div class="d-flex justify-content-between">
-                                                <a href="#" class="btn btn-sm btn-edit flex-fill me-1"><i class="fas fa-edit"></i>Edit</a>
+                                                <a href="./edit-books.php?book_id=<?php echo $row['id']; ?>" name='updatebooks' class="btn btn-sm btn-edit flex-fill me-1"><i class="fas fa-edit"></i>Edit</a>
                                                 <a href="#" class="btn btn-sm btn-delete flex-fill me-1"><i class="fas fa-trash"></i>Delete</a>
                                                 <a href="#" class="btn btn-sm btn-pdf flex-fill"><i class="fas fa-book-open"></i>PDF</a>
                                             </div>
@@ -197,6 +206,7 @@ $result = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC");
 
 
     <?php include '../components/script.php' ?>
+    <script src="../js/admin.js"></script>
 </body>
 
 </html>

@@ -6,19 +6,114 @@
     --paper-cream: #FFF8E1;
     --headings:#FFE082;
 }
+body {
+    background:
+        url('../images/bg.png'),
+        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95)) !important;
+    font-family: 'poppins', sans-serif !important;
+
+}
+
   .btn-custom {
     background-color: var(--wood-dark) !important;
-    color: var(--wood-dark);
+    color: var(--headings) !important;
 }
-h1,h2,h3{
+.woodendark{
      color: var(--wood-dark) !important;
-    font-family: 'Cinzel', serif;
+}
+.golden{
+    color: var(--accent-gold);
+}
+.cream{
+    color: var(--headings);
+    font-weight: bold;
+}
+   /* Navbar */
+        .navbar {
+            background: 
+                url('https://www.transparenttextures.com/patterns/dark-wood.png'),
+                linear-gradient(to bottom, var(--wood-dark), #3E2723);
+            border-bottom: 3px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--headings) !important;
+            font-weight: 700;
+            padding-left: 10px;
+        }
+
+        .nav-link {
+            color: var(--wood-light) !important;
+            font-weight: 600;
+            /* padding: 0.5rem 1.5rem !important; */
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            font-family: 'Merriweather', serif;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-gold) !important;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+        
+        /* Cart icon with badge */
+        .cart-icon {
+            position: relative;
+        }
+        
+
+        
+        /* User dropdown */
+        .dropdown-menu {
+            background: 
+                url('../images/header.png'),
+                linear-gradient(to bottom, var(--wood-dark), #3E2723);
+            border: 1px solid var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .dropdown-item {
+            color: var(--wood-light);
+            font-family: 'Merriweather', serif;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+            color: var(--accent-gold);
+        }
+        
+      
+      
+        /* Mobile responsiveness */
+        @media (max-width: 992px) {
+            .nav-link {
+                padding: 0.75rem 1rem !important;
+            }
+            
+           
+            .navbar-nav {
+                padding-top: 10px;
+            }
+        }
+        /* all headers */
+.header{
+     background:
+        url('../images/header.png'),
+        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
 }
   /* user sidebar */
   .sidebar {
       height: 100vh;
-      background: #273c75;
-      color: white;
+       background:
+        url('../images/header.png'),
+        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
+      color: var(--paper-cream);
       padding-top: 20px;
       position: fixed;
       width: 220px;
@@ -27,15 +122,16 @@ h1,h2,h3{
   }
 
   .sidebar a {
-      color: white;
+      color: var(--paper-cream);
       text-decoration: none;
-      font-size: 16px;
+      font-size: 20px;
       padding: 12px 20px;
       display: block;
   }
 
   .sidebar a:hover {
-      background: #40739e;
+      background: var(--wood-medium);
+    color: var(--paper-cream);
   }
 
   .content-area {
@@ -47,7 +143,6 @@ h1,h2,h3{
   .profile-header {
       position: relative;
       height: 220px;
-      background: linear-gradient(135deg, #007bff, #6610f2);
       border-radius: 18px;
       overflow: hidden;
       margin-bottom: 70px;
@@ -77,7 +172,6 @@ h1,h2,h3{
   }
 
   .profile-name p {
-      color: #6c757d;
       margin-bottom: 0;
   }
 
@@ -99,7 +193,8 @@ h1,h2,h3{
   }
 
   .info-label {
-      font-weight: 500;
+    font-size: 18px;
+      font-weight: bold;
       color: #6c757d;
   }
 
@@ -138,10 +233,7 @@ h1,h2,h3{
 
   /* GLASS EFFECT */
   .glass-card {
-      background: rgba(255, 255, 255, 0.25);
       border-radius: 20px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       padding: 25px;
       border: 1px solid rgba(255, 255, 255, 0.4);
       transition: all 0.3s;
@@ -178,142 +270,174 @@ h1,h2,h3{
   }
 
   /* home page */
-  /* Navbar */
-  .navbar {
-      background-color: #111;
-      padding: 15px 0;
-  }
+ 
+  /* Hero Section */
+        .hero {
+            background: 
+                        url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-gold);
+        }
 
-  .navbar-brand {
-      color: #fff !important;
-      font-size: 1.7rem;
-      font-weight: 700;
-  }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--headings) !important;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 1rem;
+        }
 
-  .nav-link {
-      color: #ddd !important;
-      margin-left: 15px;
-  }
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--wood-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+/* Section Titles */
+        .section-title {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
 
-  .nav-link:hover {
-      color: #fff !important;
-  }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: var(--accent-gold);
+        }
+          /* Book Cards */
+        .book-card {
+            background: 
+                url('../images/bg.png'),
+                var(--paper-cream) !important;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--wood-medium);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            color: var(--wood-dark);
+            height: 100%;
+        }
 
-  /* Hero */
-  .hero {
-      background: #000 url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&h=600&fit=crop') center/cover no-repeat;
-      height: 60vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      color: #fff;
-  }
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-gold);
+        }
 
-  .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-  }
+        .book-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-  .hero-content {
-      position: relative;
-      text-align: center;
-  }
+        .book-card:hover img {
+            transform: scale(1.05);
+        }
 
-  .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #fff;
-  }
+        .book-card h6 {
+            padding: 1rem;
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--wood-dark);
+        }
+        
+        /* Competition Cards */
+        .competition-card {
+            background: rgba(255, 248, 225, 0.95);
+            border-radius: 10px;
+            border: 1px solid var(--accent-gold);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
 
-  .hero p {
-      font-size: 1.2rem;
-      color: #ccc;
-  }
+        .competition-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+        }
 
-  /* Section Titles */
-  .section-title {
-      font-weight: 700;
-      color: #fff;
-      border-left: 5px solid #fff;
-      padding-left: 12px;
-      margin-bottom: 25px;
-  }
+        .competition-card .card-title {
+            color: var(--wood-dark) !important;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 0.5rem;
+        }
 
-  /* Book Cards */
-  .book-card {
-      background-color: #111;
-      border-radius: 12px;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-  }
+        .competition-card .card-text {
+            color: black !important;
+        }
+         /* Winner Cards */
+        .winner-card {
+            background: rgba(255, 248, 225, 0.95);
+            border-radius: 10px;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
 
-  .book-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 20px 30px rgba(255, 255, 255, 0.25);
-  }
+        .winner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-gold), #FFD700, var(--accent-gold));
+        }
 
-  .book-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 10px;
-  }
+        .winner-card .card-title {
+            color: var(--wood-dark) !important;
+            font-weight: 700;
+        }
 
-  .book-card h6 {
-      color: #fff;
-  }
+        .winner-card .card-text {
+            color: black !important;
+        }
 
-  /* Competitions & Winners Cards */
-  .card {
-      border-radius: 12px;
-  }
-
-  .card-body h5,
-  .card-body h6 {
-      color: #fff;
-  }
-
-  .card-body p {
-      color: #ccc;
-  }
-
-  /* Footer */
-  footer {
-      background-color: #111;
-      color: #ccc;
-      padding: 40px 0;
-  }
-
-  footer h5 {
-      color: #fff;
-      margin-bottom: 15px;
-  }
-
-  footer a {
-      text-decoration: none;
-      color: #ccc;
-  }
-
-  footer a:hover {
-      color: #fff;
-  }
+        .winner-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-gold);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
   /* login */
 
 /* Center the login box */
-.container {
+.containers {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
-
+.card{
+          background: url('../images/card.png'),
+        var(--paper-cream) !important;
+    border: 1px solid #c8b89a;
+}
 /* Login Card Box */
 .login-box {
     width: 380px;
@@ -331,18 +455,6 @@ h1,h2,h3{
     color: #333;
 }
 
-/* Input Fields */
-.login-box .form-control {
-    height: 45px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    transition: 0.3s ease;
-}
-
-.login-box .form-control:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 6px rgba(13,110,253,0.4);
-}
 
 /* Login Button */
 .btn-login {
@@ -356,9 +468,6 @@ h1,h2,h3{
     transition: 0.3s ease;
 }
 
-.btn-login:hover {
-    background: #0b5ed7;
-}
 
 /* Signup Link */
 .signup-link {
@@ -375,4 +484,59 @@ h1,h2,h3{
 .signup-link a:hover {
     text-decoration: underline;
 }
+/* Footer */
+        footer {
+            background: 
+                url('https://www.transparenttextures.com/patterns/dark-wood.png'),
+                linear-gradient(to top, var(--wood-dark), #3E2723);
+            border-top: 5px solid var(--wood-medium);
+            margin-top: 4rem;
+            padding: 3rem 0;
+            color: var(--wood-light);
+        }
 
+        footer h5 {
+            color: var(--headings) !important;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        footer a {
+            color: var(--wood-light) !important;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        footer a:hover {
+            color: var(--accent-gold) !important;
+            transform: translateX(5px);
+        }
+
+        footer .small {
+            color: var(--wood-light);
+            opacity: 0.8;
+        }
+         /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .book-card img {
+                height: 250px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+.bg{
+    background: var(--wood-dark) !important;
+    color: var(--headings) !important;
+}
