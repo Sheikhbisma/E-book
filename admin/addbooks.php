@@ -163,7 +163,7 @@ if (isset($_GET['book_id'])) {
                                 <div class="row g-0 align-items-center">
                                     <!-- Image -->
                                     <div class="col-md-4 position-relative">
-                                        <img src="../<?php echo $row['cover_image'] ?>" style="height: 200px; width:200px;" class="img-fluid rounded-start " alt="Book Cover">
+                                        <img src="../<?php echo $row['cover_image'] ?>" class="img-fluid rounded-start h-100" alt="Book Cover">
                                     </div>
 
                                     <!-- Card Body -->
@@ -186,8 +186,15 @@ if (isset($_GET['book_id'])) {
 
                                             <!-- Buttons -->
                                             <div class="d-flex justify-content-between">
-                                                <a href="./edit-books.php?book_id=<?php echo $row['id']; ?>" name='updatebooks' class="btn btn-sm btn-edit flex-fill me-1"><i class="fas fa-edit"></i>Edit</a>
-                                                <a href="#" class="btn btn-sm btn-delete flex-fill me-1"><i class="fas fa-trash"></i>Delete</a>
+                                               <a href="./updatebook.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-edit">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                                <a href="./removebook.php?id=<?php echo $row['id']; ?>"
+                                                    onclick="return confirm('Are you sure you want to delete this book?');"
+                                                    class="btn btn-sm btn-delete">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </a>
+
                                                 <a href="#" class="btn btn-sm btn-pdf flex-fill"><i class="fas fa-book-open"></i>PDF</a>
                                             </div>
                                         </div>
