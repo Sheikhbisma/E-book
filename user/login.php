@@ -26,7 +26,7 @@
                 $_SESSION['msg'] = showErr('Invalid username or password', "danger");
             }
         } else {
-            $_SESSION['msg'] = showErr('Invalid username or password', "danger");
+            $_SESSION['msg'] = showErr('email not found', "danger");
         }
     }
 
