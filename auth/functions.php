@@ -27,7 +27,7 @@ function validateForm($contact, $address, $location, $pass, $conpass){
     return $errors; 
 }
 function showErr($err , $class){
-   return "<div class='alert alert-$class alert-dismissible w-50 fade show' role='alert'>
+   return "<div class='alert alert-$class alert-dismissible w-100 fade show' role='alert'>
  $err
   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
 </div>";
@@ -38,5 +38,10 @@ function sanitize_data($data){
    $data = htmlspecialchars($data , ENT_QUOTES);
    return $data;
 }
-
+function totalItems($conn , $user_id){
+    $products = $select = mysqli_query($conn, "select sum(quantity) as sum from cart where user_id = '$user_id'");
+$fetch_book = mysqli_fetch_assoc($select);
+$_SESSION['totalProducts'] = $fetch_book['sum'];
+return $products;
+}
 ?>

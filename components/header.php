@@ -15,12 +15,12 @@
 
              <ul class="navbar-nav ms-auto align-items-center gap-3">
                  <li class="nav-item">
-                     <a class="nav-link active" href="#">
+                     <a class="nav-link active" href="../index.php">
                          <i class="fas fa-home me-1"></i> Home
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="./books/index.php">
+                     <a class="nav-link" href="../books/index.php">
                          <i class="fas fa-book me-1"></i> Books
                      </a>
                  </li>
@@ -30,15 +30,11 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fas fa-gift me-1"></i> Free Books
+                     <a class="nav-link" href="../contact.php">
+                         <i class="fas fa-phone me-1"></i> Contact
                      </a>
                  </li>
-                 <!-- <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fas fa-envelope me-1"></i> Contact
-                     </a>
-                 </li> -->
+
                  <li class="nav-item">
                      <a class="nav-link" href="#">
                          <i class="fas fa-trophy me-1"></i> Competition
@@ -48,15 +44,16 @@
                <div class="d-flex gap-2 ms-5">
                   <!-- Cart Icon -->
                  <li class="nav-item">
-                     <a class="nav-link cart-icon" href="#">
-                         <i class="fas fa-shopping-cart fs-5">
-                             <span class="position-absolute top-0 start-95 translate-middle badge rounded-pill bg-danger">
-                                 5
-                                 <span class="visually-hidden">unread messages</span>
-                             </span>
-                         </i>
+                     <a class="nav-link cart-icon" href="../user/cart.php">
+    <i class="fas fa-shopping-cart fs-5 position-relative">
+        <?php if (isset($_SESSION['totalProducts'])) { ?>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <?php echo $_SESSION['totalProducts']; ?>
+            </span>
+        <?php } ?>
+    </i>
+</a>
 
-                     </a>
                  </li>
 
                  <!-- User Dropdown -->
@@ -65,12 +62,14 @@
                          <i class="fas fa-user-circle me-1"></i> Account
                      </a>
                      <ul class="dropdown-menu dropdown-menu-end">
-                         <li><a class="dropdown-item" href="#"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
-                         <li><a class="dropdown-item" href="#"><i class="fas fa-user-plus me-2"></i> Register</a></li>
+                         <li><a class="dropdown-item" href="../user/login.php"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
+                         <li><a class="dropdown-item" href="../user/register.php"><i class="fas fa-user-plus me-2"></i> Register</a></li>
                       
-                         <li><a class="dropdown-item" href="#"><i class="fas fa-bookmark me-2"></i> My Dashboard</a></li>
+                        <?php if(isset($_SESSION['username'])){ ?>
+                             <li><a class="dropdown-item" href="./user/dashboard.php"><i class="fas fa-bookmark me-2"></i> My Dashboard</a></li>
                         
-                         <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                         <li><a class="dropdown-item" href="./user/logout.php"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                            <?php } ?>
                      </ul>
                  </li>
                </div>

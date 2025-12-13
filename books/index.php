@@ -1,101 +1,82 @@
 <?php
+session_start();
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
-include '../auth/check.php';
-
-// INSERT BOOK
-if (isset($_POST['submit'])) {
-    $title = $_POST['title'];
-    $author = $_POST['author'];
-    $category = $_POST['category'];
-    $desc = $_POST['description'];
-    $price = $_POST['price'];
-
-    $insert = "INSERT INTO books (title, author, category, description, price)
-               VALUES ('$title', '$author', '$category', '$desc', '$price')";
-    $run = mysqli_query($conn, $insert);
-
-    if ($run) {
-        $_SESSION['msg'] = showErr("Book Uploaded Successfully!", "success");
-    }
-}
-
-// FETCH BOOKS
+$user_id = $_SESSION['userid'];
+// Fetch Books
 $result = mysqli_query($conn, "SELECT * FROM books");
+totalItems($conn , $user_id)
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Books Store</title>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- BOOTSTRAP LINK -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Premium Glow Cards</title>
+
+<?php include '../components/meta-links.php' ?>
 </head>
 
-<body class="bg-light">
+<body>
+    <?php include '../components/header.php' ?>
 
-<h1 class="text-center bg-primary text-white p-3">📚 Book Store</h1>
+<section>
+  <div class="container">
+      <?php  
+    if(isset($_SESSION['cart_msg'])){
+        echo $_SESSION['cart_msg'];
+        unset($_SESSION['cart_msg']);
+    }
+    
+    ?>
+  </div>
+    <div class="container-cards">
+        
+<?php while ($row = mysqli_fetch_assoc($result)) { ?>
 
-<div class="container mt-4">
-    <div class="row">
+    <div class="card-box card">
+        <!-- Image with Absolute Positioning - NOW LARGER -->
+        <img src="../<?php echo $row['cover_image']; ?>" class="card-img">
 
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+        <!-- Card Content Below Image - NOW MORE COMPACT -->
+        <div class="card-content">
+            <h3 class="card-title woodendark fw-bold"><?php echo $row['title']; ?></h3>
 
-            <div class="col-md-6 col-sm-12 mb-4">
-                <div class="card shadow-sm h-100" style="border-radius: 12px;">
+            <p class="card-author woodendark "><?php echo $row['author']; ?></p>
 
-                    <div class="row g-0 align-items-center">
+            <p class="card-desc woodendark">
+                <?php echo substr($row['description'], 0, 75) . "..."; ?>  <!-- Slightly less text -->
+            </p>
 
-                        <!-- Image -->
-                        <div class="col-md-4">
-                            <img src="../<?php echo $row['cover_image']; ?>" 
-                                 class="img-fluid rounded-start h-100" 
-                                 style="object-fit: cover;" 
-                                 alt="Book Cover">
-                        </div>
-
-                        <!-- Content -->
-                        <div class="col-md-8">
-                            <div class="card-body">
-
-                                <h5 class="fw-bold"><?php echo $row['title']; ?></h5>
-                                <p class="text-muted"><?php echo $row['author']; ?></p>
-
-                                <p class="small text-secondary" style="max-height:40px; overflow:hidden;">
-                                    <?php echo substr($row['description'], 0, 80) . "..."; ?>
-                                </p>
-
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span class="badge bg-warning text-dark"><?php echo $row['category']; ?></span>
-                                    <span class="fw-bold fs-5 text-success">$<?php echo $row['price']; ?></span>
-                                </div>
-
-                                <!-- Buttons -->
-                                <div class="d-flex justify-content-between">
-                                    <a href="details.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary">
-                                        Details
-                                    </a>
-
-                                    <a href="addtocart.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-success">
-                                        Add to Cart
-                                    </a>
-
-                                    
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
+            <div class="price-tag bg">
+                RS <?php echo $row['price']; ?>
             </div>
 
-        <?php } ?>
+            <!-- 🔥 ICON BUTTONS ONLY -->
+            <div class="card-actions">
+
+                <!-- Add to cart -->
+                <a class="card-icon-btn btn-edit" href="../user/add_cart.php?id=<?php echo $row['id']?>">
+                    <i class="fa fa-cart-plus"></i>
+                </a>
+
+                <!-- See details -->
+                <a class="card-icon-btn btn-custom" href="./details.php?id=<?php echo $row['id']; ?>">
+                    <i class="fa fa-eye"></i>
+                </a>
+
+            </div>
+        </div>
 
     </div>
+
+<?php } ?>
 </div>
+</section>
+<?php include '../components/script.php' ?>
+
 
 </body>
 </html>

@@ -37,7 +37,7 @@ if (isset($_POST['update'])) {
 
     mysqli_query($conn, "UPDATE books SET title='$title', author='$author', category='$category', description='$desc', price='$price' ,pdf_path='$pdf_path', cover_image='$cover_image' WHERE id=$id");
     $_SESSION['msg'] = showErr("Book updated successfully!", "success");
-    header("Location: freebooks.php");
+    header("Location: addbooks.php");
     exit;
 }
 ?>
@@ -78,7 +78,7 @@ if (isset($_POST['update'])) {
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">price</label>
-                    <input type="text" value="<?php echo htmlspecialchars($book['price']); ?>" class="form-control" name="author" required>
+                    <input type="text" value="<?php echo htmlspecialchars($book['price']); ?>" class="form-control" name="price" required>
                 </div>
 
                 <div class="col-md-6">
@@ -103,7 +103,7 @@ if (isset($_POST['update'])) {
 
                 <div class="col-md-6">
                     <label class="form-label">Upload Cover Image</label>
-                    <input type="file" class="form-control" name="cover_image" accept=".jpg,.jpeg,.png">
+                    <input type="file" class="form-control" name="cover_image" accept=".jpg,.jpeg,.png,webp">
                     <?php if($book['cover_image']): ?>
                         <small>Current image: <img src="../<?php echo $book['cover_image']; ?>" alt="cover" width="50"></small>
                     <?php endif; ?>

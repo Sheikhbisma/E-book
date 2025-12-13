@@ -48,7 +48,7 @@
          background:
              url('../images/bg.png'),
              linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
-
+overflow: hidden;
      }
  </style>
 
@@ -66,6 +66,10 @@
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
           </div>";
                     unset($_SESSION['success_msg']);
+                }
+                if (isset($_SESSION['cart_error'])) {
+                    echo $_SESSION['cart_error'];
+                    unset($_SESSION['cart_error']); // Remove after displaying
                 }
                 ?>
              <h2>Login</h2>
@@ -94,27 +98,28 @@
          </div>
      </div>
      <?php include '../components/script.php'; ?>
-<script>
-    // get icon for click
-    let show = document.querySelector('.show');
-    let password = document.querySelector('#password');
-    show.addEventListener('click', () => {
-      // if password is not empty
-      if (password.value != '') {
-        // if input type is password then change the type into text
-        if (password.type === 'password') {
-          password.type = 'text';
-          show.classList.add("bi-eye-slash-fill");
-          show.classList.remove("bi-eye-fill");
-        } else {
-          // if input type is text then change the type into password
-          password.type = 'password';
-          show.classList.remove("bi-eye-slash-fill");
-          show.classList.add("bi-eye-fill");
-        }
-      }
-    });
-  </script>
+     <script>
+         // get icon for click
+         let show = document.querySelector('.show');
+         let password = document.querySelector('#password');
+         show.addEventListener('click', () => {
+            console.log('helo')
+             // if password is not empty
+             if (password.value != '') {
+                 // if input type is password then change the type into text
+                 if (password.type === 'password') {
+                     password.type = 'text';
+                     show.classList.add("bi-eye-slash-fill");
+                     show.classList.remove("bi-eye-fill");
+                 } else {
+                     // if input type is text then change the type into password
+                     password.type = 'password';
+                     show.classList.remove("bi-eye-slash-fill");
+                     show.classList.add("bi-eye-fill");
+                 }
+             }
+         });
+     </script>
  </body>
 
  </html>

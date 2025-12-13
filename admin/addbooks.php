@@ -156,18 +156,18 @@ if (isset($_GET['book_id'])) {
 
             <!-- BOOK CARDS -->
             <h2 class="mb-4 text-center fw-bold">All Books</h3>
-                <div class="row g-4">
+                <div class="row g-4 mb-5">
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="col-md-6 col-sm-12 ">
                             <div class="card b-card h-100 mb-3 shadow-sm" style="max-width: 540px; border-radius: 12px;">
                                 <div class="row g-0 align-items-center">
                                     <!-- Image -->
-                                    <div class="col-md-4 position-relative">
-                                        <img src="../<?php echo $row['cover_image'] ?>" class="img-fluid rounded-start h-100" alt="Book Cover">
+                                    <div class="col-4 position-relative">
+                                        <img src="../<?php echo $row['cover_image'] ?>" class="img-fluid rounded-start " style="height:200px ; width:150px;"  alt="Book Cover">
                                     </div>
 
                                     <!-- Card Body -->
-                                    <div class="col-md-8">
+                                    <div class="col-8">
                                         <div class="card-body">
                                             <!-- Title & Author -->
                                             <h5 class="card-title fw-bold"><?php echo $row['title'] ?></h5>
@@ -185,17 +185,17 @@ if (isset($_GET['book_id'])) {
                                             </div>
 
                                             <!-- Buttons -->
-                                            <div class="d-flex justify-content-between">
-                                               <a href="./updatebook.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-edit">
+                                            <div class="d-flex justify-content-center gap-3">
+                                               <a href="./updatebook.php?id=<?php echo $row['id']; ?>" class="btn btn-md btn-edit">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
                                                 <a href="./removebook.php?id=<?php echo $row['id']; ?>"
                                                     onclick="return confirm('Are you sure you want to delete this book?');"
-                                                    class="btn btn-sm btn-delete">
+                                                    class="btn btn-md btn-delete">
                                                     <i class="fas fa-trash"></i> Delete
                                                 </a>
 
-                                                <a href="#" class="btn btn-sm btn-pdf flex-fill"><i class="fas fa-book-open"></i>PDF</a>
+                                                <a href="#" class="btn btn-md btn-pdf "><i class="fas fa-book-open"></i>PDF</a>
                                             </div>
                                         </div>
                                     </div>

@@ -1,6 +1,6 @@
 <?php
 include "./dbconnect.php";
-
+session_start();
 if (isset($_POST['submit'])) {
 
     $name    = $conn->real_escape_string($_POST['name']);
@@ -22,252 +22,137 @@ if (isset($_POST['submit'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Contact Form</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Contact Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php include './components/meta-links.php' ?>
+    <link rel="stylesheet" href="./css/user.css">
 
-<!-- Google font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #590d22, #a4133c);
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-/* Background circles */
-.circle {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(45px);
-    opacity: 0.65;
-}
-.circle1 {
-    width: 270px; height: 270px;
-    background: #ff4d6d;
-    top: 5%; left: 12%;
-}
-.circle2 {
-    width: 200px; height: 200px;
-    background: #c9184a;
-    bottom: 8%; right: 10%;
-}
-.circle3 {
-    width: 150px; height: 150px;
-    background: #ffb3c1;
-    top: 60%; left: 5%;
-}
-
-/* MAIN WRAPPER */
-.wrapper {
-    width: 90%;
-    max-width: 980px;
-    background: rgba(255,255,255,0.10);
-    padding: 0;
-    border-radius: 22px;
-    display: flex;
-    backdrop-filter: blur(18px);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.3);
-    overflow: hidden;
-    animation: slideUp 0.7s ease;
-}
-@keyframes slideUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to   { transform: translateY(0); opacity: 1; }
-}
-
-/* LEFT FORM AREA */
-.left {
-    width: 60%;
-    padding: 45px;
-}
-
-.left h2 {
-    font-size: 35px;
-    color: #ffe5ec;
-    margin-bottom: 20px;
-    font-weight: 700;
-    text-shadow: 0 0 15px #ffb3c1;
-}
-
-/* INPUT STYLING */
-input, textarea {
-    width: 100%;
-    padding: 16px;
-    margin-bottom: 16px;
-    border-radius: 16px;
-    border: 2px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.20);
-    color: #fff;
-    font-size: 16px;
-    transition: .3s ease;
-}
-
-input::placeholder, textarea::placeholder {
-    color: #ffe5ecc7;
-}
-
-input:focus, textarea:focus {
-    border-color: #ffb3c1;
-    box-shadow: 0 0 12px #ffb3c1;
-    transform: scale(1.03);
-}
-
-textarea {
-    height: 130px;
-    resize: none;
-}
-
-/* SEND BUTTON */
-button {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #ff4d6d, #c9184a, #a4133c);
-    background-size: 200%;
-    border: none;
-    border-radius: 18px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 700;
-    box-shadow: 0 6px 20px rgba(255,77,109,0.4);
-    animation: buttonAnim 4s ease infinite;
-    transition: 0.3s;
-}
-@keyframes buttonAnim {
-    0% { background-position: 0%; }
-    50% { background-position: 100%; }
-    100% { background-position: 0%; }
-}
-button:hover {
-    transform: scale(1.05) translateY(-3px);
-}
-
-/* RIGHT PANEL */
-.right {
-    width: 40%;
-    background: rgba(255,255,255,0.18);
-    padding: 50px 35px;
-    text-align: left;
-    backdrop-filter: blur(20px);
-    border-left: 1px solid rgba(255,255,255,0.2);
-}
-
-.right h3 {
-    font-size: 26px;
-    color: #ffe5ec;
-    margin-bottom: 20px;
-    text-shadow: 0 0 12px #ff4d6d;
-}
-
-.info-box {
-    margin: 15px 0;
-    display: flex;
-    align-items: center;
-    color: #ffe5ec;
-    font-size: 17px;
-}
-
-.info-box i {
-    font-size: 20px;
-    margin-right: 12px;
-    color: #ffb3c1;
-    text-shadow: 0 0 10px #ff4d6d;
-}
-
-/* SOCIAL ICONS */
-.social-icons {
-    margin-top: 25px;
-}
-
-.social-icons a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 50px;
-    height: 50px;
-
-    margin-right: 12px;
-
-    background: radial-gradient(circle at top, rgba(255,255,255,0.35), rgba(255,255,255,0.10));
-    border: 2px solid rgba(255,255,255,0.45);
-
-    border-radius: 50%;
-
-    color: #ffe5ec;
-    font-size: 22px;
-
-    box-shadow: 0 0 15px rgba(255,179,193,0.6);
-    backdrop-filter: blur(15px);
-
-    transition: 0.3s ease;
-}
-
-.social-icons a:hover {
-    transform: scale(1.18);
-    background: #ff4d6d;
-    border-color: #ffb3c1;
-    color: #fff;
-    box-shadow: 0 0 25px #ff4d6d;
-}
-
-</style>
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-book-open me-2"></i>E-Book
+            </a>
 
-<!-- Background circles -->
-<div class="circle circle1"></div>
-<div class="circle circle2"></div>
-<div class="circle circle3"></div>
 
-<div class="wrapper">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <!-- LEFT FORM -->
-    <div class="left">
-        <h2>Contact Us</h2>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Mobile Search Box -->
 
-        <form method="POST">
-            <input type="text" name="name" placeholder="Enter your name" required>
-            <input type="email" name="email" placeholder="Enter your email" required>
-            <textarea name="message" placeholder="Enter your message" required></textarea>
+                <ul class="navbar-nav ms-auto align-items-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./index.php">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./books/index.php">
+                            <i class="fas fa-book me-1"></i> Books
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./books/categories.php">
+                            <i class="fas fa-th-large me-1"></i> Categories
+                        </a>
+                    </li>
 
-            <button type="submit" name="submit">Send Message</button>
-        </form>
-    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.php">
+                            <i class="fas fa-envelope me-1"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-trophy me-1"></i> Competition
+                        </a>
+                    </li>
 
-    <!-- RIGHT SIDE INFORMATION -->
-    <div class="right">
-        <h3>Get in Touch</h3>
+                    <div class="d-flex gap-2 ms-5">
+                        <!-- Cart Icon -->
+                        <li class="nav-item">
+                            <a class="nav-link cart-icon" href="#">
+                                <i class="fas fa-shopping-cart fs-5 position-relative">
+                                    <?php if (isset($_SESSION['totalProducts'])) { ?>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            <?php echo $_SESSION['totalProducts']; ?>
+                                        </span>
+                                    <?php } ?>
+                                </i>
 
-        <div class="info-box"><i class="fa fa-phone"></i> +92 300 0000000</div>
-        <div class="info-box"><i class="fa fa-envelope"></i> info@example.com</div>
-        <div class="info-box"><i class="fa fa-location-dot"></i> Karachi, Pakistan</div>
+                            </a>
+                        </li>
 
-        <h3 style="margin-top:25px;">Follow Us</h3>
+                        <!-- User Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle me-1"></i> Account
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="./user/login.php"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
+                                <li><a class="dropdown-item" href="./user/register.php"><i class="fas fa-user-plus me-2"></i> Register</a></li>
 
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <?php if (isset($_SESSION['username'])) { ?>
+                                    <li><a class="dropdown-item" href="./user/dashboard.php"><i class="fas fa-bookmark me-2"></i> My Dashboard</a></li>
+
+                                    <li><a class="dropdown-item" href="./user/logout.php"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+                    </div>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
 
-</div>
 
+    <section class="mt-5">
+        <div class="wrapper mx-auto">
+
+            <!-- LEFT FORM -->
+            <div class="left card">
+                <h2 class="woodendark">Contact Us</h2>
+
+                <form method="POST">
+                    <input type="text" name="name" placeholder="Enter your name" required>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <textarea name="message" placeholder="Enter your message" required></textarea>
+
+                    <button type="submit" class="btn-custom" name="submit">Send Message</button>
+                </form>
+            </div>
+
+            <!-- RIGHT SIDE INFORMATION -->
+            <div class="right">
+                <h3 class="cream">Get in Touch</h3>
+
+                <div class="info-box"><i class="fa fa-phone woodendark"></i> +92 300 0000000</div>
+                <div class="info-box"><i class="fa fa-envelope woodendark"></i> info@example.com</div>
+                <div class="info-box"><i class="fa fa-location-dot woodendark"></i> Karachi, Pakistan</div>
+
+                <h3 style="margin-top:25px;" class="cream">Follow Us</h3>
+
+                <div class="social-icons">
+                    <a href="#" class="btn-custom"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="btn-custom"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="btn-custom"><i class="fab fa-facebook-f "></i></a>
+                    <a href="#" class="btn-custom"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <?php include './components/footer.php' ?>
+    <?php include './components/script.php' ?>
 </body>
+
 </html>
