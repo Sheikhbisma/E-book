@@ -18,7 +18,8 @@
                     <a href="#"><i class="fas fa-history me-1"></i>Reading History</a>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h5><i class="fas fa-info-circle me-2"></i>About</h5>
+                
+                <h5><i class="fas fa-info-circle me-2"></i>About</h5>
                     <p class="small">A premium e-book portal designed with elegance. Discover timeless stories, participate in literary competitions, and join a community of passionate readers.</p>
                     <div class="d-flex gap-3 mt-3">
                         <a href="#" class="text-light fs-5"><i class="fab fa-facebook"></i></a>
