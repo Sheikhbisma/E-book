@@ -25,7 +25,7 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="../books/categories.php">
                          <i class="fas fa-th-large me-1"></i> Categories
                      </a>
                  </li>
@@ -65,10 +65,10 @@
                        
                           <?php if(!isset($_SESSION['username'])){ ?>
                               <li><a class="dropdown-item" href="../user/login.php"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
-                               <li><a class="dropdown-item" href="./user/dashboard.php"><i class="fas fa-bookmark me-2"></i> Register</a></li>
+                               <li><a class="dropdown-item" href="./user/register.php"><i class="fas fa-bookmark me-2"></i> Register</a></li>
                       <?php } ?>
                         <?php if(isset($_SESSION['username'])){ ?>
-                             <li><a class="dropdown-item" href="../user/register.php"><i class="fas fa-bookmark me-2"></i> My Dashboard</a></li>
+                             <li><a class="dropdown-item" href="../user/dashboard.php"><i class="fas fa-bookmark me-2"></i> My Dashboard</a></li>
                         
                          <li><a class="dropdown-item" href="../user/logout.php"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
                             <?php } ?>

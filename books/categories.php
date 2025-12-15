@@ -4,6 +4,7 @@ include '../auth/functions.php';
 include '../auth/check.php';
 
 $result = mysqli_query($conn, "SELECT * FROM books");
+$total_books = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +83,6 @@ $result = mysqli_query($conn, "SELECT * FROM books");
 
         /* TOP IMAGE (BOOK COVER) */
         .book-cover {
-            background: linear-gradient(to bottom, #1c0f0c, #2b1b17);
             padding: 18px;
             display: flex;
             justify-content: center;
@@ -182,8 +182,8 @@ $result = mysqli_query($conn, "SELECT * FROM books");
                             data-author="<?= strtolower($row['author']) ?>"
                             data-category="<?= $row['category'] ?>">
 
-                            <div class="book-card">
-                                <div class="book-cover">
+                            <div class="book-card ">
+                                <div class="book-cover header">
                                     <img src="../<?= $row['cover_image'] ?>" alt="<?= $row['title'] ?>">
                                 </div>
 
@@ -206,7 +206,7 @@ $result = mysqli_query($conn, "SELECT * FROM books");
     </div>
 
     <?php include '../components/footer.php'; ?>
-
+  <?php include '../components/script.php'; ?>
     <script>
         function filterBooks() {
             let search = document.getElementById('search').value.toLowerCase();

@@ -1,12 +1,109 @@
+<?php
+include '../auth/dbconnect.php';
+include '../auth/functions.php';
+include '../auth/check.php';
+$free_book = mysqli_query($conn , "select * from freebooks");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <?php include '../components/meta-links.php'; ?>
+     <?php include '../components/meta-links.php'; ?>
 </head>
-  <?php include("user-sidebar.php"); ?>
+<style>
+/* user sidebar books section */
+.card{
+  width: 300px;
+  padding: 20px;
+  background: #fff;
+  border: 6px solid var(--wood-dark);
+  box-shadow: 12px 12px 0 var(--wood-dark);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.badge-free{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #dc3545;
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    box-shadow: 3px 3px 0 var(--wood-dark);
+}
+
+.card:hover {
+  transform: translate(-5px, -5px);
+  box-shadow: 17px 17px 0 var(--wood-dark);
+}
+
+.card__title {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card__title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background-color: var(--wood-dark);
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+}
+
+.card:hover .card__title::after {
+  transform: translateX(0);
+}
+
+
+
+
+
+</style>
 <body>
+  <?php include 'user-sidebar.php'; ?>
+    <!-- From Uiverse.io by 0xnihilism --> 
+<div class="content-area">
+  <div class="container">
+    <div class="header text-center py-3">
+      <h3 class="fw-bold">Your Books – Read & Download</h3>
+      <p class="paper-cream">
+       <strong> All your books are displayed here.</strong><br>
+Some of these books are provided free by the author. Enjoy reading — you can read online or download the PDF at no cost.</p>
+    </div>
+  </div>
+ <div class="d-flex flex-wrap gap-5 justify-content-center">
+   <?php while($execute = mysqli_fetch_assoc($free_book)){ ?>
+<div class="card mt-3 position-relative">
+
+    <span class="badge badge-free">FREE</span>
+
+    <span class="card__title woodendark"><?php echo $execute['title'] ?></span>
+
+    <div class="image d-flex justify-content-center">
+        <img src="../<?php echo $execute['cover_image'] ?>" style="height: 150px;" alt="" class="w-50 img-fluid">
+    </div>
+
+    <div class="btns d-flex gap-2 justify-content-center mt-3">
+        <a href="../<?php echo $execute['pdf_path'] ?>" target="_blank" class="btn btn-gold px-4">Read</a>
+        <a href="#" class="btn bg btn-md px-4">Download</a>
+    </div>
+
+</div>
+<?php } ?>
+ </div>
+
+</div>
+<?php include '../components/script.php'; ?>
 </body>
 </html>

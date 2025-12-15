@@ -11,6 +11,9 @@ body {
         url('../images/bg.png'),
         linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95)) !important;
     font-family: 'poppins', sans-serif !important;
+    
+}
+.pt{
     padding-top: 70px !important;
 
 }
@@ -19,7 +22,7 @@ body {
 }
 .btn-gold{
     background-color: var(--accent-gold) !important;
-    color: var(--wood-dark) !important;
+    color: var(--paper-cream) !important;
 }
   .btn-custom {
     background-color: var(--wood-dark) !important;
@@ -34,6 +37,9 @@ body {
 .cream{
     color: var(--headings);
     font-weight: bold;
+}
+.paper-cream{
+    color: var(--paper-cream) !important;
 }
    /* Navbar */
         .navbar {
@@ -113,6 +119,7 @@ body {
      background:
         url('../images/header.png'),
         linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
+        color:var(--headings);
 }
   /* user sidebar */
   .sidebar {
@@ -143,7 +150,7 @@ body {
 
   .content-area {
       margin-left: 240px;
-      padding: 25px;
+      /* padding: 25px; */
   }
 .btn-edit {
     background: #8D6E63 !important;
@@ -746,6 +753,7 @@ button:hover {
     border-color: #ffb3c1;
     color: #fff;
 }
+
 
 /* Footer */
         footer {
