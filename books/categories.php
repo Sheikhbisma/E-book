@@ -227,7 +227,6 @@ $result = mysqli_query($conn, "SELECT * FROM books");
                 card.style.display = (matchSearch && matchCategory) ? "" : "none";
             });
         }
-
         document.getElementById('search').addEventListener('keyup', filterBooks);
         document.querySelectorAll('.category').forEach(cb =>
             cb.addEventListener('change', filterBooks)
