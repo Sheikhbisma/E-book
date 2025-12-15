@@ -224,7 +224,7 @@ $result = mysqli_query($conn, "SELECT * FROM books");
             let matchSearch = title.includes(search) || author.includes(search);
               let matchCategory = selectedCategories.length === 0 || selectedCategories.includes(category);
 
-                card.style.display = (matchSearch && matchCategory) ? "" : "none";
+            card.style.display = (matchSearch && matchCategory) ? "" : "none";
             });
         }
         document.getElementById('search').addEventListener('keyup', filterBooks);
