@@ -1,5 +1,12 @@
 <?php
-include './components/homecontent.php' ?>
+include './components/homecontent.php';
+
+if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+
+    totalItems($conn , $user_id);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +22,9 @@ include './components/homecontent.php' ?>
             --headings: #FFE082;
         }
 
-        * {
-            font-family: 'Cormorant Garamond', serif;
-        }
-
+    
     h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cinzel', serif;
+            /* font-family: 'Cinzel', serif; */
             color: var(--headings) !important;
         }
 
@@ -90,8 +94,10 @@ include './components/homecontent.php' ?>
                          <i class="fas fa-user-circle me-1"></i> Account
                      </a>
                      <ul class="dropdown-menu dropdown-menu-end">
-                         <li><a class="dropdown-item" href="../user/login.php"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
-                         <li><a class="dropdown-item" href="../user/register.php"><i class="fas fa-user-plus me-2"></i> Register</a></li>
+                         <?php if(!isset($_SESSION['username'])){ ?>
+                              <li><a class="dropdown-item" href="./user/login.php"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
+                               <li><a class="dropdown-item" href="./user/register.php"><i class="fas fa-bookmark me-2"></i> Register</a></li>
+                      <?php } ?>
                       
                         <?php if(isset($_SESSION['username'])){ ?>
                              <li><a class="dropdown-item" href="./user/dashboard.php"><i class="fas fa-bookmark me-2"></i> My Dashboard</a></li>

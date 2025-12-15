@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
                     <div class="d-flex gap-2 ms-5">
                         <!-- Cart Icon -->
                         <li class="nav-item">
-                            <a class="nav-link cart-icon" href="#">
+                            <a class="nav-link cart-icon" href="./user/cart.php">
                                 <i class="fas fa-shopping-cart fs-5 position-relative">
                                     <?php if (isset($_SESSION['totalProducts'])) { ?>
                                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -98,8 +98,10 @@ if (isset($_POST['submit'])) {
                                 <i class="fas fa-user-circle me-1"></i> Account
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="./user/login.php"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
-                                <li><a class="dropdown-item" href="./user/register.php"><i class="fas fa-user-plus me-2"></i> Register</a></li>
+                               <?php if(!isset($_SESSION['username'])){ ?>
+                              <li><a class="dropdown-item" href="./user/login.php"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
+                               <li><a class="dropdown-item" href="./user/dashboard.php"><i class="fas fa-bookmark me-2"></i> Register</a></li>
+                      <?php } ?>
 
                                 <?php if (isset($_SESSION['username'])) { ?>
                                     <li><a class="dropdown-item" href="./user/dashboard.php"><i class="fas fa-bookmark me-2"></i> My Dashboard</a></li>

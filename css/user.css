@@ -14,7 +14,13 @@ body {
     padding-top: 70px !important;
 
 }
-
+.woodmedium{
+    color: var(--wood-medium);
+}
+.btn-gold{
+    background-color: var(--accent-gold) !important;
+    color: var(--wood-dark) !important;
+}
   .btn-custom {
     background-color: var(--wood-dark) !important;
     color: var(--headings) !important;
@@ -41,7 +47,7 @@ body {
 
         .navbar-brand {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 1.8rem !important;
             color: var(--headings) !important;
             font-weight: 700;
             padding-left: 10px;
@@ -144,7 +150,7 @@ body {
     color: white !important;
 }
 .badge {
-    background-color: var(--headings) !important;
+    background-color: var(--wood-dark) !important;
 }
   /* PROFILE HEADER */
   .profile-header {

@@ -2,10 +2,13 @@
 session_start();
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
-$user_id = $_SESSION['userid'];
 // Fetch Books
 $result = mysqli_query($conn, "SELECT * FROM books");
-totalItems($conn , $user_id)
+if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+
+    totalItems($conn , $user_id);
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,19 +21,25 @@ totalItems($conn , $user_id)
 
 <?php include '../components/meta-links.php' ?>
 </head>
-
+<style>
+     .navbar-brand {
+            font-size: 1.8rem !important;
+        }
+</style>
 <body>
     <?php include '../components/header.php' ?>
 
 <section>
-  <div class="container">
-      <?php  
+  <div class="container w-100 d-flex justify-content-end">
+      <div class="w-25">
+        <?php  
     if(isset($_SESSION['cart_msg'])){
         echo $_SESSION['cart_msg'];
         unset($_SESSION['cart_msg']);
     }
     
     ?>
+      </div>
   </div>
     <div class="container-cards">
         

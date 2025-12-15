@@ -85,10 +85,10 @@ if (isset($_GET['book_id'])) {
                     <i class="bi bi-plus-lg"></i> Add New Book
                 </button>
 
-                <div class="modal fade" id="addbooks" tabindex="-1" aria-labelledby="addBooksLabel" aria-hidden="true">
+                <div class="modal fade " id="addbooks" tabindex="-1" aria-labelledby="addBooksLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content shadow">
-                            <div class="modal-header bg-primary text-white">
+                        <div class="modal-content b-card shadow">
+                            <div class="modal-header header bg-primary text-white">
                                 <h5 class="modal-title" id="addBooksLabel">Add New Book</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
@@ -97,16 +97,16 @@ if (isset($_GET['book_id'])) {
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     <div class="row g-3 text-start">
                                         <div class="col-md-6">
-                                            <label class="form-label">Book Title</label>
+                                            <label class="form-label woodendark">Book Title</label>
                                             <input type="text" class="form-control" value="<?php echo $book['title'] ?? '' ?>" name="title" required>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Author</label>
+                                            <label class="form-label woodendark">Author</label>
                                             <input type="text" value="<?php echo $book['author'] ?? '' ?>" class="form-control" name="author" required>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label class="form-label">Category</label>
+                                            <label class="form-label woodendark">Category</label>
                                             <select class="form-select" name="category" required>
                                                 <option selected disabled>Select category</option>
                                                 <option value="Comics">Comics</option>
@@ -117,26 +117,26 @@ if (isset($_GET['book_id'])) {
                                             </select>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Price</label>
+                                            <label class="form-label woodendark">Price</label>
                                             <input type="number" class="form-control" name="price" required>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label class="form-label">Upload PDF</label>
+                                            <label class="form-label woodendark">Upload PDF</label>
                                             <input type="file" class="form-control" name="pdf_file" accept="application/pdf">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Upload Cover Image</label>
+                                            <label class="form-label woodendark">Upload Cover Image</label>
                                             <input type="file" class="form-control" name="cover_image" accept=".jpg,.jpeg,.png">
                                         </div>
 
                                         <div class="col-12">
-                                            <label class="form-label">Description</label>
+                                            <label class="form-label woodendark">Description</label>
                                             <textarea class="form-control" name="description" rows="3" required></textarea>
                                         </div>
 
                                         <div class="col-12 text-center mt-3">
-                                            <button type="submit" name="submit" class="btn btn-success w-50">
+                                            <button type="submit" name="submit" class="btn btn-custom w-50">
                                                 <i class="bi bi-plus-lg"></i> Add Book
                                             </button>
                                         </div>
@@ -145,7 +145,7 @@ if (isset($_GET['book_id'])) {
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-edit" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>

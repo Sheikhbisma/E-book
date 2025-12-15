@@ -3,14 +3,21 @@ include '../auth/dbconnect.php';
 include '../auth/functions.php';
 include '../auth/check.php';
 $user_id = $_SESSION['userid'];
+if (!isset($_SESSION['userid'])) {
+    $_SESSION['msg'] = showErr("Please Login First To View Your Cart", "danger");;
+    header('location: login.php');
+    exit;
+}
 if (isset($_GET['id'])) {
     $book_id = $_GET['id'];
     $select_price = mysqli_query($conn , "select price from books where id = '$book_id'");
     $fetch_price = mysqli_fetch_assoc($select_price);
     $book_price = $fetch_price['price'];
     $check_book = mysqli_query($conn, "select * from cart where user_id = '$user_id' and book_id = '$book_id'");
+    $fetch_quantity = mysqli_fetch_assoc($check_book);
+    $qty = $fetch_quantity['quantity'];
     if (mysqli_num_rows($check_book) > 0) {
-        $update_book = "Update cart set quantity = quantity + 1 , price = price + '$book_price' where user_id = '$user_id' and book_id = '$book_id'";
+        $update_book = "Update cart set quantity = quantity + 1  where user_id = '$user_id' and book_id = '$book_id'";
         $execute_update = mysqli_query($conn, $update_book);
         if ($execute_update) {
             $_SESSION['cart_msg']=showErr("Quantity Update Successfully!" , "warning");

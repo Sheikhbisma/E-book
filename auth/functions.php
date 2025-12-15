@@ -44,4 +44,5 @@ $fetch_book = mysqli_fetch_assoc($select);
 $_SESSION['totalProducts'] = $fetch_book['sum'];
 return $products;
 }
+
 ?>
