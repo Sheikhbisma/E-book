@@ -221,7 +221,7 @@ $result = mysqli_query($conn, "SELECT * FROM books");
                 let author = card.dataset.author;
                 let category = card.dataset.category;
 
-                let matchSearch = title.includes(search) || author.includes(search);
+            let matchSearch = title.includes(search) || author.includes(search);
                 let matchCategory = selectedCategories.length === 0 || selectedCategories.includes(category);
 
                 card.style.display = (matchSearch && matchCategory) ? "" : "none";
