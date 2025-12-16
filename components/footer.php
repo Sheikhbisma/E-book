@@ -60,6 +60,7 @@
                     <a href="#"><i class="fab fa-instagram fs-5"></i></a>
             
                     <a href="#"><i class="fab fa-twitter fs-5"></i></a>
+            
                     <a href="#"><i class="fab fa-linkedin fs-5"></i></a>
                 </div>
             </div>
