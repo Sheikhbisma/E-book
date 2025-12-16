@@ -48,7 +48,7 @@ $select_row = mysqli_query($conn , "Select * from cart where user_id = '$user_id
             font-size: 1.8rem !important;
         }
 </style>
-<body>
+<body class="pt">
     <?php include '../components/header.php' ?>
 
     <section>

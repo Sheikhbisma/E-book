@@ -30,7 +30,7 @@ if(isset($_SESSION['userid'])){
 
 </style>
 </head>
-<body>
+<body class="pt">
   <!-- Navigation Bar -->
  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
      <div class="container">

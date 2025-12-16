@@ -26,7 +26,7 @@ if(isset($_SESSION['userid'])){
             font-size: 1.8rem !important;
         }
 </style>
-<body>
+<body class="pt">
     <?php include '../components/header.php' ?>
 
 <section>

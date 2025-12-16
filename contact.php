@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
 
 </head>
 
-<body>
+<body class="pt">
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">

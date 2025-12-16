@@ -1,129 +1,179 @@
 <?php
-include "../dbconnect.php";
+include '../auth/dbconnect.php';
+include '../auth/functions.php';
+include '../auth/check.php';
 
-// Fetch total messages
-$totalQuery = $conn->query("SELECT COUNT(*) AS total FROM contact");
-$totalData  = $totalQuery->fetch_assoc();
-$totalMessages = $totalData['total'];
+/* SAFE COUNT FUNCTION */
+function totalCount($conn, $table){
+    $sql = "SELECT COUNT(*) AS total FROM `$table`";
+    $result = $conn->query($sql);
+    if($result){
+        $row = $result->fetch_assoc();
+        return $row['total'];
+    }
+    return 0;
+}
 
-// Fetch latest messages
-$messagesQuery = $conn->query("SELECT * FROM contact ORDER BY id DESC LIMIT 20");
+/* COUNTS */
+$books       = totalCount($conn, "books");
+$freebooks   = totalCount($conn, "freebooks");
+$customers   = totalCount($conn, "customer_register");
+$orders      = totalCount($conn, "orders");
+$orderItems  = totalCount($conn, "order_items");
+$contact     = totalCount($conn, "contacts");
+
+/* CONTACT DATA */
+$contacts = $conn->query("SELECT * FROM contacts ");
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Admin Dashboard</title>
 
-<!-- Bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<?php include 'inc/link.php'; ?>
 
 <style>
-body {
-    background: #f4f6f9;
-    font-family: 'Poppins', sans-serif;
+/* CONTENT */
+.content{
+    margin-left:240px;
+    padding:40px;
 }
 
-.sidebar {
-    height: 100vh;
-    width: 260px;
-    background: #343a40;
-    padding-top: 25px;
-    position: fixed;
+/* HEADINGS */
+.dashboard-title,
+.section-title{
+    text-align:center;
+    color: var(--headings);
+    margin-bottom:30px;
 }
 
-.sidebar h2 {
-    color: #fff;
-    text-align: center;
-    margin-bottom: 30px;
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:25px;
+    margin-bottom:60px;
 }
 
-.sidebar a {
-    display: block;
-    padding: 14px 25px;
-    color: #adb5bd;
-    text-decoration: none;
-    font-size: 16px;
+.card-box{
+    background: url('../images/card.png'), var(--paper-cream);
+    border:1px solid #c8b89a;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    text-align:center;
+    transition:0.3s;
 }
 
-.sidebar a:hover {
-    background: #495057;
-    color: #fff;
+.card-box:hover{
+    transform:translateY(-8px);
 }
 
-.content {
-    margin-left: 270px;
-    padding: 30px;
+.card-box h2{
+    font-size:42px;
+    margin:0;
+    color: var(--wood-dark);
 }
 
-.card {
-    border-radius: 14px;
+.card-box p{
+    margin-top:10px;
+    font-weight:600;
+    color: var(--wood-medium);
 }
 
-.table th {
-    background: #343a40;
-    color: #fff;
+/* CONTACT TABLE */
+.table-box{
+    background: url('../images/card.png'), var(--paper-cream);
+    border:1px solid #c8b89a;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.table thead{
+    background: var(--wood-dark);
+    color: var(--headings);
 }
 </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h2>Admin Panel</h2>
-    <a href="#">Dashboard</a>
-    <a href="#">Messages</a>
-    <a href="#">Users</a>
-    <a href="#">Settings</a>
+<?php include './sidebar.php'; ?>
+
+<div class="content">
+
+<!-- DASHBOARD HEADING -->
+<h1 class="dashboard-title">Admin Dashboard</h1>
+
+<!-- CARDS -->
+<div class="cards">
+
+    <div class="card-box">
+        <h2><?= $books ?></h2>
+        <p>Total Books</p>
+    </div>
+
+    <div class="card-box">
+        <h2><?= $freebooks ?></h2>
+        <p>Free Books</p>
+    </div>
+
+    <div class="card-box">
+        <h2><?= $customers ?></h2>
+        <p>Total Customers</p>
+    </div>
+
+    <div class="card-box">
+        <h2><?= $orders ?></h2>
+        <p>Total Orders</p>
+    </div>
+
+    <div class="card-box">
+        <h2><?= $orderItems ?></h2>
+        <p>Order Items</p>
+    </div>
+
+    <div class="card-box">
+        <h2><?= $contact ?></h2>
+        <p>Contact Messages</p>
+    </div>
+
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="content">
-    <h1 class="mb-4">Dashboard Overview</h1>
+<!-- CONTACT MESSAGES -->
+<h2 class="section-title">Contact Messages</h2>
 
-    <!-- Stats Card -->
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <div class="card text-white" style="background:#226f54;">
-                <div class="card-body">
-                    <h4>Total Messages</h4>
-                    <h2><?php echo $totalMessages; ?></h2>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="table-box">
+<table class="table table-bordered">
+<thead>
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Message</th>
+</tr>
+</thead>
+<tbody>
 
-    <!-- Latest Messages Table -->
-    <div class="card">
-        <div class="card-header">
-            <h4>Latest Messages</h4>
-        </div>
-        <div class="card-body">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Message</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php while($row = $messagesQuery->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['name']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td><?php echo $row['message']; ?></td>
-                        <td><?php echo $row['created_at']; ?></td>
-                    </tr>
-                <?php endwhile; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<?php if($contacts && $contacts->num_rows > 0): ?>
+<?php while($row = $contacts->fetch_assoc()): ?>
+<tr>
+    <td><?= $row['id'] ?></td>
+    <td><?= $row['name'] ?></td>
+    <td><?= $row['email'] ?></td>
+    <td><?= $row['message'] ?></td>
+</tr>
+<?php endwhile; ?>
+<?php else: ?>
+<tr>
+    <td colspan="4" class="text-center">No Messages Found</td>
+</tr>
+<?php endif; ?>
+
+</tbody>
+</table>
+</div>
 
 </div>
 

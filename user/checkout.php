@@ -105,7 +105,7 @@ $_SESSION['subtotal'] = $subtotal;
     }
 </style>
 
-<body>
+<body class="pt">
     <?php include '../components/header.php' ?>
     <main>
         <section>
