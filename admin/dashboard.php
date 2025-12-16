@@ -20,10 +20,10 @@ $freebooks   = totalCount($conn, "freebooks");
 $customers   = totalCount($conn, "customer_register");
 $orders      = totalCount($conn, "orders");
 $orderItems  = totalCount($conn, "order_items");
-$contact     = totalCount($conn, "contact");
+$contact     = totalCount($conn, "contacts");
 
 /* CONTACT DATA */
-$contacts = $conn->query("SELECT * FROM contact ");
+$contacts = $conn->query("SELECT * FROM contacts ");
 ?>
 
 <!DOCTYPE html>
