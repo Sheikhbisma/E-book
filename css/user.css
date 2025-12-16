@@ -747,14 +747,248 @@ button:hover {
 
     transition: 0.3s ease;
 }
+/* SEARCH */
+#search {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1.5px solid #d7ccc8;
+    margin-bottom: 18px;
+    background: #fff;
+}
 
+#search:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 0.15rem rgba(212, 175, 55, 0.25);
+}
+
+/* ===== SIDEBAR CATEGORY ===== */
+.sidebar-category {
+    background: linear-gradient(180deg, var(--wood-dark), #1f130f);
+    padding: 22px;
+    border-radius: 18px;
+    color: #fff;
+}
+
+/* CATEGORY HEADING */
+.sidebar-category h5 {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-gold);
+    color: var(--headings);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* CHECKBOX ROW */
+.form-check {
+    padding-left: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px;
+}
+
+/* LABEL */
+.form-check-label {
+    color: #f5f5f5;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+/* CHECKBOX */
+.form-check-input {
+    cursor: pointer;
+    border: 1.5px solid var(--accent-gold);
+    background-color: transparent;
+     margin-left: 0 !important;
+    position: static;
+}
+
+.form-check-input:checked {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+/* ===== BOOK CARD FIX (already mostly ok) ===== */
+.book-card {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .28);
+    transition: .35s ease;
+    height: 100%;
+}
+
+.book-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .4);
+}
+
+/* BOOK COVER */
+.book-cover {
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-cover img {
+    height: 210px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* BOOK INFO */
+.book-info {
+    background: linear-gradient(180deg, var(--wood-dark), #1f130f);
+    padding: 16px;
+    position: relative;
+}
+
+/* BOOK SPINE */
+.book-info::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--accent-gold), #ffe082);
+}
+
+.book-info h6 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffeb3b;
+    margin-bottom: 6px;
+    padding-left: 10px;
+}
+
+.author {
+    font-size: .9rem;
+    color: var(--paper-cream);
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.desc {
+    font-size: .88rem;
+    color: var(--paper-cream);
+    line-height: 1.5;
+    padding-left: 10px;
+    margin-bottom: 14px;
+}
+
+/* CATEGORY BADGE */
+.badges {
+    margin-left: 10px;
+    background: rgba(255, 179, 0, .15) !important;
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 18px;
+    font-size: .75rem;
+}
 .social-icons a:hover {
     transform: scale(1.18);
     border-color: #ffb3c1;
     color: #fff;
 }
 
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    margin-bottom:40px;
+}
+.card-page{
+    padding:30px 20px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    text-align:center;
+    transition: transform 0.2s;
+}
+.card-page:hover{
+    transform: translateY(-5px);
+}
+.card-page h2{
+    color:#6B4226;
+    margin-bottom:10px;
+}
+.card-page .sub{
+    color:#888;
+    font-size:0.9em;
+    margin-bottom:15px;
+}
+.card-page p{
+    color:#555;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+.card-page a{
+    display:inline-block;
+    padding:12px 25px;
+    background:#6B4226;
+    color:#fff;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition: background 0.2s;
+}
+.card-page a:hover{
+    background:#8B4513;
+}
 
+/* Rules Section */
+.rules{
+    background:#fff;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.08);
+    margin-bottom:40px;
+}
+.rules h3{
+    color:#6B4226;
+    margin-bottom:15px;
+}
+.rules ul{
+    padding-left:20px;
+    color:#555;
+    line-height:1.6;
+}
+.rules li{
+    margin-bottom:10px;
+}
+
+/* Logout */
+.logout{
+    text-align:center;
+    margin-top:20px;
+}
+.logout a{
+    color:#6B4226;
+    text-decoration:none;
+    font-weight:bold;
+    padding:8px 15px;
+    border:1px solid #6B4226;
+    border-radius:8px;
+    transition: 0.2s;
+}
+.logout a:hover{
+    background:#6B4226;
+    color:#fff;
+}
+
+/* Responsive adjustments */
+@media(max-width:480px){
+    .card-page{
+        padding:20px 15px;
+    }
+    .card-page a{
+        width:100%;
+        display:block;
+    }
+}
 /* Footer */
         footer {
             background: 
