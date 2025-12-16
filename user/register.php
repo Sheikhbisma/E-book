@@ -77,7 +77,7 @@ if (isset($_POST['register'])) {
 
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="register-card shadow-lg p-4 rounded-4 bg-white" style="max-width: 650px; width: 100%;">
+        <div class="register-card card shadow-lg p-4 rounded-4 " style="max-width: 650px; width: 100%;">
 
             <h3 class="text-center mb-4 fw-bold">Create Your Account</h3>
 
@@ -155,7 +155,7 @@ if (isset($_POST['register'])) {
                     </div>
                 </div>
 
-                <button type="submit" name="register" class="btn btn-dark w-100 py-2 mt-2 rounded-3 fw-semibold">
+                <button type="submit" name="register" class="btn btn-custom  w-100 py-2 mt-2 rounded-3 fw-semibold">
                     REGISTER
                 </button>
 

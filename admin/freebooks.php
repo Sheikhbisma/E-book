@@ -145,7 +145,7 @@ if (!$result) {
 
 
             <!-- BOOK CARDS -->
-            <h2 class="mb-4 text-center fw-bold">free Books</h3>
+            <h2 class="mb-4 text-center fw-bold">Free Books</h3>
                 <div class="row g-4">
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="col-md-6 col-sm-12 ">
@@ -153,7 +153,7 @@ if (!$result) {
                                 <div class="row g-0 align-items-center">
                                     <!-- Image -->
                                     <div class="col-md-4 position-relative">
-                                        <img src="../images/cover.png" <?php echo $row['cover_image'] ?> class="img-fluid rounded-start h-100" alt="Book Cover">
+                                        <img src="../<?php echo $row['cover_image'] ?>" class="img-fluid rounded-start h-100" alt="Book Cover">
                                     </div>
 
                                     <!-- Card Body -->
@@ -177,10 +177,10 @@ if (!$result) {
                                             <!-- Buttons -->
                                             <div class="d-flex justify-content-between">
                                                 
-                                                <a href="./edit-books.php<?php echo $row['id']; ?>" class="btn btn-sm btn-edit">
+                                                <a href="./edit-books.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-edit">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
-                                                <a href="./delete-books.php<?php echo $row['id']; ?>"
+                                                <a href="./delete-books.php?id=<?php echo $row['id']; ?>"
                                                     onclick="return confirm('Are you sure you want to delete this book?');"
                                                     class="btn btn-sm btn-delete">
                                                     <i class="fas fa-trash"></i> Delete
