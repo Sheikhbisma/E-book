@@ -2,12 +2,11 @@
 session_start();
 include "../auth/dbconnect.php";
 
-if(!isset($_SESSION['user_id'])){
-    echo "<script>alert('Login required'); window.location='login.php';</script>";
+if(!isset($_SESSION['userid'])){
+    echo "<script>alert('Only registered customer will participate in competitions '); window.location='login.php';</script>";
     exit;
 }
-
-$user_id = intval($_SESSION['user_id']);
+$user_id = intval($_SESSION['userid']);
 
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';

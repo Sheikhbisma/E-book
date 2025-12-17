@@ -1,7 +1,7 @@
 <?php
+include './session.php';
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
-include '../auth/check.php';
 // INSERT BOOK
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];

@@ -2,17 +2,12 @@
 session_start();
 include "../auth/dbconnect.php";
 
-if(!isset($_SESSION['user_id'])){
-    echo "<script>alert('Aapko competition me participate karne ke liye login karna hoga.'); window.location='login.php';</script>";
+if(!isset($_SESSION['userid'])){
+    echo "<script>alert('Only registered customer will participate in competitions '); window.location='../user/login.php';</script>";
     exit;
 }
 
-if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true){
-    header("Location: ../admin/admin_dashboard.php");
-    exit;
-}
-
-$user_id = intval($_SESSION['user_id']);
+$user_id = intval($_SESSION['userid']);
 
 // fetch logged-in user's name
 $user_stmt = $conn->prepare("SELECT customer_name FROM customer_register WHERE customer_id = ? LIMIT 1");
@@ -45,115 +40,93 @@ while($row = $topics_res->fetch_assoc()){
     $topics[] = $row['topic_name'];
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Children Essay Competition</title>
+<?php include'../components/meta-links.php' ?>
 <style>
-/* Reset */
-body, html { margin: 0; padding: 0; font-family: 'Comic Sans MS', cursive, sans-serif; background: linear-gradient(to bottom, #FFF1E6, #FFDAB9); }
+:root {
 
-/* Container */
-.wrap { max-width: 900px; margin: 50px auto; padding: 0 20px; }
-
-/* Card */
-.card { 
-    background: #FFFAF0; 
-    padding: 50px 40px; 
-    border-radius: 25px; 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
-    text-align: center; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    --shadow-light: rgba(93, 64, 55, 0.1);
+    --shadow-medium: rgba(93, 64, 55, 0.2);
 }
-.card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.25); }
 
-h2 { margin-top: 0; color: #FF7F50; font-weight: 800; font-size: 36px; letter-spacing: 1px; }
-p { line-height: 1.6; color: #333; margin-bottom: 20px; font-size: 16px; }
 
-/* Topic */
-.topic { 
-    padding: 15px 20px; 
-    border-radius: 15px; 
-    border: 2px dashed #FFA07A; 
-    background: #FFF8DC; 
-    margin-bottom: 15px; 
-    transition: background 0.3s, transform 0.3s; 
-    text-align: left; 
+.wrap { max-width: 1000px; margin: 80px auto; padding: 0 20px; }
+.card {
+    padding: 40px; border-radius: 20px; background-color: var(--paper-cream);
+    box-shadow: 0 10px 30px var(--shadow-medium);
+    text-align:center; position:relative;
+    border:12px solid var(--wood-dark);
 }
-.topic:hover { background: #FFE4B5; transform: translateX(5px); }
-.topic input[type="radio"] { margin-right: 12px; accent-color: #FF6347; transform: scale(1.2); }
-
-/* Button */
-.btn { 
-    display: inline-block; 
-    background: #FF6347; 
-    color: #fff; 
-    font-weight: 700; 
-    padding: 15px 35px; 
-    border: none; 
-    border-radius: 15px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    margin-top: 20px; 
-    transition: background 0.3s, transform 0.3s; 
+.card::before {
+    content:""; position:absolute; top:0; left:0; right:0; height:8px;
+    background: linear-gradient(90deg,var(--accent-gold),var(--headings),var(--accent-gold));
 }
-.btn:hover { background: #FF4500; transform: translateY(-3px); }
+h2 { font-size: 36px; color: var(--wood-dark); margin-bottom: 20px; position:relative; display:inline-block; }
+h2::after { content:""; position:absolute; bottom:0; left:25%; width:50%; height:4px; background:linear-gradient(90deg,transparent,var(--accent-gold),transparent); border-radius:2px; }
 
-/* Notice */
-.notice { background: #FFD700; color: #5C3A21; padding: 12px; border-radius: 12px; margin-bottom: 20px; font-weight: bold; }
-
-/* Responsive */
-@media(max-width: 768px){
-    .card { padding: 40px 25px; }
-    h2 { font-size: 30px; }
-    p { font-size: 15px; }
-    .btn { width: 100%; padding: 14px; font-size: 16px; }
-}
-@media(max-width: 480px){
-    .card { padding: 30px 20px; }
-    h2 { font-size: 24px; }
-    p { font-size: 14px; }
-    .topic { padding: 12px 14px; font-size: 14px; }
-    .btn { padding: 12px; font-size: 15px; }
-}
 </style>
 </head>
 <body>
-
+    <?php include'../components/header.php' ?>
 <div class="wrap">
     <div class="card">
-        <h2>🌟 Children Essay Competition 🌟</h2>
-        <p>Hello, <strong><?=htmlspecialchars($user_name)?></strong>! Get ready to express your creativity.</p>
-        <p>Select a topic below and click <strong>Start</strong>. You will have <strong>1 minute</strong> to write your essay. Make it fun, colorful, and imaginative!</p>
+        <h2><span style="color:var(--accent-gold)"><i class="bi bi-pencil-square"></i>
+</span> Children Essay Competition <span style="color:var(--accent-gold)"><i class="bi bi-stars"></i>
+</span></h2>
+        <div class="user-greeting">Hello, <strong><?=htmlspecialchars($user_name)?></strong>! Get ready to express your creativity.</div>
+        <div class="instructions">
+            <p>Select a topic below and click <strong>Start</strong>. You will have <strong>1 minute</strong> to write your essay. Make it fun, colorful, and imaginative!</p>
+        </div>
 
-        <?php if(count($topics) == 0): ?>
-            <div class="notice">Oops! No topics are available yet. Please check back soon.</div>
-        <?php else: ?>
-            <form id="startForm">
-                <?php foreach($topics as $t): ?>
-                <div class="topic">
-                    <label>
-                        <input type="radio" name="topic" value="<?=htmlspecialchars($t)?>">
-                        <?=htmlspecialchars($t)?>
-                    </label>
-                </div>
-                <?php endforeach; ?>
-                <button type="button" class="btn" onclick="start()">Start Competition ✏️</button>
-            </form>
-        <?php endif; ?>
-        
+        <div class="topics-container">
+            <h3><i class="fas fa-clipboard-list"></i> Choose Your Essay Topic:</h3>
+            <?php if(count($topics) == 0): ?>
+                <div class="notice">Oops! No topics are available yet. Please check back soon.</div>
+            <?php else: ?>
+                <form id="startForm">
+                    <div class="topics-grid">
+                        <?php foreach($topics as $index => $topicName): ?>
+                        <div class="topic-option">
+                            <input type="radio" name="topic" id="topic<?=$index?>" value="<?=htmlspecialchars($topicName)?>">
+                            <label class="topic-label" for="topic<?=$index?>"><?=htmlspecialchars($topicName)?></label>
+                            <i class="fas fa-star topic-icon"></i>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <button type="button" class="start-btn" onclick="startCompetition()"><i class="fas fa-play-circle"></i> Start Competition</button>
+                </form>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 
 <script>
-function start(){
+// Topic selection highlight
+document.querySelectorAll('.topic-option').forEach(option => {
+    const radio = option.querySelector('input[type="radio"]');
+    option.addEventListener('click', () => {
+        document.querySelectorAll('.topic-option').forEach(opt => {
+            opt.style.borderColor = 'var(--wood-light)';
+            opt.querySelector('.topic-icon').style.color = 'var(--wood-medium)';
+        });
+        option.style.borderColor = 'var(--accent-gold)';
+        option.querySelector('.topic-icon').style.color = 'var(--accent-gold)';
+        radio.checked = true;
+    });
+});
+
+function startCompetition(){
     const sel = document.querySelector('input[name="topic"]:checked');
     if(!sel){ alert('Please select a topic before starting!'); return; }
     window.location = "write_essay.php?topic=" + encodeURIComponent(sel.value);
 }
 </script>
-
+<?php include '../components/footer.php' ?>
+<?php include '../components/script.php' ?>
 </body>
 </html>

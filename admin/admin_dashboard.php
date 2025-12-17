@@ -1,13 +1,10 @@
 <?php
-session_start();
-include "db.php";
+include './session.php';
+include "../auth/dbconnect.php";
 
 /* ======================
    ADMIN CHECK
 ====================== */
-if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin']!=1){
-    die("Access denied");
-}
 
 /* ======================
    CONFIG
@@ -27,10 +24,10 @@ while($t = $topics_res->fetch_assoc()){
    FETCH CHILD ESSAYS
 ====================== */
 $child_entries = $conn->query("
-    SELECT ce.id, u.name, u.email, ce.essay_text, ce.word_count,
+    SELECT ce.id, u.customer_name, u.customer_email, ce.essay_text, ce.word_count,
            ce.status, ce.topic_id, ce.submitted_at
     FROM competition_entries ce
-    JOIN users u ON ce.user_id = u.id
+    JOIN customer_register u ON ce.user_id = u.customer_id
     ORDER BY ce.submitted_at DESC
 ");
 
@@ -38,10 +35,10 @@ $child_entries = $conn->query("
    FETCH ADULT PDF BOOKS
 ====================== */
 $adult_entries = $conn->query("
-    SELECT ae.id, u.name, u.email, ae.pdf_file,
+    SELECT ae.id,  u.customer_email,u.customer_name, ae.pdf_file,
            ae.status, ae.submitted_at
     FROM adult_entries ae
-    JOIN users u ON ae.user_id = u.id
+    JOIN customer_register u ON ae.user_id = u.customer_id
     ORDER BY ae.submitted_at DESC
 ");
 
@@ -114,20 +111,9 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 <head>
 <title>Admin Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php include './inc/link.php' ?>
 <style>
-body{
-    font-family:Arial,sans-serif;
-    background:#f4f2ef;
-    margin:0;
-    padding:0;
-}
-.container{
-    max-width:1200px;
-    margin:20px auto;
-    background:#fff;
-    padding:20px;
-    border-radius:10px;
-}
+
 .section{
     margin-bottom:50px;
 }
@@ -146,7 +132,7 @@ th,td{
     word-break:break-word;
 }
 th{
-    background:#6B4226;
+    background:var(--wood-dark);
     color:#fff;
 }
 button{
@@ -222,11 +208,17 @@ form{
 </style>
 </head>
 <body>
+<?php include './sidebar.php' ?>
+<div class="content-area px-5 pb-5">
+     <header class="header mb-5 bg-white rounded">
 
-<div class="container">
+                <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i>Competition </h1>
+          
+     </header>
+<div class="b-card p-5">
 
 <!-- ================= ESSAY SECTION ================= -->
-<div class="section">
+<div class="section container">
 <h2>Children Essay Competition</h2>
 
 <table>
@@ -237,7 +229,7 @@ form{
 
 <?php while($c=$child_entries->fetch_assoc()): ?>
 <tr>
-<td><?=htmlspecialchars($c['name'])?></td>
+<td><?=htmlspecialchars($c['customer_name'])?></td>
 <td><?=$c['word_count']?></td>
 <td><?=substr(strip_tags($c['essay_text']),0,40)?>...</td>
 <td><?=$c['status']?></td>
@@ -256,13 +248,13 @@ form{
 <td><?=$c['submitted_at']?></td>
 <td>
 <input type="hidden" name="child_id" value="<?=$c['id']?>">
-<input type="hidden" name="child_email" value="<?=$c['email']?>">
+<input type="hidden" name="child_email" value="<?=$c['customer_email']?>">
 <select name="child_status">
 <option value="winner">Winner</option>
 <option value="loser">Loser</option>
 <option value="abandoned">Abandoned</option>
 </select>
-<button>Save</button>
+<button class="btn-custom">Save</button>
 </form>
 </td>
 </tr>
@@ -282,20 +274,20 @@ form{
 
 <?php while($a=$adult_entries->fetch_assoc()): ?>
 <tr>
-<td><?=$a['name']?></td>
-<td><?=$a['email']?></td>
+<td><?=$a['customer_name']?></td>
+<td><?=$a['customer_email']?></td>
 <td><a href="<?=$a['pdf_file']?>" target="_blank">Download</a></td>
 <td><?=$a['status']?></td>
 <td><?=$a['submitted_at']?></td>
 <td>
 <form method="post">
 <input type="hidden" name="adult_id" value="<?=$a['id']?>">
-<input type="hidden" name="adult_email" value="<?=$a['email']?>">
+<input type="hidden" name="adult_email" value="<?=$a['customer_email']?>">
 <select name="adult_status">
 <option value="winner">Winner</option>
 <option value="loser">Loser</option>
 </select>
-<button>Save</button>
+<button class="btn-custom">Save</button>
 </form>
 </td>
 </tr>
@@ -309,7 +301,7 @@ form{
 
 <form method="post" style="margin-bottom:20px">
 <input type="text" name="new_topic" placeholder="New topic" required>
-<button>Add Topic</button>
+<button class="btn-custom">Add Topic</button>
 </form>
 
 <table>
@@ -320,7 +312,7 @@ form{
 <td>
 <form method="post">
 <input type="hidden" name="delete_topic_id" value="<?=$id?>">
-<button>Delete</button>
+<button class="btn-custom">Delete</button>
 </form>
 </td>
 </tr>
@@ -329,5 +321,7 @@ form{
 </div>
 
 </div>
+</div>
+ <?php include '../components/script.php' ?>
 </body>
 </html>

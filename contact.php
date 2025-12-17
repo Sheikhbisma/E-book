@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="./competition/user_dashboard.php">
                             <i class="fas fa-trophy me-1"></i> Competition
                         </a>
                     </li>

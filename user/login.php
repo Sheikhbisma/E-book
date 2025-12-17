@@ -1,7 +1,7 @@
  <?php
+ session_start();
     //  include database, functions
     include '../auth/dbconnect.php';
-    include '../auth/check.php';
     include '../auth/functions.php';
     // if login button isset
     if (isset($_POST['loginbtn'])) {
@@ -20,6 +20,10 @@
                 // store data in sessions
                 $_SESSION['username'] = $row['customer_email'];
                 $_SESSION['userid'] = $row['customer_id'];
+                $_SESSION['customername'] = $row['customer_name'];
+                $_SESSION['customerimage'] = $row['customer_image'];
+                $_SESSION['customerlocation'] = $row['customer_location'];
+                $_SESSION['customernumber'] = $row['customer_contact'];
                 header('Location: ../index.php');
                 exit;
             } else {

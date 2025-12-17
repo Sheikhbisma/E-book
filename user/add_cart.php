@@ -4,7 +4,7 @@ include '../auth/functions.php';
 include '../auth/check.php';
 $user_id = $_SESSION['userid'];
 if (!isset($_SESSION['userid'])) {
-    $_SESSION['msg'] = showErr("Please Login First To View Your Cart", "danger");;
+    $_SESSION['msg'] = showErr("Please Login First To View Your Cart", "danger");
     header('location: login.php');
     exit;
 }

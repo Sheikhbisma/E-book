@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "db.php";
+include "../auth/dbconnect.php";
 
 // Admin check
-if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin']!==true){
+if(!isset($_SESSION['email'])){
     die("Access denied");
 }
 

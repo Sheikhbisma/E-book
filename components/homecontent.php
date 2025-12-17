@@ -1,7 +1,6 @@
 <?php
 // include database,functions
 include './auth/functions.php';
-include './auth/check.php';
 include './auth/dbconnect.php';
 
 // select 4 books from database new releases

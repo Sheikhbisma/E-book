@@ -1,3 +1,9 @@
+
+<?php
+include './session.php';
+include '../auth/dbconnect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,73 +14,7 @@
 
     <?php include './inc/link.php'; ?>
 
-    <style>
-        :root {
-            --wood-dark: #5D4037;
-            /* Dark walnut */
-            --wood-medium: #8D6E63;
-            /* Medium brown */
-            --wood-light: #D7CCC8;
-            /* Light pine */
-            --accent-gold: #D4AF37;
-            /* Gold accents */
-            --paper-cream: #FFF8E1;
-            /* Paper color */
-            --headings: #FFE082;
-        }
-
-        body {
-            overflow-x: hidden;
-        }
-
-        /* Hide sidebar only this page */
-        .sidebar {
-            display: none !important;
-        }
-
-        .page-wrapper {
-            padding: 60px 20px;
-        }
-
-        .customer-card {
-            border-radius: 14px;
-            transition: 0.3s ease;
-        }
-
-        .customer-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .customer-img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-        }
-
-        .label {
-            font-size: 12px;
-            color: #777;
-        }
-
-        .value {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .page-wrapper {
-                padding: 40px 10px;
-            }
-
-            .customer-img {
-                width: 70px;
-                height: 70px;
-            }
-        }
-    </style>
+  
 </head>
 
 <body>
@@ -91,7 +31,7 @@
             <div class="row g-4">
 
                 <?php
-                include '../auth/dbconnect.php';
+                
 
                 $query  = "SELECT * FROM customer_register";
                 $result = mysqli_query($conn, $query);
@@ -149,6 +89,7 @@
         </div>
 
     </div>
+     <?php include '../components/script.php' ?>
     <script src="../js/admin.js"></script>
 </body>
 

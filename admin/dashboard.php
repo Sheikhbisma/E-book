@@ -1,7 +1,7 @@
 <?php
+include './session.php';
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
-include '../auth/check.php';
 
 /* SAFE COUNT FUNCTION */
 function totalCount($conn, $table){
@@ -176,6 +176,6 @@ $contacts = $conn->query("SELECT * FROM contacts ");
 </div>
 
 </div>
-
+ <?php include '../components/script.php' ?>
 </body>
 </html>

@@ -1,11 +1,11 @@
 <?php
+session_start();
 include './components/homecontent.php';
 
-if(isset($_SESSION['userid'])){
-    $user_id = $_SESSION['userid'];
-
-    totalItems($conn , $user_id);
-}
+// if(isset($_SESSION['userid'])){
+//     $user_id = $_SESSION['userid'];
+// totalItems($conn , $user_id);
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +69,7 @@ if(isset($_SESSION['userid'])){
                  </li>
 
                  <li class="nav-item">
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="./competition/user_dashboard.php">
                          <i class="fas fa-trophy me-1"></i> Competition
                      </a>
                  </li>
@@ -148,7 +148,13 @@ if(isset($_SESSION['userid'])){
             <?php } ?>
 
     </section>
-
+<section id="banner" class="mb-5">
+            <div class="container">
+                <h4 class="text-uppercase">mid season sale</h4>
+                <h1 class="fw-bold">Autumn Collection Upto <br> 20% Off</h1>
+                <button class="text-uppercase">shop now</button>
+            </div>
+        </section>
     <!-- Best Sellers -->
     <section id="best" class="container py-5">
         <h2 class="section-title cream"><i class="fas fa-fire me-2"></i>🔥 Best Sellers</h2>
