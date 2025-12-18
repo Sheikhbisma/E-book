@@ -1,3 +1,9 @@
+
+<?php
+include './session.php';
+include '../auth/dbconnect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

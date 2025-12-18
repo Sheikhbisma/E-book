@@ -1,7 +1,6 @@
 <?php
 include '../auth/check.php';
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
 $user_id = $_SESSION['userid'];
 // if placeorder btn is set
 if(isset($_POST['placeorder'])){

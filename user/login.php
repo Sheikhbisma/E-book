@@ -1,7 +1,7 @@
  <?php
+ session_start();
     //  include database, functions
     include '../auth/dbconnect.php';
-    include '../auth/check.php';
     include '../auth/functions.php';
     // if login button isset
     if (isset($_POST['loginbtn'])) {
@@ -20,6 +20,10 @@
                 // store data in sessions
                 $_SESSION['username'] = $row['customer_email'];
                 $_SESSION['userid'] = $row['customer_id'];
+                $_SESSION['customername'] = $row['customer_name'];
+                $_SESSION['customerimage'] = $row['customer_image'];
+                $_SESSION['customerlocation'] = $row['customer_location'];
+                $_SESSION['customernumber'] = $row['customer_contact'];
                 header('Location: ../index.php');
                 exit;
             } else {
@@ -56,6 +60,7 @@ overflow: hidden;
      <div class="containers">
          <div class="login-box  b-card">
              <?php
+  
                 if (isset($_SESSION['msg'])) {
                     echo $_SESSION['msg'];
                     unset($_SESSION['msg']); // Remove after displaying
@@ -67,10 +72,7 @@ overflow: hidden;
           </div>";
                     unset($_SESSION['success_msg']);
                 }
-                if (isset($_SESSION['cart_error'])) {
-                    echo $_SESSION['cart_error'];
-                    unset($_SESSION['cart_error']); // Remove after displaying
-                }
+               
                 ?>
              <h2>Login</h2>
              <form action="" method="post">

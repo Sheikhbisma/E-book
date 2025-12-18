@@ -37,6 +37,10 @@ if(isset($_SESSION['userid'])){
         echo $_SESSION['cart_msg'];
         unset($_SESSION['cart_msg']);
     }
+    if(isset($_SESSION['msg'])){
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+    }
     
     ?>
       </div>

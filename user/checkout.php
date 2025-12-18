@@ -1,7 +1,6 @@
 <?php
 include '../auth/check.php';
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
 // check login user
 $user_id = $_SESSION['userid'];
 $subtotal = 0;
@@ -17,6 +16,12 @@ if (isset($_POST['quantity'])) {
             header('location: checkout.php');
         }
     };
+}
+$select_row = mysqli_query($conn , "select * from cart where user_id = $user_id");
+if(mysqli_num_rows($select_row) == 0 ){
+    $_SESSION['msg']=showErr("To continue with checkout, please add at least one item to your cart first. ","danger");
+    header('location: cart.php');
+    exit;
 }
 // to show order detalils
 $cart = mysqli_query($conn, "SELECT c.* , b.id,b.title , b.price  from cart as c INNER JOIN books as b ON c.book_id = b.id WHERE c.user_id = $user_id ");
@@ -277,6 +282,17 @@ $_SESSION['subtotal'] = $subtotal;
 
     <?php include '../components/footer.php' ?>
     <?php include '../components/script.php' ?>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    <?php if ($cart_empty) { ?>
+        var cartModal = new bootstrap.Modal(
+            document.getElementById('cartEmptyModal')
+        );
+        cartModal.show();
+    <?php } ?>
+});
+</script>
+
 </body>
 
 </html>

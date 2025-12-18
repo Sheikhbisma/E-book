@@ -1,7 +1,6 @@
 <?php
+include './session.php';
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
-include '../auth/check.php';
 
 if (!isset($_GET['id'])) { header("Location: addbooks.php"); exit; }
 $id = intval($_GET['id']);

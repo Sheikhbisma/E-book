@@ -1,7 +1,7 @@
 <?php
+session_start();
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
-include '../auth/check.php';
 
 $msg = "";
 
@@ -20,8 +20,7 @@ if (isset($_POST['login'])) {
       $_SESSION['id'] = $user['id'];
       $_SESSION['email'] = $user['email'];
       $_SESSION['loginmsg'] = showErr("Login Successfull", "success");
-      header('location: index.php');
-      exit();
+      header('location: addbooks.php');
     } else {
       $_SESSION['msg'] = showErr("Invalid email or password", "success");
     }
@@ -40,13 +39,14 @@ if (isset($_POST['login'])) {
 
 <body class="bg-light">
   <div class="containers mt-5">
-    <?php
+  
+    <div class="login-box p-4 shadow  mx-auto">
+        <?php
     if (isset($_SESSION['msg'])) {
       echo $_SESSION['msg'];
       unset($_SESSION['msg']);
     }
     ?>
-    <div class="login-box p-4 shadow  mx-auto">
       <h3 class="text-center woodendark mb-4">Admin Login</h3>
       <form action="" method="POST">
         <div class="mb-3">
@@ -94,6 +94,7 @@ if (isset($_POST['login'])) {
       }
     });
   </script>
+  <?php include '../components/script.php' ?>
 </body>
 
 </html>
