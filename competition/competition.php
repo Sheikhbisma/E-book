@@ -69,7 +69,7 @@ $alreadyParticipated = ($chk_res->num_rows > 0);
 .card {
     padding: 40px; border-radius: 20px; background-color: var(--paper-cream);
     box-shadow: 0 10px 30px var(--shadow-medium);
-    text-align:center; position:relative;
+text-align:center; position:relative;
     border:12px solid var(--wood-dark);
 }
 .card::before {
