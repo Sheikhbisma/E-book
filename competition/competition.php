@@ -82,7 +82,6 @@ $alreadyParticipated = ($chk_res->num_rows > 0);
             position: relative;
             border: 12px solid var(--wood-dark);
         }
-
         .card::before {
             content: "";
             position: absolute;
