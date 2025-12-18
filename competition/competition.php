@@ -73,7 +73,7 @@ text-align:center; position:relative;
     border:12px solid var(--wood-dark);
 }
 .card::before {
-    content:""; position:absolute; top:0; left:0; right:0; height:8px;
+ content:""; position:absolute; top:0; left:0; right:0; height:8px;
     background: linear-gradient(90deg,var(--accent-gold),var(--headings),var(--accent-gold));
 }
 h2 { font-size: 36px; color: var(--wood-dark); margin-bottom: 20px; position:relative; display:inline-block; }
