@@ -60,6 +60,7 @@ overflow: hidden;
      <div class="containers">
          <div class="login-box  b-card">
              <?php
+  
                 if (isset($_SESSION['msg'])) {
                     echo $_SESSION['msg'];
                     unset($_SESSION['msg']); // Remove after displaying
@@ -71,10 +72,7 @@ overflow: hidden;
           </div>";
                     unset($_SESSION['success_msg']);
                 }
-                if (isset($_SESSION['cart_error'])) {
-                    echo $_SESSION['cart_error'];
-                    unset($_SESSION['cart_error']); // Remove after displaying
-                }
+               
                 ?>
              <h2>Login</h2>
              <form action="" method="post">

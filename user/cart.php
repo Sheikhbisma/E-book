@@ -2,13 +2,9 @@
 session_start();
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
+include '../auth/check.php';
 $msg = '';
-//   if user not login then redirect to login page with message
-if (!isset($_SESSION['userid'])) {
-    $_SESSION['msg'] = showErr("Please Login First To View Your Cart", "danger");;
-    header('location: login.php');
-    exit;
-}
+
 $user_id = $_SESSION['userid'];
 // select items from cart table to show in cart page join by book
 $cart = mysqli_query($conn, "SELECT c.* , b.id,b.title ,b.author, b.price , b.cover_image from cart as c INNER JOIN books as b ON c.book_id = b.id WHERE c.user_id = $user_id ");
@@ -53,7 +49,13 @@ $select_row = mysqli_query($conn , "Select * from cart where user_id = '$user_id
 
     <section>
       <div class="container py-4">
-  <?php echo $msg; ?>
+       
+  <?php
+  if(isset($_SESSION['msg'])){
+    echo $_SESSION['msg'];
+    unset ($_SESSION['msg']);
+  }
+  echo $msg; ?>
   <!-- if row exist(row is not equal to 0) -->
   <?php if(mysqli_num_rows($select_row) != 0 ){ ?>
     <h2 class="mb-4 text-center fw-bold fs-1 cream">My Cart</h2>

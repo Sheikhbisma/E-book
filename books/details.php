@@ -1,7 +1,12 @@
 <?php
+session_start();
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
-include '../auth/check.php';
+if(!isset($_SESSION['userid'] )){
+     $_SESSION['msg']=showErr("To see the details of the books you have to login or register first ","danger");
+    header('location: index.php');
+    exit;
+}
 
 // CHECK IF ID EXIST IN URL
 if (!isset($_GET['id'])) {
