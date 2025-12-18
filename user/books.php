@@ -1,6 +1,5 @@
 <?php
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
 include '../auth/check.php';
 $free_book = mysqli_query($conn , "select * from freebooks");
 

@@ -87,7 +87,6 @@ $user_name = ($user_res->num_rows > 0)
     border-left: 10px solid var(--accent-gold);
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 6px 10px rgba(0,0,0,0.05);
-    background: linear-gradient(to bottom, var(--paper-cream) 0%, #fff 100%);
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -97,7 +96,7 @@ $user_name = ($user_res->num_rows > 0)
     box-shadow: 0 15px 35px rgba(0,0,0,0.1), 0 10px 15px rgba(0,0,0,0.07);
 }
 .rules-paper h4 {
-    color: var(--wood-dark);
+    color: var(--heading);
     border-bottom: 3px solid var(--wood-light);
     padding-bottom: 15px;
     margin-bottom: 20px;
@@ -142,7 +141,7 @@ $user_name = ($user_res->num_rows > 0)
 .rule-detail {
     display: none;
     font-size: 0.9rem;
-    color: var(--wood-medium);
+    color: var(--wood-dark) !important;
     margin-top: 5px;
 }
 .rule-detail.show {
@@ -226,8 +225,8 @@ $user_name = ($user_res->num_rows > 0)
 <!-- Hero Section -->
 <section class="hero-section text-center">
     <div class="container hero-content">
-        <h1>Welcome, <?= htmlspecialchars($user_name ?? 'Guest') ?>!</h1>
-        <p class="lead">Step into the library of imagination. Your next great story starts here.</p>
+        <h1>Express. Write. Create.</h1>
+        <p class="lead">Children participate through essay writing, while adults showcase their talent by uploading original books. This competition brings creativity, learning, and meaningful expression together on one platform.</p>
 
         <div class="row g-4 hero-stats justify-content-center mt-4">
             <div class="col-6 col-md-3">
@@ -257,55 +256,90 @@ $user_name = ($user_res->num_rows > 0)
 
 <!-- Rules Section -->
 <div class="container my-5">
-    <div class="rules-paper card p-4 p-md-5 mb-5">
-        <h4><i class="bi bi-journal-text me-2"></i> Competition Rules & Instructions</h4>
+    <div class="container my-5">
 
-        <div class="row mt-2">
-            <div class="col-md-6">
-                <ul class="ps-0">
-                    <li>
-                        <i class="bi bi-person-check-fill text-primary me-2"></i>
-                        <div>
-                            <strong>Only registered users can participate.</strong>
-                            <div class="rule-detail">If you are not logged in, you cannot start the competition.</div>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="bi bi-clock-history text-info me-2"></i>
-                        <div>
-                            <strong>Children Essay topics suggested by author.</strong>
-                            <div class="rule-detail">Young participants must choose from topics provided by the author.</div>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="bi bi-heart-fill text-danger me-2"></i>
-                        <div>
-                            <strong>Adults can submit their books.</strong>
-                            <div class="rule-detail">Authors may submit their original works for review and competition.</div>
-                        </div>
-                    </li>
-                </ul>
+    <!-- RULES SECTION -->
+    <div class="rules-paper p-5 header mb-5">
+        <h4 class="mb-4">
+            <i class="bi bi-journal-text me-2"></i>
+            Competition Rules & Instructions
+        </h4>
+
+        <div class="row g-4">
+
+            <!-- Rule 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="rule-card card woodendark h-100 p-3">
+                    <div class="rule-icon text-primary">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+                    <h6 class="fw-bold">Registered Users Only</h6>
+                    <p>
+                        Only logged-in users are allowed to participate in the competition.
+                    </p>
+                </div>
             </div>
-            <div class="col-md-6">
-                <ul class="ps-0">
-                    <li>
-                        <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
-                        <div>
-                            <strong>Author can announce winners.</strong>
-                            <div class="rule-detail">The author or organizing committee will declare winners; decisions are final.</div>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="bi bi-award-fill text-success me-2"></i>
-                        <div>
-                            <strong>Original work required.</strong>
-                            <div class="rule-detail">All submissions must be original creations by the participant.</div>
-                        </div>
-                    </li>
-                </ul>
+
+            <!-- Rule 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="rule-card card woodendark h-100 p-3">
+                    <div class="rule-icon text-info">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+                    <h6 class="fw-bold">Children Essay Topics</h6>
+                    <p>
+                        Children must choose essay topics suggested by the author.
+                    </p>
+                </div>
             </div>
+
+            <!-- Rule 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="rule-card card woodendark h-100 p-3">
+                    <div class="rule-icon text-danger">
+                        <i class="bi bi-book-fill"></i>
+                    </div>
+                    <h6 class="fw-bold">Adult Book Submission</h6>
+                    <p>
+                        Adult participants can upload original books or PDF documents.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Rule 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="rule-card card woodendark h-100 p-3">
+                    <div class="rule-icon text-warning">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                    </div>
+                    <h6 class="fw-bold">Winner Announcement</h6>
+                    <p>
+                        Winners will be announced by the author or organizing committee.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Rule 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="rule-card card woodendark h-100 p-3">
+                    <div class="rule-icon text-success">
+                        <i class="bi bi-award-fill"></i>
+                    </div>
+                    <h6 class="fw-bold">Original Content Only</h6>
+                    <p>
+                        All submissions must be original and created by the participant.
+                    </p>
+                </div>
+            </div>
+
         </div>
     </div>
+
+    <!-- COMPETITION CARDS (unchanged) -->
+    <!-- Your existing competition cards stay same -->
+
+</div>
+
 
     <!-- Competition Cards -->
     <div class="competition-cards-container show" id="competitionCards">

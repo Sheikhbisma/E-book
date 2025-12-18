@@ -2,10 +2,10 @@
 session_start();
 include './components/homecontent.php';
 
-// if(isset($_SESSION['userid'])){
-//     $user_id = $_SESSION['userid'];
-// totalItems($conn , $user_id);
-// }
+if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+totalItems($conn , $user_id);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

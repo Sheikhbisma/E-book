@@ -1,6 +1,6 @@
 <?php
+session_start();
 include '../auth/dbconnect.php';
-include '../auth/check.php';
 include '../auth/functions.php';
 
 $errors = [];

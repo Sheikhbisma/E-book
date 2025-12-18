@@ -1,6 +1,5 @@
 <?php
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
 include '../auth/check.php';
 $free_book = mysqli_query($conn , "select count(*) as c from freebooks");
 $fetch = mysqli_fetch_assoc($free_book)['c'];
