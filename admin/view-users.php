@@ -16,7 +16,7 @@
         .sidebar{
          display: none !important;
         }
-        
+       
         .page-wrapper{
             padding: 60px 20px;
         }
