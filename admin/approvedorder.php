@@ -28,6 +28,20 @@ if($execute_update){
 
 }
 }
+$deliver_id = $_GET['deliver_id'];
+if(isset($shipped_id)){
+    $update = "update orders set payment_status = 'Received',order_status = 'delivered' where order_id = $deliver_id";
+    $execute_update = mysqli_query($conn , $update);
+if($execute_update){
+    $_SESSION['approved'] = showErr("Order updated to approved" , "success");
+  
+    header('location: view-orders.php');
+    exit;
+}else{
+    $_SESSION['approved'] = showErr("There is an error" , "danger");
+
+}
+}
 
 
 

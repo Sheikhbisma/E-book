@@ -114,13 +114,19 @@ $execute = mysqli_query($conn , $select_orders);
             <i class="bi bi-check-circle me-2"></i> Show pdf
         </a><br>
       <div class="d-flex gap-1">
-          <a href="./approvedorder.php?order_id=<?= $fetch_order['order_id'] ?>&action=reject" class="btn btn-danger  text-center mt-2">
+          <a href="./approvedorder.php?reject_id=<?= $fetch_order['order_id'] ?>&action=reject" class="btn btn-danger  text-center mt-2">
             <i class="bi bi-x-circle me-2"></i> Reject Order
         </a>
           <a href="./approvedorder.php?shipped_id=<?= $fetch_order['order_id'] ?>&action=reject" class="btn btn-primary  text-center mt-2">
             <i class="bi bi-truck"></i> Shipped
-        </a>
+        </a><br>
+       
       </div>
+       <?php if($fetch_order['book_format']){ ?>
+             <a href="./approvedorder.php?deliver_id=<?= $fetch_order['order_id'] ?>&action=reject" class="btn btn-primary  text-center mt-2">
+            <i class="bi bi-truck"></i> Deliver
+        </a>
+            <?php } ?>
     </div>
                     </div>
 
