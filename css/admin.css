@@ -19,7 +19,7 @@ h1,h2,h3{
 body {
     background:
         url('../images/bg.png'),
-        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
+        linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95)) !important;
     font-family: 'Cinzel', serif !important;
 
 }
@@ -170,7 +170,19 @@ body {
                 height: 70px;
             }
         }
-
+        .woodmedium{
+    color: var(--wood-medium);
+}
+.woodendark{
+     color: var(--wood-dark) !important;
+}
+.golden{
+    color: var(--accent-gold);
+}
+.cream{
+    color: var(--headings);
+    font-weight: bold;
+}
 .btn-custom {
     background-color: var(--accent-gold) !important;
     color: var(--wood-dark);
@@ -200,9 +212,7 @@ body {
 
 }
 
-.badge {
-    background-color: var(--headings) !important;
-}
+
 .containers {
     display: flex;
     justify-content: center;

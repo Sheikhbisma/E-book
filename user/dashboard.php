@@ -126,6 +126,12 @@ $fetch = mysqli_fetch_assoc($free_book)['c'];
                 </div>
             </div>
         </div>
+<?php
+if(isset($_SESSION['send_mail'])){
+    echo showErr($_SESSION['send_mail'], 'success');
+    unset($_SESSION['send_mail']);
+}
+?>
 
         <!-- PROGRESS + NOTIFICATIONS -->
         <div class="row g-4 mt-2">

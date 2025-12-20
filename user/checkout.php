@@ -17,9 +17,9 @@ if (isset($_POST['quantity'])) {
         }
     };
 }
-$select_row = mysqli_query($conn , "select * from cart where user_id = $user_id");
-if(mysqli_num_rows($select_row) == 0 ){
-    $_SESSION['msg']=showErr("To continue with checkout, please add at least one item to your cart first. ","danger");
+$select_row = mysqli_query($conn, "select * from cart where user_id = $user_id");
+if (mysqli_num_rows($select_row) == 0) {
+    $_SESSION['msg'] = showErr("To continue with checkout, please add at least one item to your cart first. ", "danger");
     header('location: cart.php');
     exit;
 }
@@ -125,6 +125,14 @@ $_SESSION['subtotal'] = $subtotal;
                             </div>
 
                             <div class="card-body p-4">
+                                <?php if (isset($_SESSION['send_mail'])) { ?>
+                                    <div class="text-center p-4">
+                                        <h4 class="text-success mb-3"><i class="bi bi-check-circle-fill"></i> Your order has been placed successfully!</h4>
+                                        <p>A confirmation email has been sent to your email address.</p>
+                                        <a href="../user/dashboard.php" class="btn btn-primary mt-3">Go to Your Dashboard</a>
+                                    </div>
+                                    <?php unset($_SESSION['send_mail']); ?>
+                                <?php } ?>
                                 <form action="./placeorder.php" method="post">
 
                                     <!-- Row 1: Full Name + Email -->
@@ -143,9 +151,9 @@ $_SESSION['subtotal'] = $subtotal;
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-6">
                                             <label class="form-label woodendark">Book Format *</label>
-                                            <select class="form-select" name = 'bookformat' required>
+                                            <select class="form-select" name='bookformat' required>
                                                 <option value="">Select Format</option>
-                                                <option value="pdf" >PDF</option>
+                                                <option value="pdf">PDF</option>
                                                 <option value="cd">CD</option>
                                                 <option value="hardcopy">Hard Copy</option>
                                             </select>
@@ -167,17 +175,17 @@ $_SESSION['subtotal'] = $subtotal;
                                         <div class="form-group">
                                             <label class="required">Payment Method</label>
                                             <div class="payment-method">
-                                                <div class="payment-option" >
+                                                <div class="payment-option">
                                                     <input type="radio" id="paypal" name="payment" value="paypal" required>
                                                     <label for="paypal"><i class="fab fa-paypal"></i> PayPal</label>
                                                 </div>
 
-                                                <div class="payment-option" >
+                                                <div class="payment-option">
                                                     <input type="radio" id="creditcard" name="payment" value="creditcard" required>
                                                     <label for="creditcard"><i class="far fa-credit-card"></i> Credit Card</label>
                                                 </div>
 
-                                                <div class="payment-option" >
+                                                <div class="payment-option">
                                                     <input type="radio" id="debitcard" name="payment" value="debitcard" required>
                                                     <label for="debitcard"><i class="fas fa-credit-card"></i> Debit Card</label>
                                                 </div>
@@ -283,15 +291,15 @@ $_SESSION['subtotal'] = $subtotal;
     <?php include '../components/footer.php' ?>
     <?php include '../components/script.php' ?>
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    <?php if ($cart_empty) { ?>
-        var cartModal = new bootstrap.Modal(
-            document.getElementById('cartEmptyModal')
-        );
-        cartModal.show();
-    <?php } ?>
-});
-</script>
+        document.addEventListener("DOMContentLoaded", function() {
+            <?php if ($cart_empty) { ?>
+                var cartModal = new bootstrap.Modal(
+                    document.getElementById('cartEmptyModal')
+                );
+                cartModal.show();
+            <?php } ?>
+        });
+    </script>
 
 </body>
 
