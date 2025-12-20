@@ -2,10 +2,9 @@
 <?php
 include 'session.php';
 include '../auth/dbconnect.php';
-$msg= '';
-$select_orders = "select * from orders where payment_status = 'Pending' and order_status = 'Pending'";
-$execute = mysqli_query($conn , $select_orders);
 
+$select_orders = "select * from orders where payment_status = 'Received' and order_status = 'Done'";
+$execute = mysqli_query($conn , $select_orders);
 ?>
 
 <!DOCTYPE html>
@@ -23,36 +22,22 @@ $execute = mysqli_query($conn , $select_orders);
         <section class="px-5 pb-5">
              <header class="header p-4 mb-5 bg-white rounded">
 
-                <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i>View Pending Orders</h1>
-             <a href="./view-approved.php" class="btn btn-custom btn-lg">
-                    <i class="bi bi-plus-lg"></i> View Approved Orders
-             </a>
+                <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i>View approved Orders</h1>
+     
              </header>
-             <?php
-             if(isset($_SESSION['approved'])){
-                echo $_SESSION['approved'];
-                unset($_SESSION['approved']);
-             }
-             ?>
-          <div class="row justify-content-center">
-           <?php if(mysqli_num_rows($execute) == 0){ ?> 
-             <div class="b-card text-center py-4 w-50 woodendark">
-        <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-        <h5 class="mb-1 fs-1">No Pending Orders</h5>
-        <p class="mb-0 fs-5">All orders have been processed <i class="bi bi-check-circle"></i></p>
-    </div>
-            <?php } ?>
+  
+          <div class="row">
     <?php  while($fetch_order = mysqli_fetch_assoc($execute)){ 
         ?>
     <div class="col-lg-6 col-md-12 mb-4">
         <div class="admin-order-card b-card p-4 h-100 d-flex flex-column">
-      
+            
             <!-- Header -->
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="mb-0 fw-bold woodendark fs-2">
                     <i class="bi bi-receipt me-2"></i> Order Details
                 </h5>
-                <span class="badge btn-edit">Pending</span>
+                <span class="badge btn-edit">Approved</span>
             </div>
 
             <!-- Main Flex Container -->
@@ -108,26 +93,7 @@ $execute = mysqli_query($conn , $select_orders);
                         <p class="mb-0"><strong>Order Status:</strong>
                             <span class="badge bg-info"><?= $fetch_order['order_status'] ?></span>
                         </p>
-                        <!-- Action Buttons -->
-    <div class=" mt-3">
-        <a href="./approvedorder.php?order_id=<?= $fetch_order['order_id'] ?>&action=approve" class="btn btn-success text-center">
-            <i class="bi bi-check-circle me-2"></i> Show pdf
-        </a><br>
-      <div class="d-flex gap-1">
-          <a href="./approvedorder.php?reject_id=<?= $fetch_order['order_id'] ?>&action=reject" class="btn btn-danger  text-center mt-2">
-            <i class="bi bi-x-circle me-2"></i> Reject Order
-        </a>
-          <a href="./approvedorder.php?shipped_id=<?= $fetch_order['order_id'] ?>&action=reject" class="btn btn-primary  text-center mt-2">
-            <i class="bi bi-truck"></i> Shipped
-        </a><br>
-       
-      </div>
-       <?php if($fetch_order['book_format']){ ?>
-             <a href="./approvedorder.php?deliver_id=<?= $fetch_order['order_id'] ?>&action=reject" class="btn btn-primary  text-center mt-2">
-            <i class="bi bi-truck"></i> Deliver
-        </a>
-            <?php } ?>
-    </div>
+                      
                     </div>
 
 
@@ -137,7 +103,7 @@ $execute = mysqli_query($conn , $select_orders);
             </div>
         </div>
     </div>
-    <?php } ?>
+    <?php  } ?>
 </div>
 
 

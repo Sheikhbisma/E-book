@@ -2,7 +2,6 @@
 //  include database, functions
  include '../auth/check.php';
     include '../auth/dbconnect.php';
-    include '../auth/functions.php';
     $name = $_SESSION['customername'];
     $email = $_SESSION['username'];
     $location = $_SESSION['customerlocation'];

@@ -1,6 +1,5 @@
 <?php
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
 include '../auth/check.php';
 $free_book = mysqli_query($conn , "select count(*) as c from freebooks");
 $fetch = mysqli_fetch_assoc($free_book)['c'];
@@ -127,6 +126,12 @@ $fetch = mysqli_fetch_assoc($free_book)['c'];
                 </div>
             </div>
         </div>
+<?php
+if(isset($_SESSION['send_mail'])){
+    echo showErr($_SESSION['send_mail'], 'success');
+    unset($_SESSION['send_mail']);
+}
+?>
 
         <!-- PROGRESS + NOTIFICATIONS -->
         <div class="row g-4 mt-2">
