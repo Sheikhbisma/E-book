@@ -14,7 +14,7 @@
 h1,h2,h3{
      color: var(--headings);
     font-family: 'Cinzel', serif;
-    font-size: 3.5rem !important;
+    font-size: 3rem !important;
 }
 body {
     background:
@@ -23,7 +23,9 @@ body {
     font-family: 'Cinzel', serif !important;
 
 }
-
+.woodendark{
+    color: var(--wood-dark);
+}
 /* ADMIN SIDEBAR */
 .admin-sidebar {
     width: 240px;
@@ -126,13 +128,57 @@ body {
     overflow: hidden;
 }
 
+        .page-wrapper {
+            padding: 60px 20px;
+        }
+
+        .customer-card {
+            border-radius: 14px;
+            transition: 0.3s ease;
+        }
+
+        .customer-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .customer-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .label {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .value {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-wrapper {
+                padding: 40px 10px;
+            }
+
+            .customer-img {
+                width: 70px;
+                height: 70px;
+            }
+        }
 
 .btn-custom {
     background-color: var(--accent-gold) !important;
     color: var(--wood-dark);
 }
 
-
+.woodendark{
+     color: var(--wood-dark) !important;
+}
 .btn-pdf {
     background: #5D4037 !important;
     color: #FFE082 !important;
@@ -156,4 +202,20 @@ body {
 
 .badge {
     background-color: var(--headings) !important;
+}
+.containers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.login-box {
+    width: 380px;
+    padding: 30px 25px;
+    text-align: center;
+      background: url('../images/card.png'),
+        var(--paper-cream) !important;
+    border: 1px solid #c8b89a;
+    
 }

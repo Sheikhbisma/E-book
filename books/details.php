@@ -27,8 +27,7 @@ if (!$book) {
 <html>
 <head>
     <title><?php echo $book['title']; ?> - Book Details</title>
-  <?php include 'inc/link.php'; ?>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">

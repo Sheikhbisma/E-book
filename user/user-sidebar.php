@@ -1,10 +1,10 @@
 <div class="sidebar">
-    <h4 class="text-center mb-4">User Panel</h4>
+    <h2 class="text-center mb-4 fw-bold golden">User Panel</h2>
 
-    <a href="dashboard.php">📊 Dashboard</a>
-    <a href="profile.php">👤 Profile</a>
-    <a href="competition.php">🏆 Competition</a>
-    <a href="orders.php">🛒 Orders</a>
-    <a href="register.php">📝 Register</a>
-    <a href="logout.php">🚪 Logout</a>
+    <a href="dashboard.php"><i class="bi bi-speedometer2"></i> Dashboard</a>
+    <a href="competition.php"><i class="bi bi-trophy-fill"></i> Competition</a>
+    <a href="books.php"><i class="bi bi-people"></i> Books</a>
+    <a href="orders.php"><i class="bi bi-cart"></i> Orders</a>
+    <a href="profile.php"><i class="bi bi-person-lines-fill"></i> Profile</a>
+    <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
 </div>
