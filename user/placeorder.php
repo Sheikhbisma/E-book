@@ -40,7 +40,7 @@ if (isset($_POST['placeorder'])) {
         }
         $delete_cart = mysqli_query($conn, "delete from cart where user_id = $user_id");
                 mysqli_commit($conn);
-$book_order_id ="EB" .rand(10000,99999);
+$book_order_id ="EB-" .rand(10000,99999);
         $mail = new PHPMailer(true);
         try {
             // SMTP SETTINGS
