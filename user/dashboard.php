@@ -1,9 +1,12 @@
 <?php
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
 include '../auth/check.php';
 $free_book = mysqli_query($conn , "select count(*) as c from freebooks");
 $fetch = mysqli_fetch_assoc($free_book)['c'];
+$orders = mysqli_query($conn , "select full_name,order_status from orders where user_id = '$_SESSION[userid]' limit 1");
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -128,6 +131,7 @@ $fetch = mysqli_fetch_assoc($free_book)['c'];
             </div>
         </div>
 
+
         <!-- PROGRESS + NOTIFICATIONS -->
         <div class="row g-4 mt-2">
             <div class="col-md-6 d-flex">
@@ -152,9 +156,19 @@ $fetch = mysqli_fetch_assoc($free_book)['c'];
                 <div class="glass-card card w-100">
                     <h4 class="section-title card-title woodendark">🔔 Notifications</h4>
                     <ul class="list-group">
-                        <li class="list-group-item border-0">📘 New Book Added: <b>The Watchmen</b></li>
-                        <li class="list-group-item border-0">🏆 Achievement Unlocked: <b>Pro Reader</b></li>
-                        <li class="list-group-item border-0">🔄 Profile updated successfully</li>
+                       <?php
+                          while($fetch_status = mysqli_fetch_assoc($orders)){
+                        $status = $fetch_status['order_status'];
+                      echo  showErr(getnotification($status) , 'success');
+                       }
+
+
+if(isset($_SESSION['send_mail'])){
+    echo showErr($_SESSION['send_mail'], 'success');
+    unset($_SESSION['send_mail']);
+}
+
+?>
                     </ul>
                 </div>
             </div>

@@ -1,7 +1,6 @@
 <?php
 
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
 include '../auth/check.php';
 $user_id = $_SESSION['userid'];
 $delete_id = $_GET['delete_id'];

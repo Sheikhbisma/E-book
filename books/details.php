@@ -1,7 +1,12 @@
 <?php
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
-include '../auth/check.php';
+if(!isset($_SESSION['userid'] )){
+     $_SESSION['msg']=showErr("To see the details of the books you have to login or register first ","danger");
+    header('location: index.php');
+    exit;
+}
+    $user_id = $_SESSION['userid'];
 
 // CHECK IF ID EXIST IN URL
 if (!isset($_GET['id'])) {
@@ -21,13 +26,15 @@ if (!$book) {
     echo "Book not found!";
     exit;
 }
+
+$selectOrder=mysqli_query($conn , "select o.* from orders as o inner join order_items as ot on o.order_id = 'ot.order_id' where o.user_id = '$user_id' and ot.book_id = '$book_id' and o.payment_status = 'Received'")
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title><?php echo $book['title']; ?> - Book Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <?php include '../components/meta-links.php' ?>
 </head>
 
 <body class="bg-light">
@@ -74,14 +81,16 @@ if (!$book) {
                             🛒 Add to Cart
                         </a>
 
-                        <?php if (!empty($book['pdf_path'])) { ?>
-                            <a href="../<?php echo $book['pdf_path']; ?>" 
+                        <?php if (mysqli_num_rows($selectOrder) == 0 ) { ?>
+                           
+                            <button class="btn btn-danger w-25" disabled><i class="fa fa-lock"></i> Locked</button>
+                        <?php }else{ ?>
+                             <a href="../<?php echo $book['pdf_path']; ?>" 
                                target="_blank" 
-                               class="btn btn-danger">
+                               class="btn btn-info">
                                 📄 View PDF
                             </a>
-                        <?php } ?>
-
+                            <?php } ?>
                     </div>
 
                 </div>

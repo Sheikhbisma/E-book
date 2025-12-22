@@ -1,7 +1,6 @@
 <?php
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
-include '../auth/check.php';
 
 $result = mysqli_query($conn, "SELECT * FROM books");
 $total_books = mysqli_fetch_assoc($result);
