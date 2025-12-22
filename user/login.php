@@ -81,7 +81,7 @@ overflow: hidden;
                          <span class="input-group-text bg">
                              <i class="bi bi-envelope-at-fill"></i>
                          </span>
-                         <input type="email" name="email" placeholder="Email" class="form-control" required>
+                         <input type="email" name="email" value="<?php echo $email ?? '' ?>" placeholder="Email" class="form-control" required>
                      </div>
                  </div>
                  <div class="mb-3">
@@ -89,7 +89,7 @@ overflow: hidden;
                          <span class="input-group-text bg">
                              <i class="bi bi-eye-fill show"></i>
                          </span>
-                         <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+                         <input type="password" name="password"  id="password" placeholder="Password" class="form-control" required>
                      </div>
                  </div>
                  <button type="submit" name="loginbtn" class="btn-login btn-custom">Login</button>

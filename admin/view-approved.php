@@ -3,7 +3,7 @@
 include 'session.php';
 include '../auth/dbconnect.php';
 
-$select_orders = "select * from orders where payment_status = 'Received' and order_status = 'Done'";
+$select_orders = "select * from orders where payment_status = 'Received' and order_status = 'Done' or order_status = 'delivered'";
 $execute = mysqli_query($conn , $select_orders);
 ?>
 
@@ -22,10 +22,19 @@ $execute = mysqli_query($conn , $select_orders);
         <section class="px-5 pb-5">
              <header class="header p-4 mb-5 bg-white rounded">
 
-                <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i>View approved Orders</h1>
-     
+                <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i> Approved Orders</h1>
+     <strong class="text-light">Approved PDF orders and delivered Hardcopy/CD orders are displayed here.</strong>
              </header>
-  
+   <?php
+             if(isset($_SESSION['deliver'])){
+                echo $_SESSION['deliver'];
+                unset($_SESSION['deliver']);
+             }
+             if(isset($_SESSION['approved'])){
+                echo $_SESSION['approved'];
+                unset($_SESSION['approved']);
+             }
+             ?>
           <div class="row">
     <?php  while($fetch_order = mysqli_fetch_assoc($execute)){ 
         ?>
@@ -37,7 +46,7 @@ $execute = mysqli_query($conn , $select_orders);
                 <h5 class="mb-0 fw-bold woodendark fs-2">
                     <i class="bi bi-receipt me-2"></i> Order Details
                 </h5>
-                <span class="badge btn-edit">Approved</span>
+                <span class="badge btn-edit"><?php echo $fetch_order['order_status'] ?></span>
             </div>
 
             <!-- Main Flex Container -->

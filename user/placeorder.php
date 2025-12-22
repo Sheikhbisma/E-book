@@ -40,7 +40,7 @@ if (isset($_POST['placeorder'])) {
         }
         $delete_cart = mysqli_query($conn, "delete from cart where user_id = $user_id");
                 mysqli_commit($conn);
-
+$book_order_id ="EB" .rand(10000,99999);
         $mail = new PHPMailer(true);
         try {
             // SMTP SETTINGS
@@ -53,12 +53,12 @@ if (isset($_POST['placeorder'])) {
             $mail->Port       = 587;
 
             // RECEIVER & SENDER
-            $mail->setFrom('bismasheikh2006@gmail.com', 'Ebook Website');
+            $mail->setFrom('bismasheikh2006@gmail.com', 'E-Book Store');
             $mail->addAddress($email);  // your inbox
 
             // EMAIL CONTENT
             $mail->isHTML(true);
-            $mail->Subject = "Order Confirmation - Order #$order_id";
+            $mail->Subject = "Order Confirmation - $book_order_id";
             $mail->Body = "
     <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>
         <h2 style='color:#2c3e50;'>Dear $fullname,</h2>
@@ -73,7 +73,7 @@ if (isset($_POST['placeorder'])) {
         </p>
 
         <p>
-            Please log in to your account and check your dashboard to view your complete order details.
+         check your dashboard to view your complete order details.
         </p>
 
         <p style='margin-top:20px;'>
@@ -81,15 +81,12 @@ if (isset($_POST['placeorder'])) {
         </p>
 
         <p style='margin-top:30px;'>
-            <strong>Thank you for choosing us!</strong><br>
-            Team Book Store
+            <strong>Thank you for choosing our E-book store</strong><br>
         </p>
 
         <hr style='margin-top:30px;'>
 
-        <p style='font-size:12px; color:#777;'>
-            This is an automated message. Please do not reply to this email.
-        </p>
+       
     </div>
 ";
 

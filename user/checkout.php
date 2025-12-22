@@ -193,45 +193,7 @@ $_SESSION['subtotal'] = $subtotal;
                                         </div>
                                     </div>
                                     <!-- modal -->
-                                    <div class="modal fade" id="paymentmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h6 class="mb-0">Credit / Debit Card (Demo Only)</h6>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="card-body">
-
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Card Number</label>
-                                                            <input type="text" class="form-control" placeholder="1234 5678 9012 3456">
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-6 mb-3">
-                                                                <label class="form-label">Expiry Date</label>
-                                                                <input type="text" class="form-control" placeholder="MM/YY">
-                                                            </div>
-
-                                                            <div class="col-6 mb-3">
-                                                                <label class="form-label">CVV</label>
-                                                                <input type="password" class="form-control" placeholder="***">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Card Holder Name</label>
-                                                            <input type="text" class="form-control" placeholder="John Doe">
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
                                     <button type="submit" name="placeorder" class="btn  btn-gold btn-md w-100">
                                         Place Order
                                     </button>
@@ -279,7 +241,15 @@ $_SESSION['subtotal'] = $subtotal;
 
                             </div>
                         </div>
-
+<div class="payment-form card">
+    <h6 class="header p-2 fw-bold text-center">Payment Details</h6>
+    <form action="payment_success.php" class="px-3" method="POST">
+        <input type="text" class="form-control" placeholder="Cardholder Name" required>
+        <input type="text" class="form-control" placeholder="Card Number (1234 5678 9012 3456)" required>
+        <input type="text" class="form-control" placeholder="Expiry Date (MM/YY)" required>
+        <input type="text" class="form-control" placeholder="CVV" required>
+    </form>
+</div>
 
 
                     </div>

@@ -10,7 +10,7 @@ $success_msg = "";
 // Form Submission
 if (isset($_POST['register'])) {
 
-    // Sanitize inputs
+    // prevent Sql injections
     $name = sanitize_data($_POST['name']);
     $email = sanitize_data($_POST['email']);
     $contact = sanitize_data($_POST['contact']);
@@ -30,17 +30,17 @@ if (isset($_POST['register'])) {
         $image_temp = $image['tmp_name'];
         $image_type = $image['type'];
         $image_size = $image['size'];
-        // unique name
+        // unique name 
         $unique_path = time() . uniqid() . "-" . $image_name;
         $path = "img/" . $unique_path;
 // check image type
-        if (in_array($image_type, ['image/jpeg', 'image/jpg', 'image/png'])) {
+        if ($image_type == 'image/jpeg' || $image_type == 'image/jpg' || $image_type == 'image/png') {
             // check image size
             if ($image_size <= 15000000) {
                 // Hash password
                 $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
-                // Insert detils into dtabase
+                // Insert details into database
                 $query = "INSERT INTO customer_register 
                 (customer_name, customer_email, customer_contact, customer_image, customer_address, customer_location, customer_pass)
                 VALUES ('$name','$email','$contact','$unique_path','$address','$location','$hashed_pass')";
@@ -48,12 +48,12 @@ if (isset($_POST['register'])) {
                 if (mysqli_query($conn, $query)) {
                     // move images into img
                     move_uploaded_file($image_temp, "../" . $path);
-
+// store message in session to show on login page
                     $_SESSION['success_msg'] = "Registration successful! You can now login.";
                     header("Location: login.php");
                     exit();
                 } else {
-                    $errors['db'] = "Database error: Could not register user.";
+                    $errors['db'] = "Could not register user.";
                 }
             } else {
                 $errors['img'] = "Image size should be less than 15 MB";
@@ -81,7 +81,7 @@ if (isset($_POST['register'])) {
 
             <h3 class="text-center mb-4 fw-bold">Create Your Account</h3>
 
-<!-- if query fail -->
+<!--  -->
             <?php if (isset($errors['db'])): ?>
                 <div class="alert alert-danger"><?php echo $errors['db']; ?></div>
             <?php endif; ?>
@@ -104,17 +104,17 @@ if (isset($_POST['register'])) {
                         <label class="form-label fw-semibold">Phone Number</label>
                         <input type="text" class="form-control" name="contact" placeholder="Eg: 03480935678" value="<?php echo $contact ?? '' ?>" required>
                         <!-- show validation error -->
-                        <?php if (isset($errors['contact'])): ?>
+                        <?php if (isset($errors['contact'])){ ?>
                             <div class="text-danger mt-1"><?php echo $errors['contact']; ?></div>
-                        <?php endif; ?>
+                        <?php } ?>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="form-label fw-semibold">Location</label>
                         <input type="text" name="location" class="form-control" placeholder="Eg: Karachi, Pakistan" value="<?php echo $location ?? ''; ?>" required>
                          <!-- show validation error -->
-                        <?php if (isset($errors['location'])): ?>
+                        <?php if (isset($errors['location'])){ ?>
                             <div class="text-danger mt-1"><?php echo $errors['location']; ?></div>
-                        <?php endif; ?>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -122,18 +122,18 @@ if (isset($_POST['register'])) {
                     <label class="form-label fw-semibold">Profile Image</label>
                     <input type="file" class="form-control" name="img" required>
                      <!-- show image validation  error -->
-                    <?php if (isset($errors['img'])): ?>
+                    <?php if (isset($errors['img'])){ ?>
                         <div class="text-danger mt-1"><?php echo $errors['img']; ?></div>
-                    <?php endif; ?>
+                    <?php } ?>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Address</label>
                     <textarea class="form-control" rows="1" placeholder="Apt 402, Bahria Town Karachi" name="address" required><?php echo $address ?? ''; ?></textarea>
                      <!-- show validation error -->
-                    <?php if (isset($errors['address'])): ?>
+                    <?php if (isset($errors['address'])){ ?>
                         <div class="text-danger mt-1"><?php echo $errors['address']; ?></div>
-                    <?php endif; ?>
+                    <?php }?>
                 </div>
 
                 <div class="row">
@@ -141,17 +141,17 @@ if (isset($_POST['register'])) {
                         <label class="form-label fw-semibold">Password</label>
                         <input type="password" name="pass" class="form-control" placeholder="Your Password" required>
                          <!-- show validation error -->
-                        <?php if (isset($errors['pass'])): ?>
+                        <?php if (isset($errors['pass'])){ ?>
                             <div class="text-danger mt-1"><?php echo $errors['pass'] ?></div>
-                        <?php endif; ?>
+                        <?php } ?>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="form-label fw-semibold">Confirm Password</label>
                         <input type="password" name="conpass" class="form-control" placeholder="Confirm Password" required>
                         <!-- password do not match error  -->
-                        <?php if (isset($errors['conpass'])): ?>
+                        <?php if (isset($errors['conpass'])){ ?>
                             <div class="text-danger mt-1"><?php echo $errors['conpass']; ?></div>
-                        <?php endif; ?>
+                        <?php }?>
                     </div>
                 </div>
 
