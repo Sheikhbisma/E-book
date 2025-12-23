@@ -1,5 +1,8 @@
-<!-- admin-sidebar.php -->
-<div class="admin-sidebar">
+<button class="mobile-nav-toggle" id="mobileToggle">
+    <i class="bi bi-list"></i>
+</button>
+
+<div class="admin-sidebar" id="sidebar">
     <div class="sidebar-header">
         <h3>Admin</h3>
     </div>
@@ -15,3 +18,22 @@
         <li><a href="./inc/logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
     </ul>
 </div>
+
+<div class="content-area">
+    </div>
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle');
+const sidebar = document.getElementById('sidebar');
+
+mobileToggle.addEventListener('click', () => {
+    // Sidebar ko active class dena ya hatana
+    sidebar.classList.toggle('active');
+});
+
+// Sidebar ke bahar click karne par band ho jaye (Optional)
+document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
+        sidebar.classList.remove('active');
+    }
+});
+    </script>
