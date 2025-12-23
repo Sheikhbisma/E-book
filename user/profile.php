@@ -198,34 +198,6 @@ body {
         <p class="woodendark mb-0"><?php echo $email; ?></p>
     </div>
 
-<<<<<<< Updated upstream
-            <div class="info-row">
-                <span class="info-label woodendark">Full Name:</span>
-                <span class="info-value">Ali Khan</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label woodendark">Email:</span>
-                <span class="info-value">ali@example.com</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label woodendark">Phone:</span>
-                <span class="info-value">+92 300 1234567</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label woodendark">Location:</span>
-                <span class="info-value">Lahore, Pakistan</span>
-            </div>
-        </div>
-
-        <!-- LOGOUT BUTTON -->
-        <div class="logout-container text-center mt-4">
-            <form action="logout.php" method="post">
-                <button class="logout-btn">Logout</button>
-            </form>
-=======
     <div class="info-card">
         <h3 class="woodendark fw-bold text-center mb-4">Personal Information</h3>
 
@@ -237,7 +209,7 @@ body {
         <div class="info-row">
             <span class="info-label">Email</span>
             <span class="info-value"><?php echo $email; ?></span>
->>>>>>> Stashed changes
+
         </div>
 
         <div class="info-row">
