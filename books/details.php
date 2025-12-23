@@ -26,7 +26,10 @@ if (!$book) {
     exit;
 }
 
-$selectOrder=mysqli_query($conn , "select o.* from orders as o inner join order_items as ot on o.order_id = 'ot.order_id' where o.user_id = '$user_id' and ot.book_id = '$book_id' and o.payment_status = 'Received'")
+$selectOrder=mysqli_query($conn , "select o.* from orders as o inner join order_items as ot on o.order_id = ot.order_id where o.user_id = '$user_id' and ot.book_id = '$book_id' and o.payment_status = 'Received'");
+// $selectOrder=mysqli_query($conn , "select * from orders");
+$fetch =mysqli_fetch_assoc($selectOrder);
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +40,7 @@ $selectOrder=mysqli_query($conn , "select o.* from orders as o inner join order_
 </head>
 
 <body class="bg-light" class="pt">
-
+ <?php include '../components/header.php'; ?>
 <div class="container py-5">
 
     <a href="index.php" class="btn btn-secondary mb-3">⬅ Back</a>
@@ -80,7 +83,9 @@ $selectOrder=mysqli_query($conn , "select o.* from orders as o inner join order_
                             🛒 Add to Cart
                         </a>
 
-                        <?php if (mysqli_num_rows($selectOrder) == 0 ) { ?>
+                        <?php
+                       
+                        if (mysqli_num_rows($selectOrder) == 0 ) { ?>
                            
                             <button class="btn btn-danger w-25" disabled><i class="fa fa-lock"></i> Locked</button>
                         <?php }else{ ?>
@@ -99,6 +104,6 @@ $selectOrder=mysqli_query($conn , "select o.* from orders as o inner join order_
     </div>
 
 </div>
-
+ <?php include '../components/footer.php'; ?>
 </body>
 </html>
