@@ -16,15 +16,15 @@ if($execute_update){
 }
 $shipped_id = $_GET['shipped_id'];
 if(isset($shipped_id)){
-    $update = "update orders set payment_status = 'Received',order_status = 'Shipped' where order_id = $shipped_id";
+    $update = "update orders set payment_status = 'Received',order_status = 'Shipped' where order_id = '$shipped_id'";
     $execute_update = mysqli_query($conn , $update);
 if($execute_update){
-    $_SESSION['approved'] = showErr("Order updated to approved" , "success");
+    $_SESSION['shipped'] = showErr("Order Shipped Successfully " , "success");
   
-    header('location: view-orders.php');
+    header('location: shipped-orders.php');
     exit;
 }else{
-    $_SESSION['approved'] = showErr("There is an error" , "danger");
+    $_SESSION['shipped'] = showErr("There is an error" , "danger");
 
 }
 
@@ -35,12 +35,12 @@ if(isset($deliver_id)){
     $update = "update orders set payment_status = 'Received',order_status = 'delivered' where order_id = '$deliver_id'";
     $execute_update = mysqli_query($conn , $update);
 if($execute_update){
-    $_SESSION['approved'] = showErr("Order updated to approved" , "success");
+    $_SESSION['deliver'] = showErr("Order delivered successfully" , "success");
   
-    header('location: view-orders.php');
+    header('location: view-approved.php');
     exit;
 }else{
-    $_SESSION['approved'] = showErr("There is an error" , "danger");
+    $_SESSION['deliver'] = showErr("There is an error" , "danger");
 
 }
 }

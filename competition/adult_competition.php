@@ -92,7 +92,7 @@ form button:hover {
 }
 </style>
 </head>
-<body>
+<body class="pt">
 <?php include '../components/header.php' ?>
 <div class="wrap card">
   <h2>📄 PDF Submission</h2>

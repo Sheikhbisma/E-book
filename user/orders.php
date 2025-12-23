@@ -58,7 +58,7 @@ $execute = mysqli_query($conn, $select_orders);
                                     <h5 class="mb-0 fw-bold woodendark fs-2">
                                         <i class="bi bi-receipt me-2"></i> Order Details
                                     </h5>
-                                    <span class="badge btn-edit"><?= $fetch_order['order_status'] ?></span>
+                                    <span class="badge btn-edit"><?php echo $fetch_order['order_status'] ?></span>
                                 </div>
 
                                 <!-- Main Flex Container -->
@@ -73,15 +73,15 @@ $execute = mysqli_query($conn, $select_orders);
                                         while ($item = mysqli_fetch_assoc($items)) {
                                         ?>
                                             <div class="d-flex justify-content-between small border-bottom py-1">
-                                                <span><?= $item['book_title'] ?></span>
-                                                <span>Qty: <?= $item['quantity'] ?></span>
+                                                <span><?php echo $item['book_title'] ?></span>
+                                                <span>Qty: <?php echo $item['quantity'] ?></span>
                                             </div>
                                         <?php } ?>
 
                                         <!-- Grand Total -->
                                         <div class="d-flex justify-content-between fw-bold mt-2">
                                             <span>Grand Total:</span>
-                                            <span>$ <?= $fetch_order['grand_total'] ?></span>
+                                            <span>$ <?php echo $fetch_order['grand_total'] ?></span>
                                         </div>
                                         <?php if ($fetch_order['order_status'] == 'Shipped') { ?>
                                             <div class="alert alert-primary w-100 border shadow-sm">
@@ -102,6 +102,12 @@ $execute = mysqli_query($conn, $select_orders);
                                                check your dashboard for downloaded books.
                                             </div>
                                         <?php } ?>
+                                        <?php if ($fetch_order['order_status'] == 'delivered') { ?>
+                                            <div class="alert alert-success w-100 border shadow-sm">
+                                                <i class="bi bi-truck me-2"></i>
+                                               Your Order Delivered Successfully.
+                                            </div>
+                                        <?php } ?>
                                     </div>
 
                                     <!-- Right Column: Customer & Payment Info + Button -->
@@ -109,20 +115,20 @@ $execute = mysqli_query($conn, $select_orders);
 
                                         <!-- Customer Info -->
                                         <div class="mb-3">
-                                            <p class="mb-1 woodmedium fw-medium"><strong class="woodendark">Name:</strong> <?= $fetch_order['full_name'] ?></p>
-                                            <p class="mb-1 woodmedium fw-medium"><strong class="woodendark">Email:</strong> <?= $fetch_order['email'] ?></p>
-                                            <p class="mb-1 woodmedium fw-medium"><strong class="woodendark">Address:</strong> <?= $fetch_order['address'] ?></p>
-                                            <p class="mb-0 woodmedium fw-medium"><strong class="woodendark">City:</strong> <?= $fetch_order['city'] ?></p>
-                                            <p class="mb-0 woodmedium fw-medium"><strong class="woodendark">Book Format:</strong> <?= $fetch_order['book_format'] ?></p>
+                                            <p class="mb-1 woodmedium fw-medium"><strong class="woodendark">Name:</strong> <?php echo $fetch_order['full_name'] ?></p>
+                                            <p class="mb-1 woodmedium fw-medium"><strong class="woodendark">Email:</strong> <?php echo $fetch_order['email'] ?></p>
+                                            <p class="mb-1 woodmedium fw-medium"><strong class="woodendark">Address:</strong> <?php echo $fetch_order['address'] ?></p>
+                                            <p class="mb-0 woodmedium fw-medium"><strong class="woodendark">City:</strong> <?php echo $fetch_order['city'] ?></p>
+                                            <p class="mb-0 woodmedium fw-medium"><strong class="woodendark">Book Format:</strong> <?php echo $fetch_order['book_format'] ?></p>
                                         </div>
 
                                         <hr>
 
                                         <!-- Payment Info -->
                                         <div class="mb-3">
-                                            <p class="mb-1 woodmedium"><strong class="woodendark">Payment Method:</strong> <?= $fetch_order['payment_method'] ?></p>
+                                            <p class="mb-1 woodmedium"><strong class="woodendark">Payment Method:</strong> <?php echo $fetch_order['payment_method'] ?></p>
                                             <p class="mb-0 woodmedium"><strong class="woodendark">Payment Status:</strong>
-                                                <span class="badge bg-danger"><?= $fetch_order['payment_status'] ?></span>
+                                                <span class="badge bg-danger"><?php echo $fetch_order['payment_status'] ?></span>
                                             </p>
                                         </div>
 
@@ -131,7 +137,7 @@ $execute = mysqli_query($conn, $select_orders);
                                         <!-- Order Status -->
                                         <div class="mb-3">
                                             <p class="mb-0"><strong>Order Status:</strong>
-                                                <span class="badge bg-info"><?= $fetch_order['order_status'] ?></span>
+                                                <span class="badge bg-info"><?php echo $fetch_order['order_status'] ?></span>
                                             </p>
 
                                         </div>

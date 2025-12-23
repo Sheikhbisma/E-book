@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2025 at 12:02 PM
+-- Generation Time: Dec 22, 2025 at 07:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -121,13 +121,6 @@ CREATE TABLE `cart` (
   `quantity` int(11) NOT NULL DEFAULT 1,
   `price` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `user_id`, `book_id`, `quantity`, `price`) VALUES
-(30, 3, 12, 1, 80);
 
 -- --------------------------------------------------------
 
@@ -291,12 +284,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `full_name`, `email`, `city`, `address`, `book_format`, `payment_method`, `payment_status`, `order_status`, `grand_total`, `created_at`) VALUES
-(5, 4, 'wania', 'wania@gmail.com', 'lahore', ' apt 908 , gulshan', 'pdf', 'paypal', 'Received', 'Done', 400.00, '2025-12-15 16:47:07'),
-(11, 1, 'bisma', 'bismasheikh2006@gmail.com', 'karachi', ' h-no:xyz', 'pdf', 'debitcard', 'Received', 'Done', 217.00, '2025-12-19 11:11:41'),
-(12, 1, 'bisma', 'bismasheikh2006@gmail.com', 'karachi', ' h-no:xyz', 'cd', 'paypal', 'Received', 'Shipped', 210.00, '2025-12-19 11:14:29'),
-(13, 1, 'bisma', 'bismasheikh2006@gmail.com', 'karachi', ' h-no:xyz', 'hardcopy', 'paypal', 'Pending', 'Pending', 120.00, '2025-12-19 12:38:08'),
-(14, 11, 'mehjabeen', 'mehjbeenrehman@gmail.com', 'karachi', ' h-no:xyz', 'pdf', 'creditcard', 'Received', 'Done', 150.00, '2025-12-19 12:43:50'),
-(15, 11, 'mehjabeen', 'mehjabeenrehmans@gmail.com', 'karachi', ' h-no:xyz', 'pdf', 'creditcard', 'Pending', 'Pending', 80.00, '2025-12-19 12:45:35');
+(17, 1, 'bisma', 'bismasheikh2006@gmail.com', 'karachi', ' h-no:xyz', 'cd', 'creditcard', 'Pending', 'Pending', 54.00, '2025-12-21 07:51:43');
 
 -- --------------------------------------------------------
 
@@ -317,13 +305,7 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `book_id`, `quantity`, `book_title`) VALUES
-(11, 5, 12, 3, 'Aesops fables'),
-(12, 5, 13, 4, 'Space Rangers'),
-(16, 11, 30, 1, 'THE CAT IN THE HAT '),
-(17, 12, 27, 1, '12-CarRace-by-Starfall'),
-(18, 13, 17, 1, 'The girl with he dragon tattoo'),
-(19, 14, 18, 1, 'The fault in our stars'),
-(20, 15, 12, 1, 'Aesops fables');
+(23, 17, 11, 2, '100 Bullets');
 
 -- --------------------------------------------------------
 
@@ -334,7 +316,7 @@ INSERT INTO `order_items` (`order_item_id`, `order_id`, `book_id`, `quantity`, `
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `value` decimal(10,2) NOT NULL DEFAULT 0.00
+  `value` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -342,8 +324,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `name`, `value`) VALUES
-(1, 'shipping_rate', 5.00),
-(2, 'delivery_rate', 2.00);
+(1, 'shipping_rate', 5);
 
 --
 -- Indexes for dumped tables
@@ -458,7 +439,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `competition_entries`
@@ -476,7 +457,7 @@ ALTER TABLE `competition_topics`
 -- AUTO_INCREMENT for table `customer_register`
 --
 ALTER TABLE `customer_register`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `freebooks`
@@ -488,13 +469,13 @@ ALTER TABLE `freebooks`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `settings`

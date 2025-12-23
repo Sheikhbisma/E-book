@@ -1,5 +1,7 @@
 <?php
+// 4 parameters for validation
 function validateForm($contact, $address, $location, $pass, $conpass){
+    // all errors stores in array
     $errors = [];
 
     if(!preg_match('/^03[0-9]{9}$/', $contact)){
@@ -10,7 +12,7 @@ function validateForm($contact, $address, $location, $pass, $conpass){
         $errors['address'] = "Address must be at least 10 characters long";
     }
 
-    if(!preg_match('/^[A-Za-z ]{3,}$/', $location)){
+    if(!preg_match('/^[A-Za-z, ]{3,}$/', $location)){
         $errors['location'] = "Location should contain only letters and be at least 3 characters";
     }
 
@@ -43,6 +45,33 @@ function totalItems($conn , $user_id){
 $fetch_book = mysqli_fetch_assoc($select);
 $_SESSION['totalProducts'] = $fetch_book['sum'];
 return $products;
+}
+function getnotification($status){
+    $return = [
+        "Done" => "Order Is Approved",
+        "Shipped"=>"Order Is Shipped",
+        "delivered"=>"order Is Delivered",
+        "Pending"=>"order Is pending"
+    ];
+    return "
+<div class='card bg-white border-0 shadow-sm mb-2'>
+    <div class='card-body d-flex align-items-center justify-content-between'>
+        
+        <!-- Icon + Status -->
+        <div class='d-flex align-items-center'>
+            <div class='me-3 fs-4 woodendark'>
+                <i class='bi bi-clock'></i>
+            </div>
+            <div>
+                <h6 class='mb-1 fw-bold'>{$status}</h6>
+                <small class='text-muted'>{$return[$status]}</small>
+            </div>
+        </div>
+
+
+    </div>
+</div>";
+
 }
 
 ?>
