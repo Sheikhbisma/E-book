@@ -1,6 +1,11 @@
 <?php
 session_start();
 include './components/homecontent.php';
+
+// if(isset($_SESSION['userid'])){
+//     $user_id = $_SESSION['userid'];
+// totalItems($conn , $user_id);
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,153 +13,419 @@ include './components/homecontent.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>E-Book World | Elegant Dark Theme 2025</title>
-
-    <?php include './components/meta-links.php'; ?>
-    <link rel="stylesheet" href="./css/user.css">
-
+    
+<?php include './components/meta-links.php' ?>   
+<link rel="stylesheet" href="./css/user.css">
     <style>
-        :root {
-            --headings: #FFE082;
-        }
+    /* ===== NAVBAR UI IMPROVEMENT ===== */
+.navbar {
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
 
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--headings) !important;
-        }
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
 
-        /* ================= HERO SECTION ================= */
-        .hero-section {
-            min-height: 100vh;
-            padding-top: 120px;
-            padding-bottom: 80px;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.65),
-                rgba(0, 0, 0, 0.9)
-            );
-        }
+.nav-link {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
 
-        .hero-title {
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            line-height: 1.2;
-            max-width: 720px;
-        }
+.nav-link:hover {
+    opacity: 1;
+    color: var(--accent-gold) !important;
+}
 
-        .hero-subtitle {
-            margin-top: 15px;
-            font-size: 1.05rem;
-            color: #cfcfcf;
-            max-width: 640px;
-            line-height: 1.6;
-        }
+/* ===== HERO UI ===== */
+.hero {
+    min-height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    align-items: center;
+    background: 
+        radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.15), transparent 40%),
+        linear-gradient(135deg, #0b0b0b 0%, #000000 100%);
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero-btn {
-            margin-top: 25px;
-            background: var(--accent-gold);
-            color: var(--wood-dark);
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 50px;
-            display: inline-block;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
+.hero-content {
+    position: relative;
+    z-index: 5;
+}
 
-        .hero-btn:hover {
-            background: #ffd54f;
-            color: #000;
-            transform: translateY(-2px);
-        }
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #fff 20%, #ffc107 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
 
-        .hero-section * {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
+.hero p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.2rem;
+    max-width: 600px;
+    border-left: 3px solid #ffc107;
+    padding-left: 20px;
+    margin-bottom: 35px;
+}
 
-        @media (max-width: 768px) {
-            .hero-section {
-                text-align: center;
-                padding-top: 110px;
-            }
+/* Floating Image Animation */
+.hero-image-wrap {
+    position: relative;
+    animation: floating 6s ease-in-out infinite;
+}
 
-            .hero-title,
-            .hero-subtitle {
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-        /* ================================================= */
-    </style>
+@keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.hero .btn-primary-custom {
+    background: #ffc107;
+    color: #000;
+    font-weight: 700;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 10px 20px rgba(255,193,7,0.2);
+}
+
+.hero .btn-primary-custom:hover {
+    transform: scale(1.05);
+    background: #fff;
+    box-shadow: 0 15px 30px rgba(255,255,255,0.1);
+}
+
+@media (max-width: 991px) {
+    .hero { text-align: center; padding-top: 150px; }
+    .hero p { border-left: none; padding-left: 0; margin: 0 auto 30px; }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .hero {
+        text-align: center;
+    }
+
+    .hero-content {
+        margin: auto;
+    }
+}
+
+
+</style>
 </head>
-
 <body class="pt">
+  <!-- Navigation Bar -->
+ <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+     <div class="container">
+         <a class="navbar-brand" href="#">
+             <i class="fas fa-book-open me-2"></i>E-Book
+         </a>
 
-<!-- NAVBAR -->
-<?php include './components/navbar.php'; ?>
 
-<!-- HERO SECTION -->
-<section class="hero-section">
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+             <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <div class="collapse navbar-collapse" id="navbarNav">
+             <!-- Mobile Search Box -->
+
+             <ul class="navbar-nav ms-auto align-items-center gap-3">
+                 <li class="nav-item">
+                     <a class="nav-link active" href="./index.php">
+                         <i class="fas fa-home me-1"></i> Home
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="./books/index.php">
+                         <i class="fas fa-book me-1"></i> Books
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="./books/categories.php">
+                         <i class="fas fa-th-large me-1"></i> Categories
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="./contact.php">
+                         <i class="fas fa-gift me-1"></i> Contact
+                     </a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a class="nav-link" href="./competition/user_dashboard.php">
+                         <i class="fas fa-trophy me-1"></i> Competition
+                     </a>
+                 </li>
+
+               <div class="d-flex gap-2 ms-5">
+                  <!-- Cart Icon -->
+                 <li class="nav-item">
+                     <a class="nav-link cart-icon" href="./user/cart.php">
+                          <i class="fas fa-shopping-cart fs-5 position-relative">
+        <?php if (isset($_SESSION['totalProducts'])) { ?>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <?php echo $_SESSION['totalProducts']; ?>
+            </span>
+        <?php } ?>
+    </i>
+                     </a>
+                 </li>
+
+                 <!-- User Dropdown -->
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                         <i class="fas fa-user-circle me-1"></i> Account
+                     </a>
+                     <ul class="dropdown-menu dropdown-menu-end">
+                         <?php if(!isset($_SESSION['username'])){ ?>
+                              <li><a class="dropdown-item" href="./user/login.php"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
+                               <li><a class="dropdown-item" href="./user/register.php"><i class="fas fa-bookmark me-2"></i> Register</a></li>
+                      <?php } ?>
+                      
+                        <?php if(isset($_SESSION['username'])){ ?>
+                             <li><a class="dropdown-item" href="./user/dashboard.php"><i class="fas fa-bookmark me-2"></i> My Dashboard</a></li>
+                        
+                         <li><a class="dropdown-item" href="./user/logout.php"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                            <?php } ?>
+                     </ul>
+                 </li>
+               </div>
+             </ul>
+         </div>
+     </div>
+    </nav>
+
+  
+   <!-- Hero Section -->
+<section class="hero">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-md-10">
-                <h1 class="hero-title">
-                    Discover. Read. Compete.
-                </h1>
-
-                <p class="hero-subtitle">
-                    Elegant dark-themed digital library where you can explore books,
-                    join competitions, and enhance your reading experience.
+        <div class="row align-items-center">
+            <div class="col-lg-7 hero-content">
+                <h1>welcome to our <br>premium e-book store</h1>
+                <p>
+                    A premium dark-themed digital library where books, competitions,
+                    and creativity come together. Explore the future of reading.
                 </p>
-
-                <a href="./books/index.php" class="hero-btn">
-                    <i class="fas fa-search me-2"></i>Browse Books
-                </a>
+                <div class="mt-4">
+                    <a href="./books/index.php" class="btn btn-primary-custom btn-lg">
+                        <i class="fas fa-rocket me-2"></i>Explore Now
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="hero-image-wrap text-center">
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/online-digital-library-illustration-download-in-svg-png-gif-formats--reading-book-ebook-education-on-smartphone-pack-school-illustrations-4919379.png" class="img-fluid" alt="Elite E-books" style="filter: drop-shadow(0 0 30px rgba(255,193,7,0.3));">
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- NEW RELEASES -->
-<section id="new" class="container py-5">
-    <h2 class="section-title cream">📘 New Releases</h2>
-    <div class="row g-4">
-        <?php while($new_release = mysqli_fetch_assoc($new)){ ?>
-            <div class="col-md-3">
+
+    <!-- New Releases -->
+    <section id="new" class="container py-5">
+        <h2 class="section-title cream"><i class="fas fa-star me-2"></i> New Releases</h2>
+        <div class="row g-4">
+            <!-- fetch books -->
+           <?php while($new_release = mysqli_fetch_assoc($new)){ ?>
+                   <div class="col-md-3">
                 <div class="book-card card">
-                    <img src="./<?php echo $new_release['cover_image']; ?>" loading="lazy">
-                    <h6 class="woodendark"><?php echo $new_release['title']; ?></h6>
+                    <img src="./<?php echo $new_release['cover_image'] ?>" alt="Book 1" loading="lazy">
+                    <h6 class="woodendark"><?php echo $new_release['title'] ?></h6>
                     <div class="text-center pb-3">
-                        <span class="badge bg-success">New</span>
-                        <span class="badge bg-primary"><?php echo $new_release['category']; ?></span>
+                        <span class="badge bg-success me-1">New</span>
+                        <span class="badge bg-primary"><?php echo $new_release['category'] ?></span>
                     </div>
                 </div>
             </div>
-        <?php } ?>
-    </div>
-</section>
 
-<!-- BEST SELLERS -->
-<section id="best" class="container py-5">
-    <h2 class="section-title cream">🔥 Best Sellers</h2>
-    <div class="row g-4">
-        <?php while($best_seller = mysqli_fetch_assoc($best)){ ?>
-            <div class="col-md-3">
+            <?php } ?>
+
+    </section>
+
+    <!-- Best Sellers -->
+    <section id="best" class="container py-5">
+        <h2 class="section-title cream"><i class="fas fa-fire me-2"></i> Best Sellers</h2>
+        <div class="row g-4">
+              <!-- fetch books -->
+           <?php while($best_seller = mysqli_fetch_assoc($best)){ ?>
+                   <div class="col-md-3">
                 <div class="book-card card">
-                    <img src="./<?php echo $best_seller['cover_image']; ?>" loading="lazy">
-                    <h6 class="woodendark"><?php echo $best_seller['title']; ?></h6>
+                    <img src="./<?php echo $best_seller['cover_image'] ?>" alt="Book 1" loading="lazy">
+                    <h6 class="woodendark"><?php echo $best_seller['title'] ?></h6>
                     <div class="text-center pb-3">
-                        <span class="badge bg-success">Best Seller</span>
-                        <span class="badge bg-primary"><?php echo $best_seller['category']; ?></span>
+                        <span class="badge bg-success me-1">Best Seller</span>
+                        <span class="badge bg-primary"><?php echo $best_seller['category'] ?></span>
                     </div>
                 </div>
             </div>
-        <?php } ?>
-    </div>
-</section>
 
-<!-- FOOTER -->
-<?php include './components/footer.php'; ?>
-<?php include './components/script.php'; ?>
+            <?php } ?>
+
+        </div>
+    </section>
+
+    <!-- Upcoming Competitions -->
+    <section id="competitions" class="container py-5">
+        <h2 class="section-title cream"><i class="fas fa-trophy me-2"></i> Upcoming Competitions</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="competition-card">
+                    <div class="card-body">
+                        <h5 class="card-title woodendark"><i class="fas fa-pen-fancy me-2"></i>Short Story Writing Contest</h5>
+                        <p class="card-text mb-2"><strong>Type:</strong> Fiction / Creative Writing</p>
+                        <p class="card-text mb-2"><strong>Start Date:</strong> March 10, 2026</p>
+                        <p class="card-text mb-2"><strong>Prize:</strong> $500 + E-Voucher</p>
+                        <p class="card-text small">Write a short story (max 3000 words). Winner gets e-voucher & homepage feature.</p>
+                        <button class="btn btn-sm mt-2" style="background: var(--accent-gold); color: var(--wood-dark);">
+                            <i class="fas fa-edit me-1"></i>Submit Entry
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="competition-card">
+                    <div class="card-body">
+                        <h5 class="card-title woodendark"><i class="fas fa-feather me-2"></i>Poetry Championship</h5>
+                        <p class="card-text mb-2"><strong>Type:</strong> Poetry (Urdu / English)</p>
+                        <p class="card-text mb-2"><strong>Start Date:</strong> April 5, 2026</p>
+                        <p class="card-text mb-2"><strong>Prize:</strong> Publication + $300</p>
+                        <p class="card-text small">Submit up to 3 poems. Best poems will be published online.</p>
+                        <button class="btn btn-sm mt-2" style="background: var(--accent-gold); color: var(--wood-dark);">
+                            <i class="fas fa-edit me-1"></i>Submit Entry
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="competition-card">
+                    <div class="card-body">
+                        <h5 class="card-title woodendark"><i class="fas fa-book me-2"></i>Novel Synopsis Contest</h5>
+                        <p class="card-text mb-2"><strong>Type:</strong> Novel Synopsis</p>
+                        <p class="card-text mb-2"><strong>Start Date:</strong> May 20, 2026</p>
+                        <p class="card-text mb-2"><strong>Prize:</strong> Publishing Support</p>
+                        <p class="card-text small">Submit a 500-word synopsis. Winner may get publishing support.</p>
+                        <button class="btn btn-sm mt-2" style="background: var(--accent-gold); color: var(--wood-dark);">
+                            <i class="fas fa-edit me-1"></i>Submit Entry
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="competition-card">
+                    <div class="card-body">
+                        <h5 class="card-title woodendark"><i class="fas fa-file-alt me-2"></i>Essay Writing Contest</h5>
+                        <p class="card-text mb-2"><strong>Type:</strong> Non-Fiction / Essay</p>
+                        <p class="card-text mb-2"><strong>Start Date:</strong> June 1, 2026</p>
+                        <p class="card-text mb-2"><strong>Prize:</strong> $400 + Certificate</p>
+                        <p class="card-text small">Topic: "Future of Reading in Digital Age". Max length: 1500 words.</p>
+                        <button class="btn btn-sm mt-2" style="background: var(--accent-gold); color: var(--wood-dark);">
+                            <i class="fas fa-edit me-1"></i>Submit Entry
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Winners -->
+    <section id="winners" class="container py-5">
+        <h2 class="section-title cream"><i class="fas fa-award me-2"></i> Recent Winners</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="winner-card">
+                    <div class="winner-badge">2025</div>
+                    <div class="card-body">
+                        <h6 class="card-title woodendark">Short Story Winner</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong> John Carter</p>
+                        <p class="card-text mb-1"><strong>Story:</strong> "The Rising Dawn"</p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> $500 + Featured</p>
+                        <p class="card-text small mt-2">"A masterpiece of modern storytelling with deep emotional resonance."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="winner-card">
+                    <div class="winner-badge">2025</div>
+                    <div class="card-body">
+                        <h6 class="card-title woodendark">Poetry Champion</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong> Alicia Gomez</p>
+                        <p class="card-text mb-1"><strong>Collection:</strong> "Moonlight Whispers"</p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> $300 + Publication</p>
+                        <p class="card-text small mt-2">"Lyrical beauty that captures the soul of contemporary poetry."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="winner-card">
+                    <div class="winner-badge">2024</div>
+                    <div class="card-body">
+                        <h6 class="card-title woodendark">Essay Winner</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong> Rohan Ali</p>
+                        <p class="card-text mb-1"><strong>Essay:</strong> "Books vs E-Books"</p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> $400 + Certificate</p>
+                        <p class="card-text small mt-2">"A balanced and insightful analysis of digital versus traditional reading."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="winner-card">
+                    <div class="winner-badge">2024</div>
+                    <div class="card-body">
+                        <h6 class="card-title woodendark">Poetry Runner-up</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong> Sara Khan</p>
+                        <p class="card-text mb-1"><strong>Poem:</strong> "Silent Pages"</p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> $150 + Certificate</p>
+                        <p class="card-text small mt-2">"Elegant verses that speak volumes in their silence."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="winner-card">
+                    <div class="winner-badge">2023</div>
+                    <div class="card-body">
+                        <h6 class="card-title woodendark">Short Story Winner</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong> Michael Lee</p>
+                        <p class="card-text mb-1"><strong>Story:</strong> "Echoes of Yesterday"</p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> $500 + Featured</p>
+                        <p class="card-text small mt-2">"A haunting narrative that stays with the reader long after the last page."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="winner-card">
+                    <div class="winner-badge">2023</div>
+                    <div class="card-body">
+                        <h6 class="card-title woodendark">Essay Runner-up</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong> Emma Wilson</p>
+                        <p class="card-text mb-1"><strong>Essay:</strong> "Digital Literacy"</p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> $200 + Certificate</p>
+                        <p class="card-text small mt-2">"A well-researched perspective on literacy in the digital age."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- footer -->
+ <?php include './components/footer.php' ?>    
+    <!-- Bootstrap JS Bundle -->
+<?php include './components/script.php' ?>    
+
+</body>
+</html>
 

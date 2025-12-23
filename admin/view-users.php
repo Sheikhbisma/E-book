@@ -1,6 +1,17 @@
 <?php
 include './session.php';
 include '../auth/dbconnect.php';
+
+// ===== DELETE LOGIC =====
+if (isset($_GET['delete_id'])) {
+    $del_id = $_GET['delete_id'];
+    $delete_query = "DELETE FROM customer_register WHERE customer_id = '$del_id'";
+    if (mysqli_query($conn, $delete_query)) {
+        echo "<script>alert('Customer Deleted Successfully'); window.location='customers.php';</script>";
+    } else {
+        echo "<script>alert('Error deleting record');</script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +19,7 @@ include '../auth/dbconnect.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customers</title>
+    <title>Customers | Admin Portal</title>
 
     <?php include './inc/link.php'; ?>
 
@@ -22,182 +33,76 @@ include '../auth/dbconnect.php';
             --text: #fff8e1;
             --muted: #c7b299;
             --heading: #ffe082;
+            --danger: #ff4d4d;
+            --success: #2ecc71;
         }
 
-        .sidebar {
-            display: none !important;
-        }
-
-        .page-wrapper {
-            padding: 70px 20px
-        }
+        .sidebar { display: none !important; }
+        .page-wrapper { padding: 70px 20px }
 
         /* ===== HEADING ===== */
-        .section-heading {
-            text-align: center;
-            margin-bottom: 70px;
-            animation: fadeDown .7s ease forwards
-        }
-
+        .section-heading { text-align: center; margin-bottom: 70px; animation: fadeDown .7s ease forwards }
         .section-heading span {
-            padding: 8px 26px;
-            border-radius: 40px;
+            padding: 8px 26px; border-radius: 40px;
             background: linear-gradient(135deg, var(--gold), #ffe082);
-            color: #2b1e1a;
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 2px;
+            color: #2b1e1a; font-size: 12px; font-weight: 800; letter-spacing: 2px;
         }
-
         .section-heading h2 {
-            margin-top: 15px;
-            font-size: 40px;
-            font-weight: 900;
-            color: var(--gold);
-            /* fallback color */
+            margin-top: 15px; font-size: 40px; font-weight: 900;
             background: linear-gradient(90deg, #ffe082, var(--gold));
-            background-clip: text;
-            color: transparent;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-            font-size: 15px;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         /* ===== CARD ===== */
         .customer-card {
-            position: relative;
-            height: 100%;
-            border-radius: 28px;
+            position: relative; height: 100%; border-radius: 28px;
             background: linear-gradient(165deg, var(--card-bg), var(--dark-bg));
-            border: 1px solid rgba(212, 175, 55, .25);
-            overflow: hidden;
-            transition: .45s ease;
-            animation: fadeUp .7s ease forwards;
-        }
-
-        .customer-card::before {
-            content: "";
-            position: absolute;
-            inset: -60%;
-            background: linear-gradient(120deg, transparent 46%, rgba(212, 175, 55, .18), transparent 54%);
-            animation: shine 7s linear infinite;
+            border: 1px solid rgba(212, 175, 55, .25); overflow: hidden;
+            transition: .45s ease; animation: fadeUp .7s ease forwards;
         }
 
         .customer-card:hover {
-            transform: translateY(-14px) scale(1.05);
+            transform: translateY(-14px) scale(1.02);
             box-shadow: 0 35px 80px rgba(0, 0, 0, .9), 0 0 40px var(--gold-soft);
         }
 
         /* ===== IMAGE ===== */
         .customer-img {
-            width: 96px;
-            height: 96px;
-            border-radius: 22px;
-            object-fit: cover;
-            border: 3px solid var(--gold);
-            box-shadow: 0 18px 40px rgba(0, 0, 0, .75);
-            transition: .4s ease;
+            width: 90px; height: 90px; border-radius: 50%;
+            object-fit: cover; border: 3px solid var(--gold);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .5);
         }
 
-        .customer-card:hover .customer-img {
-            transform: scale(1.1) rotate(-3deg);
+        /* ===== ACTION BUTTONS ===== */
+        .action-area {
+            display: flex; gap: 10px; justify-content: center; margin-top: 15px;
+            padding-top: 15px; border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        /* ===== TEXT ===== */
-        .name {
-            color: var(--heading);
-            font-weight: 800;
-            margin-top: 6px;
+        .btn-action {
+            width: 40px; height: 40px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s; text-decoration: none; border: none;
         }
 
-        .name:after {
-            content: "";
-            width: 40px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold), transparent);
-            display: block;
-            margin: 8px auto;
-        }
+        .btn-edit { background: rgba(46, 204, 113, 0.1); color: var(--success); border: 1px solid var(--success); }
+        .btn-edit:hover { background: var(--success); color: #fff; }
 
-        .email {
-            font-size: 13px;
-            color: var(--muted)
-        }
+        .btn-del { background: rgba(255, 77, 77, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+        .btn-del:hover { background: var(--danger); color: #fff; }
 
-        /* ===== INFO ===== */
+        /* ===== INFO BOX ===== */
         .info-box {
-            margin-top: 22px;
-            padding: 18px 20px;
-            border-radius: 20px;
-            background: linear-gradient(180deg, var(--card-soft), var(--card-bg));
-            box-shadow: inset 0 4px 16px rgba(0, 0, 0, .8);
-            transition: .4s ease;
+            margin-top: 15px; padding: 15px; border-radius: 18px;
+            background: rgba(0,0,0,0.3); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        .customer-card:hover .info-box {
-            box-shadow: inset 0 4px 16px rgba(0, 0, 0, .8), 0 0 22px rgba(212, 175, 55, .35);
-        }
+        .label { font-size: 10px; color: var(--gold); font-weight: 700; }
+        .value { font-size: 13px; color: var(--text); }
+        .name { color: var(--heading); font-weight: 800; font-size: 18px; }
 
-        .label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.2px;
-            color: var(--gold);
-        }
-
-        .value {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        @keyframes fadeDown {
-            from {
-                opacity: 0;
-                transform: translateY(-25px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        @keyframes shine {
-            from {
-                transform: translateX(-40%) rotate(25deg)
-            }
-
-            to {
-                transform: translateX(40%) rotate(25deg)
-            }
-        }
-
-        @media(max-width:768px) {
-            .section-heading h2 {
-                font-size: 30px
-            }
-
-            .customer-img {
-                width: 80px;
-                height: 80px
-            }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(25px) } to { opacity: 1; transform: translateY(0) } }
+        @keyframes fadeDown { from { opacity: 0; transform: translateY(-25px) } to { opacity: 1; transform: translateY(0) } }
     </style>
 </head>
 
@@ -208,9 +113,9 @@ include '../auth/dbconnect.php';
         <div class="container page-wrapper">
 
             <div class="section-heading">
-                <span>CUSTOMERS</span>
-                <h2>Registered Customer Profiles</h2>
-                <p>Elegant overview of all active and registered customers</p>
+                <span>ADMIN CONTROL</span>
+                <h2>Customer Management</h2>
+                <p>Monitor and manage all registered user accounts</p>
             </div>
 
             <div class="row g-4">
@@ -220,38 +125,44 @@ include '../auth/dbconnect.php';
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                            <div class="customer-card">
-                                <div class="card-body text-center pt-4">
-
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="customer-card p-4">
+                                <div class="text-center">
                                     <img src="../img/<?= $row['customer_image']; ?>" class="customer-img mb-3">
-
                                     <h6 class="name mb-0"><?= $row['customer_name']; ?></h6>
-                                    <div class="email mb-3"><?= $row['customer_email']; ?></div>
+                                    <div class="email mb-2 text-truncate"><?= $row['customer_email']; ?></div>
+                                    
+                                    <div class="action-area">
+                                        <a href="edit_customer.php?id=<?= $row['customer_id']; ?>" class="btn-action btn-edit" title="Edit Profile">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="?delete_id=<?= $row['customer_id']; ?>" 
+                                           onclick="return confirm('Bhai, kya aap sach mein is customer ko delete karna chahte hain?')" 
+                                           class="btn-action btn-del" title="Delete Customer">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
 
-                                    <div class="info-box text-start">
-                                        <div class="mb-2">
-                                            <span class="label">CUSTOMER ID</span><br>
-                                            <span class="value"><?= $row['customer_id']; ?></span>
+                                <div class="info-box">
+                                    <div class="row g-2">
+                                        <div class="col-6">
+                                            <span class="label">ID:</span><br>
+                                            <span class="value">#<?= $row['customer_id']; ?></span>
                                         </div>
-                                        <div class="mb-2">
-                                            <span class="label">CONTACT</span><br>
+                                        <div class="col-6">
+                                            <span class="label">CONTACT:</span><br>
                                             <span class="value"><?= $row['customer_contact']; ?></span>
                                         </div>
-                                        <div class="mb-2">
-                                            <span class="label">ADDRESS</span><br>
-                                            <span class="value"><?= $row['customer_address']; ?></span>
-                                        </div>
-                                        <div>
-                                            <span class="label">LOCATION</span><br>
-                                            <span class="value"><?= $row['customer_location']; ?></span>
+                                        <div class="col-12 mt-2">
+                                            <span class="label">LOCATION:</span><br>
+                                            <span class="value"><i class="fas fa-map-marker-alt me-1"></i> <?= $row['customer_location']; ?></span>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-                    <?php }
+                <?php }
                 } else { ?>
                     <div class="col-12 text-center text-muted">No Customers Found</div>
                 <?php } ?>
@@ -261,5 +172,4 @@ include '../auth/dbconnect.php';
 
     <script src="../js/admin.js"></script>
 </body>
-
 </html>
