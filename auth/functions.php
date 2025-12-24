@@ -46,12 +46,12 @@ $fetch_book = mysqli_fetch_assoc($select);
 $_SESSION['totalProducts'] = $fetch_book['sum'];
 return $products;
 }
-function getnotification($status){
+function getnotification($status , $create){
     $return = [
         "Done" => "Order Is Approved",
         "Shipped"=>"Order Is Shipped",
-        "delivered"=>"order Is Delivered",
-        "Pending"=>"order Is pending"
+        "delivered"=>"order Is Delivered date and time: $create",
+        "Pending"=>"order Is pending date and time: $create"
     ];
     return "
 <div class='card bg-white border-0 shadow-sm mb-2'>

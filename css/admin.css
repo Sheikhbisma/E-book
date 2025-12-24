@@ -26,6 +26,7 @@ body {
 .woodendark{
     color: var(--wood-dark);
 }
+
 /* ADMIN SIDEBAR */
 .admin-sidebar {
     width: 240px;
@@ -108,6 +109,68 @@ body {
     /* sidebar width */
 }
 
+
+/* --- Laptop View (Default) --- */
+.admin-sidebar {
+    width: 240px;
+    height: 100vh;
+  
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.sidebar-menu { list-style: none; padding: 20px 0; }
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+.sidebar-menu li a i { margin-right: 15px; font-size: 20px; }
+
+.content-area {
+    margin-left: 240px; /* Laptop pe space rahega */
+    padding: 20px;
+}
+
+.mobile-nav-toggle { display: none; } /* Laptop pe button chhupa diya */
+
+/* --- Mobile & Tablet View (Fix) --- */
+@media (max-width: 991px) {
+    .admin-sidebar {
+        left: -240px; /* Shuru mein screen se bahar */
+    }
+
+    /* Jab button click ho to ye class sidebar ko andar layegi */
+    .admin-sidebar.active {
+        left: 0;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    .content-area {
+        margin-left: 0; /* Mobile pe content full width */
+        padding-top: 60px;
+    }
+
+    .mobile-nav-toggle {
+        display: block; /* Mobile pe button dikhega */
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1100;
+        background: #4d362e;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
 /* books card */
 .b-card {
     background: url('../images/card.png'),
