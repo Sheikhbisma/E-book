@@ -45,9 +45,6 @@ if (isset($_POST['submit'])) {
     }
 }
 
-// FETCH BOOKS
-$result = mysqli_query($conn, "SELECT * FROM dealer_books ");
-$update = false;
 
 
 ?>
