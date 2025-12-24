@@ -26,12 +26,44 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <title>Contact Form</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include './components/meta-links.php' ?>
     <link rel="stylesheet" href="./css/user.css">
 
 
 </head>
+<style>
+    /* --- Simple Responsive CSS --- */
+.wrapper {
+    display: flex;       /* Laptop par side-by-side karne ke liye */
+    flex-wrap: wrap;    /* Mobile par niche bhejane ke liye */
+    gap: 20px;         
+    color: black;
+}
+
+.left, .right {
+    flex: 1 1 350px;    /* 350px se screen choti hote hi niche aa jayega */
+}
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column; /* Mobile par stack (upar-niche) */
+    }
+    .left, .right {
+        width: 100%;           /* Mobile par poori width */
+    }
+}
+
+/* Form Inputs Fix */
+input, textarea {
+    width: 100%;               /* Inputs box se bahar na niklein */
+    box-sizing: border-box;    /* Padding ko width ke andar rakhne ke liye */
+    color: black;
+}
+</style>
+
 
 <body class="pt">
     <!-- Navigation Bar -->
