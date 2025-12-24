@@ -13,7 +13,6 @@ $email = $_POST['email'] ?? '';
 if(empty($name) || empty($email) || !isset($_FILES['pdf_file'])){
     die("All fields are required.");
 }
-
 // handle PDF upload
 $target_dir = "uploads/adult/";
 if(!is_dir($target_dir)) mkdir($target_dir,0777,true);
