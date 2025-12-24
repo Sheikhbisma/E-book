@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 <?php 
 include '../auth/check.php';
 include '../auth/dbconnect.php';
@@ -11,7 +9,6 @@ $number   = $_SESSION['customernumber'];
 $image    = $_SESSION['customerimage'];
 ?>
 
->>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 <head>
