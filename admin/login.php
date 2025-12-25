@@ -37,10 +37,10 @@ if (isset($_POST['login'])) {
   <?php include 'inc/link.php'; ?>
 </head>
 
-<body class="bg-light">
+<body>
   <div class="containers mt-5">
   
-    <div class="login-box p-4 shadow  mx-auto">
+    <div class="login-box p-4 shadow">
         <?php
     if (isset($_SESSION['msg'])) {
       echo $_SESSION['msg'];

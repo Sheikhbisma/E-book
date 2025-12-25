@@ -1,14 +1,13 @@
 <?php
-session_start();
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
+include './dealer_auth.php';
 // INSERT BOOK
-if (!isset($_SESSION['dealerid'])) {
-    header("Location: dealerlogin.php");
-    exit;
+if (isset($_SESSION['dealerid'])) {
+    $dealer_id = $_SESSION['dealerid'];
+
+
 }
 
-$dealer_id = $_SESSION['dealerid'];
 
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];
@@ -58,7 +57,7 @@ $update = false;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Add Book</title>
-    <?php include '../components/meta-links.php'; ?>
+    <?php include '../admin/inc/link.php'; ?>
 
 </head>
 <style>
@@ -66,15 +65,10 @@ $update = false;
 </style>
 <?php include './dealer-sidebar.php'; ?>
 
-<body class="bg-light">
+<body>
 
     <div class="content-area">
-        <?php
-        if (isset($_SESSION['msg'])) {
-            echo $_SESSION['msg'];
-            unset($_SESSION['msg']);
-        }
-        ?>
+    
         <div class="container">
 
             <header class="header p-4 mb-5 bg-white rounded">
@@ -152,10 +146,15 @@ $update = false;
                 </div>
 
             </header>
-
+    <?php
+        if (isset($_SESSION['msg'])) {
+            echo $_SESSION['msg'];
+            unset($_SESSION['msg']);
+        }
+        ?>
 
             <!-- BOOK CARDS -->
-            <h2 class="mb-4 text-center fw-bold">All Books</h3>
+            <h2 class="mb-4 text-center fw-bold ">All Books</h3>
                 <div class="row g-4 mb-5">
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="col-md-6 col-sm-12 ">
@@ -186,7 +185,7 @@ $update = false;
 
                                             <!-- Buttons -->
                                             <div class="d-flex justify-content-center gap-3">
-                                               <a href="./updatebook.php?id=<?php echo $row['dealer_id']; ?>" class="btn btn-md btn-edit">
+                                               <a href="./dealerUpdateBook.php?id=<?php echo $row['dealer_book_id']; ?>" class="btn btn-md btn-edit">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
                                                 <a href="./removebook.php?id=<?php echo $row['dealer_id']; ?>"
@@ -195,7 +194,7 @@ $update = false;
                                                     <i class="fas fa-trash"></i> Delete
                                                 </a>
 
-                                                <a href="#" class="btn btn-md btn-pdf "><i class="fas fa-book-open"></i>PDF</a>
+                                                <a href="../<?php echo $row['pdf_path'] ?>" class="btn btn-md btn-pdf "><i class="fas fa-book-open"></i>PDF</a>
                                             </div>
                                         </div>
                                     </div>

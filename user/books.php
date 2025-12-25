@@ -95,7 +95,7 @@ Some of these books are provided free by the author. Enjoy reading — you can r
 
     <div class="btns d-flex gap-2 justify-content-center mt-3">
         <a href="../<?php echo $execute['pdf_path'] ?>" target="_blank" class="btn btn-gold px-4">Read</a>
-        <a href="#" class="btn bg btn-md px-4">Download</a>
+        <a href="../<?php echo $execute['pdf_path'] ?>" class="btn bg btn-md px-4" download >Download</a>
     </div>
 
 </div>
