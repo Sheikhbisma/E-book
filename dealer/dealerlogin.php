@@ -16,7 +16,7 @@
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             // if email exist verify password from database
-       if ($password == $row['password']) {
+       if ($password === $row['password']) {
           // store data in sessions
               
                 $_SESSION['dealerid'] = $row['dealer_id'];
