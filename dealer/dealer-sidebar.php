@@ -1,11 +1,13 @@
-<div class="sidebar">
-    <h2 class="text-center mb-4 fw-bold golden">User Panel</h2>
+<div class="admin-sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h3>Dealer</h3>
+    </div>
 
-    <a href="dashboard.php"><i class="bi bi-speedometer2"></i> Dashboard</a>
-    <a href="competition.php"><i class="bi bi-trophy-fill"></i> Competition</a>
-    <a href="dealerbooks.php"><i class="bi bi-people"></i> Books</a>
-    <a href="orders.php"><i class="bi bi-cart"></i> Orders</a>
-    <a href="../index.php"><i class="bi bi-cart"></i> back to home</a>
-    <a href="profile.php"><i class="bi bi-person-lines-fill"></i> Profile</a>
-    <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
+    <ul class="sidebar-menu">
+        <li class=""><a href="dashboard.php"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+        <li><a href="./addbooks.php"><i class="bi bi-people"></i> Books</a></li>
+        <li><a href="./view-orders.php"><i class="bi bi-cart"></i> Orders</a></li>
+        <li><a href="./freebooks.php"><i class="bi bi-gear"></i>profille </a></li>
+        <li><a href="./inc/logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+    </ul>
 </div>

@@ -53,20 +53,7 @@ body {
 
 
 
-/* Heading */
-.content-area h2 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-}
 
-/* Form Box */
-form {
-    background: #ffffff;
-    padding: 25px;
-    width: 450px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
 
 /* Labels + Inputs */
 form input[type="text"],
@@ -83,12 +70,11 @@ form input[type="email"] {
 /* Input focus */
 form input:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: var(--wood-dark);
 }
 
 /* Submit Button */
 form input[type="submit"] {
-    background: #3498db;
     color: white;
     padding: 10px;
     width: 100%;
@@ -104,11 +90,7 @@ form input[type="submit"]:hover {
 }
 
 /* Success / Error Message */
-p {
-    margin-top: 15px;
-    font-weight: bold;
-    color: green;
-}
+
 
 .admin-sidebar .sidebar-menu {
     list-style: none;
@@ -192,7 +174,6 @@ p {
 
 .content-area {
     margin-left: 240px; /* Laptop pe space rahega */
-    padding: 20px;
 }
 
 .mobile-nav-toggle { display: none; } /* Laptop pe button chhupa diya */
@@ -231,7 +212,7 @@ p {
 /* books card */
 .b-card {
     background: url('../images/card.png'),
-        var(--paper-cream);
+        var(--paper-cream) !important;
     border: 1px solid #c8b89a;
 }
 
@@ -242,7 +223,7 @@ p {
         linear-gradient(to bottom, #5D4037, #3E2723);
     padding: 2rem;
     text-align: center;
-    border-bottom: 8px solid var(--wood-medium);
+    border-bottom: 8px solid var(--accent-gold);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
@@ -347,5 +328,6 @@ p {
       background: url('../images/card.png'),
         var(--paper-cream) !important;
     border: 1px solid #c8b89a;
-    
+        box-sizing: border-box; /* Add this */
+
 }
