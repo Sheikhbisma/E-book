@@ -9,6 +9,7 @@ if (isset($_SESSION['dealerid'])) {
 }
 
 
+
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];
     $author = $_POST['author'];
