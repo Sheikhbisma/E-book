@@ -1,7 +1,6 @@
-<?php
+<?php 
 include './session.php';
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
 
 /* SAFE COUNT FUNCTION */
 function totalCount($conn, $table){
@@ -20,34 +19,38 @@ $freebooks   = totalCount($conn, "freebooks");
 $customers   = totalCount($conn, "customer_register");
 $orders      = totalCount($conn, "orders");
 $orderItems  = totalCount($conn, "order_items");
-$contact     = totalCount($conn, "contacts");
+$contact     = totalCount($conn, "contact");
 
 /* CONTACT DATA */
-$contacts = $conn->query("SELECT * FROM contacts ");
+$contacts = $conn->query("SELECT * FROM contact ");
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard</title>
 <?php include 'inc/link.php'; ?>
 
 <style>
-/* CONTENT */
+/* ================= CONTENT ================= */
 .content{
     margin-left:240px;
     padding:40px;
+    transition:0.3s;
 }
 
-/* HEADINGS */
+/* ================= HEADINGS ================= */
 .dashboard-title,
 .section-title{
     text-align:center;
     color: var(--headings);
     margin-bottom:30px;
+    font-weight:800;
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
 .cards{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
@@ -81,18 +84,73 @@ $contacts = $conn->query("SELECT * FROM contacts ");
     color: var(--wood-medium);
 }
 
-/* CONTACT TABLE */
+/* ================= TABLE ================= */
 .table-box{
     background: url('../images/card.png'), var(--paper-cream);
     border:1px solid #c8b89a;
     padding:25px;
     border-radius:18px;
     box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    overflow-x:auto;
+}
+
+.table{
+    min-width:650px;
 }
 
 .table thead{
     background: var(--wood-dark);
     color: var(--headings);
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* TABLET */
+@media(max-width:992px){
+    .content{
+        margin-left:0;
+        padding:25px;
+    }
+
+    .cards{
+        grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    }
+
+    .card-box h2{
+        font-size:34px;
+    }
+}
+
+/* MOBILE */
+@media(max-width:576px){
+    .content{
+        padding:20px 15px;
+    }
+
+    .dashboard-title{
+        font-size:26px;
+    }
+
+    .section-title{
+        font-size:22px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .card-box{
+        padding:22px;
+    }
+
+    .card-box h2{
+        font-size:30px;
+    }
+
+    .table{
+        font-size:14px;
+    }
 }
 </style>
 </head>
@@ -176,6 +234,10 @@ $contacts = $conn->query("SELECT * FROM contacts ");
 </div>
 
 </div>
- <?php include '../components/script.php' ?>
+
+<<<<<<< Updated upstream
+=======
+<?php include '../components/script.php'; ?>
+>>>>>>> Stashed changes
 </body>
 </html>

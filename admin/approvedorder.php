@@ -27,6 +27,8 @@ if($execute_update){
     $_SESSION['shipped'] = showErr("There is an error" , "danger");
 
 }
+
+
 }
 $deliver_id = $_GET['deliver_id'];
 if(isset($deliver_id)){

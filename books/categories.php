@@ -10,8 +10,8 @@ $total_books = mysqli_fetch_assoc($result);
 
 <head>
     <title>Books</title>
-<?php  include '../components/meta-links.php' ?>
-   
+    <?php include '../components/meta-links.php' ?>
+
 
 
 
@@ -44,18 +44,16 @@ $total_books = mysqli_fetch_assoc($result);
             <!-- BOOKS -->
             <div class="col-md-9">
                 <div id="noResults" class="text-center text-light mt-4" style="display:none;">
-    <i class="bi bi-search fs-1 text-warning"></i>
-    <h5 class="mt-2 fs-1">No results found</h5>
-    <p class="cream fw-bold fs-3">Try a different keyword or category</p>
-</div>
-
+                    <i class="bi bi-search fs-1 text-warning"></i>
+                    <h5 class="mt-2 fs-1">No results found</h5>
+                    <p class="cream fw-bold fs-3">Try a different keyword or category</p>
+                </div>
                 <div class="row g-4">
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="col-md-6"
                             data-title="<?= strtolower($row['title']) ?>"
                             data-author="<?= strtolower($row['author']) ?>"
                             data-category="<?= $row['category'] ?>">
-
                             <div class="book-card ">
                                 <div class="book-cover header">
                                     <img src="../<?= $row['cover_image'] ?>" alt="<?= $row['title'] ?>">
@@ -80,37 +78,37 @@ $total_books = mysqli_fetch_assoc($result);
     </div>
 
     <?php include '../components/footer.php'; ?>
-  <?php include '../components/script.php'; ?>
+    <?php include '../components/script.php'; ?>
     <script>
-      function filterBooks() {
-    let search = document.getElementById('search').value.toLowerCase();
-    let selectedCategories = [];
-    let visibleCount = 0;
+        function filterBooks() {
+            let search = document.getElementById('search').value.toLowerCase();
+            let selectedCategories = [];
+            let visibleCount = 0;
 
-    document.querySelectorAll('.category:checked').forEach(cb => {
-        selectedCategories.push(cb.value);
-    });
+            document.querySelectorAll('.category:checked').forEach(cb => {
+                selectedCategories.push(cb.value);
+            });
 
-    document.querySelectorAll('[data-title]').forEach(card => {
-        let title = card.dataset.title;
-        let author = card.dataset.author;
-        let category = card.dataset.category;
+            document.querySelectorAll('[data-title]').forEach(card => {
+                let title = card.dataset.title;
+                let author = card.dataset.author;
+                let category = card.dataset.category;
 
-        let matchSearch = title.includes(search) || author.includes(search);
-        let matchCategory = selectedCategories.length === 0 || selectedCategories.includes(category);
+                let matchSearch = title.includes(search) || author.includes(search);
+                let matchCategory = selectedCategories.length === 0 || selectedCategories.includes(category);
 
-        if (matchSearch && matchCategory) {
-            card.style.display = "";
-            visibleCount++;
-        } else {
-            card.style.display = "none";
+                if (matchSearch && matchCategory) {
+                    card.style.display = "";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            // NO RESULT MESSAGE
+            document.getElementById('noResults').style.display =
+                visibleCount === 0 ? "block" : "none";
         }
-    });
-
-    // NO RESULT MESSAGE
-    document.getElementById('noResults').style.display =
-        visibleCount === 0 ? "block" : "none";
-}
 
         document.getElementById('search').addEventListener('keyup', filterBooks);
         document.querySelectorAll('.category').forEach(cb =>
