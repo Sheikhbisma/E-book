@@ -33,6 +33,10 @@ $stmt = $conn->prepare("INSERT INTO adult_entries (user_id, name, email, pdf_fil
 $stmt->bind_param("isss",$user_id,$name,$email,$filename);
 $stmt->execute();
 
-echo "<script>alert('Submission successful! Admin will announce winners later.'); window.location='adult_competition.php';</script>";
-exit;
+echo "<script>
+if(confirm('Submission successful! Admin will announce winners later.')) {
+    window.location='../index.php';
+}
+</script>";
+
 ?>

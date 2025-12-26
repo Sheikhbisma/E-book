@@ -48,7 +48,8 @@ $book_order_id ="EB-" .rand(10000,99999);
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
             $mail->Username   = 'bismasheikh2006@gmail.com';  // your gmail
-            $mail->Password   = 'auggosyxfgrfhlzp';     // your Gmail App Password
+            $mail->Password   = 'oytjlcydqmstjuri
+';     // your Gmail App Password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 

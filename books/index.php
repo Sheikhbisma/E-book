@@ -30,6 +30,7 @@ if(isset($_SESSION['userid'])){
     <?php include '../components/header.php' ?>
 
 <section>
+    
   <div class="container w-100 d-flex justify-content-end">
       <div class="w-25">
         <?php  
@@ -64,7 +65,7 @@ if(isset($_SESSION['userid'])){
             </p>
 
             <div class="price-tag bg">
-                RS <?php echo $row['price']; ?>
+                 <?php echo "$".$row['price']; ?>
             </div>
 
             <!-- 🔥 ICON BUTTONS ONLY -->
