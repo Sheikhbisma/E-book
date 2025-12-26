@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../auth/dbconnect.php';
 include '../auth/functions.php';
 if(!isset($_SESSION['userid'] )){

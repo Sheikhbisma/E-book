@@ -228,8 +228,11 @@ include './components/homecontent.php';
             </div>
             <div class="col-lg-5 d-none d-lg-block">
                 <div class="hero-image-wrap text-center">
-                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/online-digital-library-illustration-download-in-svg-png-gif-formats--reading-book-ebook-education-on-smartphone-pack-school-illustrations-4919379.png" class="img-fluid" alt="Elite E-books" style="filter: drop-shadow(0 0 30px rgba(255,193,7,0.3));">
-                </div>
+    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=1000&auto=format&fit=crop" 
+         class="img-fluid" 
+         alt="Elite E-books" 
+         style="filter: drop-shadow(0 0 30px rgba(255,193,7,0.3)); border-radius: 15px; max-width: 80%;">
+</div>
             </div>
         </div>
     </div>
