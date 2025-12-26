@@ -11,11 +11,6 @@ $total_books = mysqli_fetch_assoc($result);
 <head>
     <title>Books</title>
     <?php include '../components/meta-links.php' ?>
-
-
-
-
-
 </head>
 
 <body class="pt mt-5">
