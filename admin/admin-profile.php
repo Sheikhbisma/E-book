@@ -50,8 +50,9 @@ if (isset($_POST['update_password'])) {
     <?php include './inc/link.php'; ?>
 
     <style>
+
         .profile-wrapper {
-            height: 85vh;
+           min-height: calc(100vh - 60px);
             display: flex;
             align-items: center;
             justify-content: center;
