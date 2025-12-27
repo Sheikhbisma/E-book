@@ -11,7 +11,7 @@
       background:
           url('../images/bg.png'),
           linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95)) !important;
-      font-family: 'poppins', sans-serif !important;
+       font-family: "Inter", sans-serif !important;
   }
 
   .pt {
@@ -61,7 +61,6 @@
   }
 
   .navbar-brand {
-      font-family: 'Cinzel', serif;
       font-size: 1.8rem !important;
       color: var(--headings) !important;
       font-weight: 700;
@@ -74,7 +73,6 @@
       /* padding: 0.5rem 1.5rem !important; */
       transition: all 0.3s ease;
       border-bottom: 2px solid transparent;
-      font-family: 'Merriweather', serif;
       position: relative;
   }
 

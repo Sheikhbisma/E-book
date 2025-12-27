@@ -1,5 +1,5 @@
 <?php
-include "../auth/dbconnect.php";
+include "./auth/dbconnect.php";
 session_start();
 if (isset($_POST['submit'])) {
 
@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $sql = "INSERT INTO contact (name, email, message) VALUES ('$name', '$email', '$message')";
 
     if ($conn->query($sql)) {
-        echo "<script>alert('Form Submitted Successfully!');</script>";
+        echo "<script>alert('Your message has been sent successfully! We will contact you soon');</script>";
         echo "<script>window.location.href='contact.php';</script>";
         exit;
     } else {
@@ -83,7 +83,7 @@ input, textarea {
 
                 <ul class="navbar-nav ms-auto align-items-center gap-3">
                     <li class="nav-item">
-                        <a class="nav-link active" href="./index.php">
+                        <a class="nav-link " href="./index.php">
                             <i class="fas fa-home me-1"></i> Home
                         </a>
                     </li>
@@ -108,11 +108,20 @@ input, textarea {
                             <i class="fas fa-trophy me-1"></i> Competition
                         </a>
                     </li>
- <li class="nav-item">
-                     <a class="nav-link" href="./dealer/dealer.php">
-                         <i class="fas fa-trophy me-1"></i> Dealer
-                     </a>
-                 </li>
+   <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="dealerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-user-circle me-1"></i> Dealer
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dealerDropdown">
+        <li>
+            <a class="dropdown-item" href="../dealer/dealer.php">
+                <i class="fas fa-user-tie me-2"></i> Dealer sawera
+            </a>
+        </li>
+        
+    </ul>
+</li>
                     <div class="d-flex gap-2 ms-5">
                         <!-- Cart Icon -->
                         <li class="nav-item">
@@ -191,6 +200,31 @@ input, textarea {
     </section>
     <?php include './components/footer.php' ?>
     <?php include './components/script.php' ?>
+<script>
+const currentPath = window.location.pathname;
+const navLinks = document.querySelectorAll('.navbar .nav-link');
+
+navLinks.forEach(link => {
+    const linkHref = link.getAttribute('href');
+
+    // Ignore dropdown toggles (#)
+    if (!linkHref || linkHref === '#') return;
+
+    const linkPath = new URL(link.href, window.location.origin).pathname;
+
+    if (currentPath === linkPath) {
+        link.classList.add('active');
+
+        // If inside dropdown, highlight parent too
+        const parentDropdown = link.closest('.dropdown');
+        if (parentDropdown) {
+            parentDropdown.querySelector('.dropdown-toggle')?.classList.add('active');
+        }
+    }
+});
+</script>
+
+
 </body>
 
 </html>

@@ -13,9 +13,9 @@
          <div class="collapse navbar-collapse" id="navbarNav">
              <!-- Mobile Search Box -->
 
-             <ul class="navbar-nav ms-auto align-items-center gap-3">
+             <ul class="navbar-nav ms-auto align-items-center gap-2">
                  <li class="nav-item">
-                     <a class="nav-link active" href="../index.php">
+                     <a class="nav-link" href="../index.php">
                          <i class="fas fa-home me-1"></i> Home
                      </a>
                  </li>
@@ -51,11 +51,7 @@
                 <i class="fas fa-user-tie me-2"></i> Dealer sawera
             </a>
         </li>
-        <li>
-            <a class="dropdown-item" href="../dealer/add-book.php">
-                <i class="fas fa-plus me-2"></i> Add Book
-            </a>
-        </li>
+        
     </ul>
 </li>
 
@@ -98,3 +94,27 @@
          </div>
      </div>
                         </nav>
+<script>
+const currentPath = window.location.pathname;
+const navLinks = document.querySelectorAll('.navbar .nav-link');
+
+navLinks.forEach(link => {
+    const linkHref = link.getAttribute('href');
+
+    // Ignore dropdown toggles (#)
+    if (!linkHref || linkHref === '#') return;
+
+    const linkPath = new URL(link.href, window.location.origin).pathname;
+
+    if (currentPath === linkPath) {
+        link.classList.add('active');
+
+        // If inside dropdown, highlight parent too
+        const parentDropdown = link.closest('.dropdown');
+        if (parentDropdown) {
+            parentDropdown.querySelector('.dropdown-toggle')?.classList.add('active');
+        }
+    }
+});
+</script>
+
