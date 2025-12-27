@@ -1,7 +1,7 @@
  <?php
+ session_start();
     //  include database, functions
     include '../auth/dbconnect.php';
-    include '../auth/check.php';
     include '../auth/functions.php';
     // if login button isset
     if (isset($_POST['loginbtn'])) {
@@ -20,6 +20,10 @@
                 // store data in sessions
                 $_SESSION['username'] = $row['customer_email'];
                 $_SESSION['userid'] = $row['customer_id'];
+                $_SESSION['customername'] = $row['customer_name'];
+                $_SESSION['customerimage'] = $row['customer_image'];
+                $_SESSION['customerlocation'] = $row['customer_location'];
+                $_SESSION['customernumber'] = $row['customer_contact'];
                 header('Location: ../index.php');
                 exit;
             } else {
@@ -48,7 +52,7 @@
          background:
              url('../images/bg.png'),
              linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
-
+overflow: hidden;
      }
  </style>
 
@@ -56,6 +60,7 @@
      <div class="containers">
          <div class="login-box  b-card">
              <?php
+  
                 if (isset($_SESSION['msg'])) {
                     echo $_SESSION['msg'];
                     unset($_SESSION['msg']); // Remove after displaying
@@ -67,6 +72,7 @@
           </div>";
                     unset($_SESSION['success_msg']);
                 }
+               
                 ?>
              <h2>Login</h2>
              <form action="" method="post">
@@ -75,7 +81,7 @@
                          <span class="input-group-text bg">
                              <i class="bi bi-envelope-at-fill"></i>
                          </span>
-                         <input type="email" name="email" placeholder="Email" class="form-control" required>
+                         <input type="email" name="email" value="<?php echo $email ?? '' ?>" placeholder="Email" class="form-control" required>
                      </div>
                  </div>
                  <div class="mb-3">
@@ -83,7 +89,7 @@
                          <span class="input-group-text bg">
                              <i class="bi bi-eye-fill show"></i>
                          </span>
-                         <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+                         <input type="password" name="password"  id="password" placeholder="Password" class="form-control" required>
                      </div>
                  </div>
                  <button type="submit" name="loginbtn" class="btn-login btn-custom">Login</button>
@@ -94,27 +100,28 @@
          </div>
      </div>
      <?php include '../components/script.php'; ?>
-<script>
-    // get icon for click
-    let show = document.querySelector('.show');
-    let password = document.querySelector('#password');
-    show.addEventListener('click', () => {
-      // if password is not empty
-      if (password.value != '') {
-        // if input type is password then change the type into text
-        if (password.type === 'password') {
-          password.type = 'text';
-          show.classList.add("bi-eye-slash-fill");
-          show.classList.remove("bi-eye-fill");
-        } else {
-          // if input type is text then change the type into password
-          password.type = 'password';
-          show.classList.remove("bi-eye-slash-fill");
-          show.classList.add("bi-eye-fill");
-        }
-      }
-    });
-  </script>
+     <script>
+         // get icon for click
+         let show = document.querySelector('.show');
+         let password = document.querySelector('#password');
+         show.addEventListener('click', () => {
+            console.log('helo')
+             // if password is not empty
+             if (password.value != '') {
+                 // if input type is password then change the type into text
+                 if (password.type === 'password') {
+                     password.type = 'text';
+                     show.classList.add("bi-eye-slash-fill");
+                     show.classList.remove("bi-eye-fill");
+                 } else {
+                     // if input type is text then change the type into password
+                     password.type = 'password';
+                     show.classList.remove("bi-eye-slash-fill");
+                     show.classList.add("bi-eye-fill");
+                 }
+             }
+         });
+     </script>
  </body>
 
  </html>
