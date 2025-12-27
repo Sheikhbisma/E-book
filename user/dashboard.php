@@ -1,26 +1,4 @@
-<?php
-include '../auth/dbconnect.php';
-include '../auth/check.php';
-if(isset($_SESSION['userid'])){
-    $user_id = $_SESSION['userid'];
-  }
-$free_book = mysqli_query($conn , "select count(*) as c from freebooks");
-$fetch = mysqli_fetch_assoc($free_book)['c'];
-$orders = mysqli_query($conn , "select * from orders where user_id = '$_SESSION[userid]' and order_status = 'Pending'");
-
-$paid_books = mysqli_query($conn, "
-    SELECT DISTINCT b.id, b.title, b.cover_image, b.pdf_path
-    FROM orders AS o
-    INNER JOIN order_items AS ot ON o.order_id = ot.order_id
-    INNER JOIN books AS b ON ot.book_id = b.id
-    WHERE o.user_id = '$user_id'
-      AND o.order_status = 'Done'
-");
-$total_books = mysqli_num_rows($paid_books) + $fetch;
-
-
-
-?>
+<?php include './dashboardContent.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,45 +14,7 @@ $total_books = mysqli_num_rows($paid_books) + $fetch;
           
         }
 
-        body {
-            margin: 0;
-            background-color: #f8f9fa;
-            overflow-x: hidden;
-        }
-
-        /* --- Sidebar Desktop View --- */
-        .sidebar {
-            height: 100vh;
-            background: url('../images/header.png'), linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
-            color: #fff;
-            padding-top: 20px;
-            position: fixed;
-            width: var(--sidebar-width);
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            transition: 0.3s;
-        }
-
-        .sidebar a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            transition: 0.3s;
-        }
-
-        .sidebar a i {
-            margin-right: 15px;
-            font-size: 20px;
-            min-width: 30px;
-        }
-
-        .sidebar a:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
+      
 
         /* --- Content Area Desktop --- */
         .content-area {
@@ -90,7 +30,6 @@ $total_books = mysqli_num_rows($paid_books) + $fetch;
             top: 15px;
             left: 15px;
             z-index: 1100;
-            background: var(--brown-theme);
             color: white;
             border: none;
             padding: 8px 12px;
@@ -188,8 +127,8 @@ $total_books = mysqli_num_rows($paid_books) + $fetch;
                     <div class="d-flex align-items-center">
                         <div class="icon-round me-3"><i class="bi bi-hourglass-split"></i></div>
                         <div>
-                            <h5 class="fw-bold mb-0">24 Pending</h5>
-                            <small class="text-muted">Finish them 🔥</small>
+                            <h5 class="fw-bold mb-0"><?php echo $total ?></h5>
+                            <small class="text-muted">Total Participation</small>
                         </div>
                     </div>
                 </div>
@@ -200,8 +139,8 @@ $total_books = mysqli_num_rows($paid_books) + $fetch;
                     <div class="d-flex align-items-center">
                         <div class="icon-round me-3"><i class="bi bi-award"></i></div>
                         <div>
-                            <h5 class="fw-bold mb-0">5 Achievements</h5>
-                            <small class="text-muted">New badges</small>
+                            <h5 class="fw-bold mb-0"><?php  echo $total_winner ?></h5>
+                            <small class="text-muted">Acheivements</small>
                         </div>
                     </div>
                 </div>
@@ -267,21 +206,19 @@ if(isset($_SESSION['send_mail'])){
                             <thead class="table-dark">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Book</th>
+                                    <th>Grand_Total</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php while($recent = mysqli_fetch_assoc($recent_orders)){ ?>
                                 <tr>
-                                    <td>#1023</td>
-                                    <td>PHP Pro Guide</td>
-                                    <td><span class="badge bg-success">Delivered</span></td>
+                                    <td><?php echo $recent['order_id'] ?></td>
+                                    <td><?php echo $recent['grand_total'] ?></td>
+                                    <td><span class="badge bg-success"><?php echo $recent['order_status'] ?></span></td>
                                 </tr>
-                                <tr>
-                                    <td>#1018</td>
-                                    <td>Bootstrap Mastery</td>
-                                    <td><span class="badge bg-warning text-dark">Pending</span></td>
-                                </tr>
+                                <?php } ?>
+                               
                             </tbody>
                         </table>
                     </div>
@@ -290,13 +227,8 @@ if(isset($_SESSION['send_mail'])){
 
             <div class="col-md-5">
                 <div class="glass-card card">
-                    <h4 class="section-title"><i class="bi bi-clipboard-check me-2"></i> Activity Log</h4>
-                    <ul class="ps-3 mt-2">
-                        <li>Started: <b>JavaScript Fundamentals</b></li>
-                        <li>Finished: <b>PHP Basics</b></li>
-                        <li>Added 2 new books</li>
-                        <li>Visited competition page</li>
-                    </ul>
+                    <h4 class="section-title"><i class="bi bi-clipboard-check me-2"></i>Message</h4>
+                    Free Books, Paid Books, Achievements, Participation, and Notifications are all Here.
                 </div>
             </div>
         </div>

@@ -66,17 +66,20 @@ include './components/homecontent.php';
                          <i class="fas fa-trophy me-1"></i> Competition
                      </a>
                  </li>
-                   <li class="nav-item dropdown">
+                  <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="dealerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-user-circle me-1"></i> Dealer
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dealerDropdown">
         <li>
-            <a class="dropdown-item" href="../dealer/dealer.php">
+            <a class="dropdown-item" href="./dealer/dealer.php">
                 <i class="fas fa-user-tie me-2"></i> Dealer sawera
             </a>
         </li>
+        
+    </ul>
+</li>
         
     </ul>
 </li>
@@ -168,17 +171,7 @@ include './components/homecontent.php';
             <?php } ?>
 
     </section>
- <section id="banner" class="mb-5">
-            <div class="pe-5 w-50">
-                <div class="banner-content  ps-5 py-5 rounded">
-                    <h3 class="fw-bold text-light mb-3">Join Our Writing Competitions!</h3>
-                    <p class="text-light mb-4">Showcase your talent and win exciting prizes in our upcoming writing contests. Whether you're into fiction, poetry, or essays, we have a competition for you.</p>
-                    <a href="./competition/user_dashboard.php" class="btn btn-gold btn-lg">
-                        <i class="fas fa-trophy me-2"></i>Explore Competitions
-                    </a>
-                </div>
-            </div>
-        </section>
+ 
     <!-- Best Sellers -->
     <section id="best" class="container py-5">
         <h2 class="section-title cream"><i class="fas fa-fire me-2"></i> Best Sellers</h2>
@@ -264,83 +257,47 @@ include './components/homecontent.php';
         </div>
     </section>
 
-    <!-- Winners -->
+     <!-- Winners -->
     <section id="winners" class="container py-5">
-        <h2 class="section-title cream"><i class="fas fa-award me-2"></i> Recent Winners</h2>
+        <h2 class="section-title cream"><i class="fas fa-award me-2"></i>🏅 Recent Winners</h2>
         <div class="row g-4">
+            <?php  while($selectwinner=mysqli_fetch_assoc($winner)){ ?>
             <div class="col-md-4">
                 <div class="winner-card">
                     <div class="winner-badge">2025</div>
                     <div class="card-body">
-                        <h6 class="card-title woodendark">Short Story Winner</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> John Carter</p>
-                        <p class="card-text mb-1"><strong>Story:</strong> "The Rising Dawn"</p>
+                        <h6 class="card-title woodendark">Adult Writting Winner</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong> <?php echo $selectwinner['name']?></p>
+                        <p class="card-text mb-1"><strong>Story:</strong> "Express Yourself"</p>
                         <p class="card-text mb-1"><strong>Prize:</strong> $500 + Featured</p>
                         <p class="card-text small mt-2">"A masterpiece of modern storytelling with deep emotional resonance."</p>
                     </div>
                 </div>
             </div>
+            <?php }?>
+        
+        </div>
+         <br>
+         <div class="row g-4">
+            <?php  while($selectwinner=mysqli_fetch_assoc($children)){ ?>
             <div class="col-md-4">
                 <div class="winner-card">
                     <div class="winner-badge">2025</div>
                     <div class="card-body">
-                        <h6 class="card-title woodendark">Poetry Champion</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Alicia Gomez</p>
-                        <p class="card-text mb-1"><strong>Collection:</strong> "Moonlight Whispers"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $300 + Publication</p>
-                        <p class="card-text small mt-2">"Lyrical beauty that captures the soul of contemporary poetry."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="winner-card">
-                    <div class="winner-badge">2024</div>
-                    <div class="card-body">
-                        <h6 class="card-title woodendark">Essay Winner</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Rohan Ali</p>
-                        <p class="card-text mb-1"><strong>Essay:</strong> "Books vs E-Books"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $400 + Certificate</p>
-                        <p class="card-text small mt-2">"A balanced and insightful analysis of digital versus traditional reading."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="winner-card">
-                    <div class="winner-badge">2024</div>
-                    <div class="card-body">
-                        <h6 class="card-title woodendark">Poetry Runner-up</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Sara Khan</p>
-                        <p class="card-text mb-1"><strong>Poem:</strong> "Silent Pages"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $150 + Certificate</p>
-                        <p class="card-text small mt-2">"Elegant verses that speak volumes in their silence."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="winner-card">
-                    <div class="winner-badge">2023</div>
-                    <div class="card-body">
-                        <h6 class="card-title woodendark">Short Story Winner</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Michael Lee</p>
-                        <p class="card-text mb-1"><strong>Story:</strong> "Echoes of Yesterday"</p>
+                        <h6 class="card-title woodendark">Essay Writting Winner</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong><?php echo $selectwinner['customer_name']?></p>
+                        <p class="card-text mb-1"><strong>Story:</strong> <?php echo $selectwinner['topic']?></p>
                         <p class="card-text mb-1"><strong>Prize:</strong> $500 + Featured</p>
-                        <p class="card-text small mt-2">"A haunting narrative that stays with the reader long after the last page."</p>
+                        <p class="card-text small mt-2"> <?php echo $selectwinner['essay_text']?></p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="winner-card">
-                    <div class="winner-badge">2023</div>
-                    <div class="card-body">
-                        <h6 class="card-title woodendark">Essay Runner-up</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Emma Wilson</p>
-                        <p class="card-text mb-1"><strong>Essay:</strong> "Digital Literacy"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $200 + Certificate</p>
-                        <p class="card-text small mt-2">"A well-researched perspective on literacy in the digital age."</p>
-                    </div>
-                </div>
-            </div>
+            <?php }?>
+         
         </div>
+
+        
+        
     </section>
 
 <!-- footer -->
@@ -348,7 +305,8 @@ include './components/homecontent.php';
     <!-- Bootstrap JS Bundle -->
 <?php include './components/script.php' ?>  
 <script>
-const currentPath = window.location.pathname;
+document.addEventListener('DOMContentLoaded', function() {
+   const currentPath = window.location.pathname;
 const navLinks = document.querySelectorAll('.navbar .nav-link');
 
 navLinks.forEach(link => {
@@ -368,6 +326,7 @@ navLinks.forEach(link => {
             parentDropdown.querySelector('.dropdown-toggle')?.classList.add('active');
         }
     }
+});
 });
 </script>
 

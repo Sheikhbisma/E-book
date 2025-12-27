@@ -24,41 +24,7 @@ $image    = $_SESSION['customerimage'];
  
 }
 
-body {
-    margin: 0;
-    overflow-x: hidden;
-    background-color: #fdfaf5;
-}
 
-/* --- SIDEBAR DESKTOP --- */
-/* sidebar laptop view mein hamesha fixed rahegi */
-.sidebar {
-    height: 100vh;
-    background: url('../images/header.png'), linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
-    color: #fff;
-    padding-top: 20px;
-    position: fixed;
-    width: var(--sidebar-width);
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    transition: 0.3s;
-}
-
-.sidebar a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-}
-
-.sidebar a i {
-    margin-right: 15px;
-    font-size: 20px;
-    min-width: 30px;
-}
 
 /* --- MAIN AREA --- */
 .content-area{

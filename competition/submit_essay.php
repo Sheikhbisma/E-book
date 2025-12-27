@@ -87,6 +87,6 @@ $upd->bind_param(
 );
 $upd->execute();
 
-header('location: user-dadhboard.php');
+header('location: user_dashboard.php');
 exit;
 ?>
