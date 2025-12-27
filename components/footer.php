@@ -56,10 +56,10 @@
                 </p>
 
                 <div class="d-flex gap-3">
-                    <a href="https://www.facebook.com/profile.php?id=61557254610407&sk=friends" target="_blank""><i class=" fab fa-facebook fs-5"></i></a>
-                    <a href="https://www.instagram.com/syeda_2701/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61557254610407&sk=friends" target="_blank"><i class=" fab fa-facebook fs-5"></i></a>
+                    <a href="https://www.instagram.com/syeda_2701/" target="_blank"><i class="fab fa-instagram fs-5"></i></a>
 
-                    <a href="#"><i class="fab fa-twitter fs-5"></i></a>
+                    <a href="https://wa.me/923256653184" target="_blank"><i class="fab fa-whatsapp fs-5"></i></a>
 
                     <a href="https://www.linkedin.com/in/bisma-sheikh-768911269/" target="_blank"><i class="fab fa-linkedin fs-5"></i></a>
                 </div>
