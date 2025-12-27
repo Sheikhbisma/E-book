@@ -66,6 +66,11 @@ include './components/homecontent.php';
                          <i class="fas fa-trophy me-1"></i> Competition
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="./dealer/dealer.php">
+                         <i class="fas fa-trophy me-1"></i> Dealer
+                     </a>
+                 </li>
 
                <div class="d-flex gap-2 ms-5">
                   <!-- Cart Icon -->
@@ -155,7 +160,17 @@ include './components/homecontent.php';
             <?php } ?>
 
     </section>
-
+ <section id="banner" class="mb-5">
+            <div class="pe-5 w-50">
+                <div class="banner-content  ps-5 py-5 rounded">
+                    <h3 class="fw-bold text-light mb-3">Join Our Writing Competitions!</h3>
+                    <p class="text-light mb-4">Showcase your talent and win exciting prizes in our upcoming writing contests. Whether you're into fiction, poetry, or essays, we have a competition for you.</p>
+                    <a href="./competition/user_dashboard.php" class="btn btn-gold btn-lg">
+                        <i class="fas fa-trophy me-2"></i>Explore Competitions
+                    </a>
+                </div>
+            </div>
+        </section>
     <!-- Best Sellers -->
     <section id="best" class="container py-5">
         <h2 class="section-title cream"><i class="fas fa-fire me-2"></i> Best Sellers</h2>

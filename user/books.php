@@ -1,7 +1,19 @@
 <?php
 include '../auth/dbconnect.php';
 include '../auth/check.php';
+if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+  }
 $free_book = mysqli_query($conn , "select * from freebooks");
+$paid_books = mysqli_query($conn, "
+    SELECT o.*, ot.*, b.*
+    FROM orders AS o
+    INNER JOIN order_items AS ot ON o.order_id = ot.order_id
+    INNER JOIN books AS b ON ot.book_id = b.id
+    WHERE o.user_id = '$user_id' 
+     
+      AND o.order_status = 'Done'
+");
 
 ?>
 <!DOCTYPE html>
@@ -86,6 +98,27 @@ Some of these books are provided free by the author. Enjoy reading — you can r
 <div class="card mt-3 position-relative">
 
     <span class="badge badge-free">FREE</span>
+
+    <span class="card__title woodendark"><?php echo $execute['title'] ?></span>
+
+    <div class="image d-flex justify-content-center">
+        <img src="../<?php echo $execute['cover_image'] ?>" style="height: 150px;" alt="" class="w-50 img-fluid">
+    </div>
+
+    <div class="btns d-flex gap-2 justify-content-center mt-3">
+        <a href="../<?php echo $execute['pdf_path'] ?>" target="_blank" class="btn btn-gold px-4">Read</a>
+        <a href="../<?php echo $execute['pdf_path'] ?>" class="btn bg btn-md px-4" download >Download</a>
+    </div>
+
+</div>
+<?php } ?>
+ </div>
+ <h3 class="cream text-center display-3 fw-bold mt-5">Paid Books</h3>
+ <div class="d-flex flex-wrap gap-5 justify-content-center mb-5">
+   <?php while($execute = mysqli_fetch_assoc($paid_books)){ ?>
+<div class="card mt-3 position-relative">
+
+    <span class="badge badge-free">Paid</span>
 
     <span class="card__title woodendark"><?php echo $execute['title'] ?></span>
 

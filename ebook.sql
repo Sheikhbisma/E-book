@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2025 at 07:59 AM
+-- Generation Time: Dec 27, 2025 at 01:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,7 +62,10 @@ CREATE TABLE `adult_entries` (
 
 INSERT INTO `adult_entries` (`id`, `user_id`, `name`, `email`, `pdf_file`, `status`, `submitted_at`) VALUES
 (1, 7, 'subhan', 'subhan@gmail.com', '7_1765912987.pdf', 'submitted', '2025-12-17 00:23:07'),
-(2, 1, 'Bisma sheikh', 'bismasheikh@gmail.com', '1_1766002389.pdf', 'winner', '2025-12-18 01:13:09');
+(2, 1, 'Bisma sheikh', 'bismasheikh@gmail.com', '1_1766002389.pdf', 'winner', '2025-12-18 01:13:09'),
+(3, 2, 'Sidra', 'sidra@gmail.com', '2_1766534143.pdf', 'submitted', '2025-12-24 04:55:43'),
+(4, 3, 'sawera', 'sawera@gmail.com', '3_1766534237.pdf', 'submitted', '2025-12-24 04:57:17'),
+(5, 4, 'wania', 'wania@gmail.com', '4_1766534314.pdf', 'submitted', '2025-12-24 04:58:34');
 
 -- --------------------------------------------------------
 
@@ -147,8 +150,11 @@ CREATE TABLE `competition_entries` (
 --
 
 INSERT INTO `competition_entries` (`id`, `event_id`, `user_id`, `topic`, `essay_text`, `word_count`, `status`, `submitted_at`, `topic_id`, `start_time`, `end_time`) VALUES
-(9, 1, 3, 'my lovely home', 'hello', 1, '', '2025-12-17 21:11:14', NULL, '2025-12-17 16:11:14', '2025-12-17 16:12:14'),
-(10, 1, 1, 'my lovely home', 'hello', 1, 'winner', '2025-12-18 01:15:30', 0, '2025-12-17 20:35:32', '2025-12-17 20:16:30');
+(11, 1, 10, 'my lovely home', 'my lovely home', 3, '', '2025-12-24 05:04:08', NULL, '2025-12-24 00:04:08', '2025-12-24 00:05:08'),
+(12, 1, 5, 'A day in my life', 'A day in my life', 5, '', '2025-12-24 05:06:40', NULL, '2025-12-24 00:06:40', '2025-12-24 00:07:40'),
+(13, 1, 9, 'education', 'Education is very powerful key', 5, '', '2025-12-24 05:08:26', NULL, '2025-12-24 00:08:26', '2025-12-24 00:09:26'),
+(14, 1, 6, 'picnic', 'A perfect day for me and you.', 7, '', '2025-12-24 05:14:08', NULL, '2025-12-24 00:14:08', '2025-12-24 00:15:08'),
+(15, 1, 8, 'my hero', 'my hero is Muhammad He is the best personailty', 9, '', '2025-12-24 05:17:07', NULL, '2025-12-24 00:17:07', '2025-12-24 00:18:07');
 
 -- --------------------------------------------------------
 
@@ -199,6 +205,40 @@ INSERT INTO `competition_topics` (`id`, `event_id`, `topic_name`, `created_at`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `name`, `email`, `message`, `created_at`) VALUES
+(1, 'sidra', 'sidra@gmail.com', 'nnnnnnnnn', '2025-12-07 19:13:27'),
+(5, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:23:49'),
+(6, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:25:49'),
+(7, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:30:59'),
+(8, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:31:14'),
+(9, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:32:07'),
+(10, 'ifra', 'ifra@gmail.com', 'no', '2025-12-07 19:32:28'),
+(11, 'ifra', 'ifra@gmail.com', 'no', '2025-12-07 19:33:10'),
+(12, 'ifra', 'ifra@gmail.com', 'no', '2025-12-07 19:36:15'),
+(13, 'dfhdfh', 'ali@gmail.com', 'nnnnnn', '2025-12-07 19:36:35'),
+(14, 'anabiya', 'biya@gmail.com', 'nqqq', '2025-12-07 22:40:58'),
+(15, 'wania', 'wania@mail.com', 'kkkk', '2025-12-07 22:53:06'),
+(16, 'sara', 'sara@gmail.com', 'uuuuuuuu', '2025-12-08 19:27:32'),
+(17, 'sawera', 'sawera@mail.com', 'wdjklabv', '2025-12-20 11:33:46');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customer_register`
 --
 
@@ -218,7 +258,7 @@ CREATE TABLE `customer_register` (
 --
 
 INSERT INTO `customer_register` (`customer_id`, `customer_name`, `customer_email`, `customer_contact`, `customer_image`, `customer_address`, `customer_location`, `customer_pass`) VALUES
-(1, 'Bisma sheikh', 'bismasheikh@gmail.com', '03212038938', '176510222969355295756bc-add.jfif', 'kljlknfwhjholKM', 'KarachiPakistan', '$2y$10$7fvwUZNEFCak/cIKfOJmq.QtWa9Sj/fUl5h8FGTpaTdueGRZzjgTC'),
+(1, 'Bisma sheikh', 'bismasheikh@gmail.com', '03212038938', 'register-1.jfif', 'kljlknfwhjholKM', 'KarachiPakistan', '$2y$10$7fvwUZNEFCak/cIKfOJmq.QtWa9Sj/fUl5h8FGTpaTdueGRZzjgTC'),
 (2, 'Sidra', 'sidra@gmail.com', '03987058903', '1765722453693ec95532d82-register-1.jfif', 'H-no-24,north karachi', 'KarachiPakistan', '$2y$10$5ADmfNcj1ojS6NtFciy1neQKAqMDL.LTCDecss3dna9Q/tqB2p9i6'),
 (3, 'sawera', 'sawera@gmail.com', '03874390876', '1765722599693ec9e7483d1-register-1.jfif', 'Apt 504, north nazimabad', 'KarachiPakistan', '$2y$10$JnDcYXU6nDvQ4mzESu6ViOLDyJKGa51w0YKvkiIzm/a00JU0nbP8q'),
 (4, 'wania', 'wania@gmail.com', '03892689765', '1765722658693eca229b11d-register-1.jfif', 'Apt 404, surjani town', 'KarachiPakistan', '$2y$10$iihHqHwwD8Yfo8h1kn7G0uaGzV.hgWEMlZ5seGDQSuZ5ATU/t6B4.'),
@@ -228,7 +268,89 @@ INSERT INTO `customer_register` (`customer_id`, `customer_name`, `customer_email
 (8, 'saad', 'saad@gmail.com', '03670987654', '1765723010693ecb820a1f4-register-2.jfif', 'Apt 504, north nazimabad', 'KarachiPakistan', '$2y$10$9XHLClegPH.HeYic4WWH2uNs5i03gGJ6UAX6E1lNJujf3id1XPgSW'),
 (9, 'bilal', 'bilal@gmail.com', '03780987439', '1765723059693ecbb37e9e9-register-2.jfif', 'Apt 504, north nazimabad', 'KarachiPakistan', '$2y$10$jzN7yUVQLcVRyAmxP5.kqemurjL.VkmMcg4LownN0/siMuYC.d9cK'),
 (10, 'rafay', 'rafay@gmail.com', '03679812456', '1765723116693ecbec3d272-register-2.jfif', 'Apt 504, north karachi', 'KarachiPakistan', '$2y$10$gAwOpgbQLTnK1U9uyHOin.gXdw8Px06ZEawpUzE1kYnqQcWLezaH6'),
-(11, 'mehjabeen', 'mehjabeenrehman@gmail.com', '03987058903', '17661481136945481182a7d-lucent-general-knowledge.jpg', 'h-no:xyz.north karahi', 'KarachiPakistan', '$2y$10$GIJ.WRR2vTeRxxUoHGMwlu/EuPj.XXR2J8bXwxpSCDdsxv/nmdKeK');
+(11, 'mehjabeen', 'mehjabeenrehman@gmail.com', '03987058903', '17661481136945481182a7d-lucent-general-knowledge.jpg', 'h-no:xyz.north karahi', 'KarachiPakistan', '$2y$10$GIJ.WRR2vTeRxxUoHGMwlu/EuPj.XXR2J8bXwxpSCDdsxv/nmdKeK'),
+(15, 'sawera', 'subhan12890973@gmail.com', '03212038938', '1766795423694f289fb1bde-3.jpg', 'h-no:xyzhello', 'Karachi,Pakistan', '$2y$10$4NwW.ck9G27D1tDg5YnRF.ajTpDHCgVFNZXkGA3C3WFhNdXWud8j2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dealers`
+--
+
+CREATE TABLE `dealers` (
+  `dealer_id` int(11) NOT NULL,
+  `dealer_name` varchar(100) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `contact_number` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `status` enum('Active','Inactive') DEFAULT 'Active',
+  `password` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dealers`
+--
+
+INSERT INTO `dealers` (`dealer_id`, `dealer_name`, `city`, `contact_number`, `email`, `status`, `password`) VALUES
+(2, 'sawera', 'karachi', '0317837338823', 'syedasaweranoorhussainshah27@gmail.com', 'Active', '12345678');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dealer_books`
+--
+
+CREATE TABLE `dealer_books` (
+  `dealer_book_id` int(11) NOT NULL,
+  `dealer_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `author` varchar(150) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `pdf_path` varchar(255) DEFAULT NULL,
+  `cover_image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dealer_books`
+--
+
+INSERT INTO `dealer_books` (`dealer_book_id`, `dealer_id`, `title`, `author`, `category`, `description`, `price`, `pdf_path`, `cover_image`, `created_at`) VALUES
+(2, 2, 'Super Kid Adventures', ' Alex Martin', 'Comics', 'This comic follows the exciting adventures of a young boy who gains superpowers after a science experiment. He uses his abilities to protect his city and help people in need.\r\n \r\n', 200.00, 'pdfs/1766768737_Super Kid Adventures_compressed.pdf', 'img/1766768737_The super kid adventure.jpg', '2025-12-26 17:05:37'),
+(3, 2, 'Robo Boy', 'Kevin Turner', 'Comics', 'Robo Boy is a fun and futuristic comic about a robot with human emotions. The story focuses on friendship, technology, and the importance of using power wisely.\r\n', 230.00, 'pdfs/1766768823_Robo Boy_compressed.pdf', 'img/1766768823_Robo Boy.jpg', '2025-12-26 17:07:03'),
+(4, 2, 'The Secret of the Old Tree', 'James Anderson', 'Story Books', 'This story follows a group of children who discover a mysterious old tree in their village. As they uncover its secrets, they learn valuable lessons about friendship, teamwork, and bravery.\r\n', 240.00, 'pdfs/1766768966_The Secret of the Old Tree_compressed.pdf', 'img/1766768966_The Secret of the Old Tree.jpg', '2025-12-26 17:09:26'),
+(5, 2, ' The Lost Necklace', 'Sophia Martin', 'Story Books', 'A touching story about a young girl who loses a precious necklace and goes on an emotional journey to find it. Along the way, she learns the importance of honesty and patience.\r\n', 280.00, 'pdfs/1766769046_The Lost Necklace_compressed.pdf', 'img/1766769046_The lost necklace.jpg', '2025-12-26 17:10:46'),
+(6, 2, 'Beyond the Horizon', 'Michael Anderson', 'Novels', 'A motivational novel about a man who leaves his hometown to chase his dreams. The story focuses on courage, self-discovery, and the power of hope.\r\n', 215.00, 'pdfs/1766769248_Beyond the Horizon_compressed.pdf', 'img/1766769248_Beyond the Horizon.jpg', '2025-12-26 17:14:08'),
+(7, 2, 'Whispers of the Past', 'Emma Collins', 'Novels', 'This novel revolves around old memories and forgotten secrets. When the past returns, the main character must face the truth to find peace and happiness.\r\n', 220.00, 'pdfs/1766769365_Whispers of the Past_compressed.pdf', 'img/1766769365_Whispers of the Past.jpg', '2025-12-26 17:16:05'),
+(8, 2, ' Brain Booster GK', 'Nancy Clark', 'General Knowledge', 'A perfect book for children and teenagers to enhance their thinking skills. It includes quizzes, short questions, and informative content to boost memory and learning.\r\n', 255.00, 'pdfs/1766769466_Brain Booster GK_compressed.pdf', 'img/1766769466_Brain Booster GK.jpg', '2025-12-26 17:17:46'),
+(9, 2, 'Exploring Maps and World Mountains', 'David Miller', 'General Knowledge', 'This book provides detailed information about world maps, continents, oceans, and major mountain ranges. It helps readers understand geographical locations, map reading skills, and famous mountains such as Mount Everest, K2, and the Andes. The book is specially designed for students, children, and general knowledge learners to improve their understanding of world geography in a simple and engaging way.\r\n', 270.00, 'pdfs/1766769545_Exploring Maps_compressed.pdf', 'img/1766769545_Exploring Maps.jpg', '2025-12-26 17:19:05'),
+(10, 2, 'The Magical Fairy Garden', 'Emma Wilson', 'Children Books', 'This book tells the story of a magical garden where fairies live happily among flowers and animals. It teaches children about kindness, friendship, and helping others through colorful characters and simple storytelling.\r\n', 280.00, 'pdfs/1766769679_The Magical Fairy Garden_compressed.pdf', 'img/1766769679_The Magical Fairy Garden.jpg', '2025-12-26 17:21:19'),
+(11, 2, 'Tommy and the Talking Train', 'Robert Green', 'Children Books', 'A fun and exciting story about a little boy named Tommy who discovers a talking train. Together, they go on amazing adventures while learning lessons about courage, honesty, and curiosity.\r\n\r\n\r\n', 290.00, 'pdfs/1766769749_Tommy and the Talking Train_compressed.pdf', 'img/1766769749_Tommy and the Talking Train.jpg', '2025-12-26 17:22:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dealer_orders`
+--
+
+CREATE TABLE `dealer_orders` (
+  `order_id` int(11) NOT NULL,
+  `dealer_id` int(11) NOT NULL,
+  `dealer_book_id` int(11) NOT NULL,
+  `full_name` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `address` text NOT NULL,
+  `book_title` varchar(200) NOT NULL,
+  `book_format` varchar(50) NOT NULL,
+  `payment_method` enum('paypal','creditcard','debitcard') NOT NULL,
+  `payment_status` enum('Pending','Received','Failed') DEFAULT 'Pending',
+  `order_status` enum('Pending','Done','Shipped') DEFAULT 'Pending',
+  `grand_total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -284,7 +406,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `full_name`, `email`, `city`, `address`, `book_format`, `payment_method`, `payment_status`, `order_status`, `grand_total`, `created_at`) VALUES
-(17, 1, 'bisma', 'bismasheikh2006@gmail.com', 'karachi', ' h-no:xyz', 'cd', 'creditcard', 'Pending', 'Pending', 54.00, '2025-12-21 07:51:43');
+(17, 1, 'bisma', 'bismasheikh2006@gmail.com', 'karachi', ' h-no:xyz', 'cd', 'creditcard', 'Received', 'delivered', 54.00, '2025-12-21 07:51:43'),
+(21, 2, 'Bisma sheikh', 'syedasaweranoorhussainshah27@gmail.com', 'karachi', ' hguj', 'pdf', 'paypal', 'Pending', 'Pending', 80.00, '2025-12-26 12:06:32'),
+(22, 2, 'Syedasawera', 'syedasaweranoorhussainshah27@gmail.com', 'karachi', ' hvgyu', 'pdf', 'paypal', 'Pending', 'Pending', 80.00, '2025-12-26 12:07:44');
 
 -- --------------------------------------------------------
 
@@ -305,7 +429,8 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `book_id`, `quantity`, `book_title`) VALUES
-(23, 17, 11, 2, '100 Bullets');
+(23, 17, 11, 2, '100 Bullets'),
+(27, 21, 12, 1, 'Aesops fables');
 
 -- --------------------------------------------------------
 
@@ -380,11 +505,38 @@ ALTER TABLE `competition_topics`
   ADD KEY `competition_topics_ibfk_1` (`event_id`);
 
 --
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `customer_register`
 --
 ALTER TABLE `customer_register`
   ADD PRIMARY KEY (`customer_id`),
   ADD UNIQUE KEY `customer_email` (`customer_email`);
+
+--
+-- Indexes for table `dealers`
+--
+ALTER TABLE `dealers`
+  ADD PRIMARY KEY (`dealer_id`);
+
+--
+-- Indexes for table `dealer_books`
+--
+ALTER TABLE `dealer_books`
+  ADD PRIMARY KEY (`dealer_book_id`),
+  ADD KEY `fk_dealer` (`dealer_id`);
+
+--
+-- Indexes for table `dealer_orders`
+--
+ALTER TABLE `dealer_orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `dealer_id` (`dealer_id`),
+  ADD KEY `dealer_book_id` (`dealer_book_id`);
 
 --
 -- Indexes for table `freebooks`
@@ -427,7 +579,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `adult_entries`
 --
 ALTER TABLE `adult_entries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `books`
@@ -439,13 +591,13 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `competition_entries`
 --
 ALTER TABLE `competition_entries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `competition_topics`
@@ -454,10 +606,34 @@ ALTER TABLE `competition_topics`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT for table `customer_register`
 --
 ALTER TABLE `customer_register`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `dealers`
+--
+ALTER TABLE `dealers`
+  MODIFY `dealer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `dealer_books`
+--
+ALTER TABLE `dealer_books`
+  MODIFY `dealer_book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `dealer_orders`
+--
+ALTER TABLE `dealer_orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `freebooks`
@@ -469,13 +645,13 @@ ALTER TABLE `freebooks`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -505,6 +681,19 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `competition_topics`
   ADD CONSTRAINT `competition_topics_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `competition_events` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `dealer_books`
+--
+ALTER TABLE `dealer_books`
+  ADD CONSTRAINT `fk_dealer` FOREIGN KEY (`dealer_id`) REFERENCES `dealers` (`dealer_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `dealer_orders`
+--
+ALTER TABLE `dealer_orders`
+  ADD CONSTRAINT `dealer_orders_ibfk_1` FOREIGN KEY (`dealer_id`) REFERENCES `dealers` (`dealer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `dealer_orders_ibfk_2` FOREIGN KEY (`dealer_book_id`) REFERENCES `dealer_books` (`dealer_book_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `order_items`

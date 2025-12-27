@@ -42,7 +42,7 @@ $fetch =mysqli_fetch_assoc($selectOrder);
 </head>
 
 <body class="pt">
-    <?php include '../components/header.php' ?>
+    <!-- <?php include '../components/header.php' ?> -->
 
 <main>
     <section>
@@ -111,5 +111,7 @@ $fetch =mysqli_fetch_assoc($selectOrder);
     </section>
 </main>
  <?php include '../components/footer.php'; ?>
+   <!-- Bootstrap JS Bundle -->
+<?php include '../components/script.php' ?>   
 </body>
 </html>

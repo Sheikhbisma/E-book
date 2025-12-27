@@ -40,6 +40,25 @@
                          <i class="fas fa-trophy me-1"></i> Competition
                      </a>
                  </li>
+                 <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="dealerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-user-circle me-1"></i> Dealer
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dealerDropdown">
+        <li>
+            <a class="dropdown-item" href="../dealer/dealer.php">
+                <i class="fas fa-user-tie me-2"></i> Dealer sawera
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="../dealer/add-book.php">
+                <i class="fas fa-plus me-2"></i> Add Book
+            </a>
+        </li>
+    </ul>
+</li>
+
 
                <div class="d-flex gap-2 ms-5">
                   <!-- Cart Icon -->
