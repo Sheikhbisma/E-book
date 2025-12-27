@@ -50,7 +50,6 @@ if (isset($_POST['update_password'])) {
     <?php include './inc/link.php'; ?>
 
     <style>
-
         .profile-wrapper {
            min-height: calc(100vh - 60px);
             display: flex;
