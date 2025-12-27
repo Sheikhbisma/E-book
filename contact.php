@@ -1,5 +1,5 @@
 <?php
-include "./dbconnect.php";
+include "../auth/dbconnect.php";
 session_start();
 if (isset($_POST['submit'])) {
 
@@ -108,7 +108,11 @@ input, textarea {
                             <i class="fas fa-trophy me-1"></i> Competition
                         </a>
                     </li>
-
+ <li class="nav-item">
+                     <a class="nav-link" href="./dealer/dealer.php">
+                         <i class="fas fa-trophy me-1"></i> Dealer
+                     </a>
+                 </li>
                     <div class="d-flex gap-2 ms-5">
                         <!-- Cart Icon -->
                         <li class="nav-item">

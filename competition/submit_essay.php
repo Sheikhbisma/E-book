@@ -87,6 +87,6 @@ $upd->bind_param(
 );
 $upd->execute();
 
-echo "Submission successful";
+header('location: user-dadhboard.php');
 exit;
 ?>

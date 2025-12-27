@@ -166,19 +166,7 @@ body {
 
 <body>
 
-<button class="user-menu-btn" id="userMenuBtn">
-    <i class="bi bi-list"></i>
-</button>
-
-<div class="sidebar" id="userSidebar">
-    <h2 class="text-center mb-4 fw-bold" style="color:#d4af37;">User Panel</h2>
-    <a href="dashboard.php"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
-    <a href="competition.php"><i class="bi bi-trophy-fill"></i> <span>Competition</span></a>
-    <a href="books.php"><i class="bi bi-book"></i> <span>Books</span></a>
-    <a href="orders.php"><i class="bi bi-cart"></i> <span>Orders</span></a>
-    <a href="profile.php"><i class="bi bi-person-lines-fill"></i> <span>Profile</span></a>
-    <a href="logout.php"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
-</div>
+<?php include './user-sidebar.php' ?>
 
 
 <div class="content-area">

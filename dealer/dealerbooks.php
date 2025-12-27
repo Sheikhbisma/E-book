@@ -8,7 +8,10 @@ if (isset($_SESSION['dealerid'])) {
 
 }
 
+<<<<<<<<< Temporary merge branch 1
+=========
 
+>>>>>>>>> Temporary merge branch 2
 
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];

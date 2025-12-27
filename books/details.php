@@ -15,11 +15,13 @@ if (!isset($_GET['id'])) {
     exit;
 }
 
+
 $book_id = $_GET['id'];
 
 $query = "SELECT * FROM books WHERE id = $book_id LIMIT 1";
 $result = mysqli_query($conn, $query);
 $book = mysqli_fetch_assoc($result);
+
 
 if (!$book) {
     echo "Book not found!";
@@ -39,20 +41,22 @@ $fetch =mysqli_fetch_assoc($selectOrder);
     <?php include '../components/meta-links.php' ?>
 </head>
 
-<body class="bg-light" class="pt">
- <?php include '../components/header.php'; ?>
-<div class="container py-5">
+<body class="pt">
+    <!-- <?php include '../components/header.php' ?> -->
 
-    <a href="index.php" class="btn btn-secondary mb-3">⬅ Back</a>
+<main>
+    <section>
+        <div class="container py-5">
+
 
     <div class="card shadow-lg" style="border-radius:15px;">
         <div class="row g-0">
 
             <!-- IMAGE -->
-            <div class="col-md-4">
+            <div class="col-md-4" style="height: 500px;">
                 <img src="../<?php echo $book['cover_image']; ?>" 
-                     class="img-fluid h-100" 
-                     style="border-radius:15px 0 0 15px; object-fit:cover;">
+                     class="img-fluid" 
+                     style="border-radius:15px 0 0 15px; object-fit:cover; height:100%; width:100%;">
             </div>
 
             <!-- DETAILS -->
@@ -79,7 +83,7 @@ $fetch =mysqli_fetch_assoc($selectOrder);
 
                     <!-- BUTTONS -->
                     <div class="d-flex gap-3 mt-3">
-                        <a href="addtocart.php?id=<?php echo $book['id']; ?>" class="btn btn-success">
+                        <a href="../user/add_cart.php?id=<?php echo $book['id']?>" class="btn btn-success">
                             🛒 Add to Cart
                         </a>
 
@@ -104,6 +108,10 @@ $fetch =mysqli_fetch_assoc($selectOrder);
     </div>
 
 </div>
+    </section>
+</main>
  <?php include '../components/footer.php'; ?>
+   <!-- Bootstrap JS Bundle -->
+<?php include '../components/script.php' ?>   
 </body>
 </html>

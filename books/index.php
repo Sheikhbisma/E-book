@@ -28,8 +28,35 @@ if(isset($_SESSION['userid'])){
 </style>
 <body class="pt">
     <?php include '../components/header.php' ?>
+<section id="bann" class="mb-5 position-relative">
 
-<section>
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="../images/v.mp4" type="video/mp4">
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Content -->
+    <div class="container h-100 d-flex align-items-center justify-content-center">
+        <div class="banner-content text-center p-5 rounded">
+           <h3 class="fw-bold text-light mb-3">Explore Our Digital Library</h3>
+<p class="text-light mb-4">
+    Discover a wide collection of free and premium eBooks across various categories.
+    Read online, download instantly, and build your personal learning library today.
+</p>
+<a href="#books" class="btn btn-gold btn-lg">
+    <i class="fas fa-book-open me-2"></i>Browse Books
+</a>
+
+        </div>
+    </div>
+
+</section>
+
+<section id="books">
+    
   <div class="container w-100 d-flex justify-content-end">
       <div class="w-25">
         <?php  
@@ -64,7 +91,7 @@ if(isset($_SESSION['userid'])){
             </p>
 
             <div class="price-tag bg">
-                RS <?php echo $row['price']; ?>
+                 <?php echo "$".$row['price']; ?>
             </div>
 
             <!-- 🔥 ICON BUTTONS ONLY -->

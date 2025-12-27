@@ -1,9 +1,22 @@
 <?php
 include '../auth/dbconnect.php';
 include '../auth/check.php';
+if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+  }
 $free_book = mysqli_query($conn , "select count(*) as c from freebooks");
 $fetch = mysqli_fetch_assoc($free_book)['c'];
-$orders = mysqli_query($conn , "select created_at,order_status from orders where user_id = '$_SESSION[userid]' limit 1");
+$orders = mysqli_query($conn , "select * from orders where user_id = '$_SESSION[userid]' and order_status = 'Pending'");
+
+$paid_books = mysqli_query($conn, "
+    SELECT DISTINCT b.id, b.title, b.cover_image, b.pdf_path
+    FROM orders AS o
+    INNER JOIN order_items AS ot ON o.order_id = ot.order_id
+    INNER JOIN books AS b ON ot.book_id = b.id
+    WHERE o.user_id = '$user_id'
+      AND o.order_status = 'Done'
+");
+$total_books = mysqli_num_rows($paid_books) + $fetch;
 
 
 
@@ -138,19 +151,9 @@ $orders = mysqli_query($conn , "select created_at,order_status from orders where
 </head>
 
 <body>
-    <button class="user-menu-btn" id="userMenuBtn">
-        <i class="bi bi-list"></i>
-    </button>
 
-    <div class="sidebar" id="userSidebar">
-        <h2 class="text-center mb-4 fw-bold golden">User Panel</h2>
-        <a href="dashboard.php"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
-        <a href="competition.php"><i class="bi bi-trophy-fill"></i> <span>Competition</span></a>
-        <a href="books.php"><i class="bi bi-book"></i> <span>Books</span></a>
-        <a href="orders.php"><i class="bi bi-cart"></i> <span>Orders</span></a>
-        <a href="profile.php"><i class="bi bi-person-lines-fill"></i> <span>Profile</span></a>
-        <a href="logout.php"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
-    </div>
+
+   <?php  include './user-sidebar.php' ?>
 
     <div class="content-area">
         <h2 class="mb-4 main-title golden">👋 Welcome Back</h2>
@@ -161,7 +164,7 @@ $orders = mysqli_query($conn , "select created_at,order_status from orders where
                     <div class="d-flex align-items-center">
                         <div class="icon-round me-3"><i class="bi bi-book"></i></div>
                         <div>
-                            <h5 class="fw-bold mb-0">42 Books</h5>
+                            <h5 class="fw-bold mb-0"><?php echo $total_books; ?></h5>
                             <small class="text-muted">Total library</small>
                         </div>
                     </div>
@@ -210,7 +213,7 @@ $orders = mysqli_query($conn , "select created_at,order_status from orders where
         <div class="row g-4 mt-2">
             <div class="col-md-6">
                 <div class="glass-card card">
-                    <h4 class="section-title">📚 Reading Progress</h4>
+                    <h4 class="section-title"><i class="bi bi-journal-bookmark me-2"></i> Reading Progress</h4>
                     <p class="mb-1">Novel <span class="float-end">80%</span></p>
                     <div class="progress mb-3">
                         <div class="progress-bar bg" style="width: 80%;"></div>
@@ -224,14 +227,24 @@ $orders = mysqli_query($conn , "select created_at,order_status from orders where
 
             <div class="col-md-6 d-flex">
                 <div class="glass-card card w-100">
-                    <h4 class="section-title card-title woodendark">🔔 Notifications</h4>
+                    <h4 class="section-title card-title woodendark"><i class="bi bi-bell me-2"></i> Notifications</h4>
                     <ul class="list-group">
                        <?php
-                          while($fetch_status = mysqli_fetch_assoc($orders)){
-                        $status = $fetch_status['order_status'];
-                        $create = $fetch_status['created_at'];
-                      echo  showErr(getnotification($status , $create) , 'success ') ;
-                       }
+if(mysqli_num_rows($orders) > 0){
+
+    while($fetch_status = mysqli_fetch_assoc($orders)){
+        $status = $fetch_status['order_status'];
+        $create = $fetch_status['created_at'];
+        echo getnotification($status , $create);
+    }
+
+}else{
+    echo "<li class='list-group-item text-center text-muted'>
+            <i class='bi bi-check-circle me-1'></i>
+            No pending notifications 🎉
+          </li>";
+}
+
 
 
 if(isset($_SESSION['send_mail'])){
@@ -248,7 +261,7 @@ if(isset($_SESSION['send_mail'])){
         <div class="row g-4 mt-2">
             <div class="col-md-7">
                 <div class="glass-card card">
-                    <h4 class="section-title">🛒 Recent Orders</h4>
+                    <h4 class="section-title"><i class="bi bi-cart4 me-2"></i> Recent Orders</h4>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="table-dark">
@@ -277,7 +290,7 @@ if(isset($_SESSION['send_mail'])){
 
             <div class="col-md-5">
                 <div class="glass-card card">
-                    <h4 class="section-title">📌 Activity Log</h4>
+                    <h4 class="section-title"><i class="bi bi-clipboard-check me-2"></i> Activity Log</h4>
                     <ul class="ps-3 mt-2">
                         <li>Started: <b>JavaScript Fundamentals</b></li>
                         <li>Finished: <b>PHP Basics</b></li>
@@ -289,21 +302,7 @@ if(isset($_SESSION['send_mail'])){
         </div>
     </div>
 
-    <script>
-        const userMenuBtn = document.getElementById('userMenuBtn');
-        const userSidebar = document.getElementById('userSidebar');
-
-        userMenuBtn.addEventListener('click', function() {
-            userSidebar.classList.toggle('active');
-        });
-
-        // Close sidebar if clicking outside
-        document.addEventListener('click', function(event) {
-            if (!userSidebar.contains(event.target) && !userMenuBtn.contains(event.target)) {
-                userSidebar.classList.remove('active');
-            }
-        });
-    </script>
+ 
 
     <?php include '../components/script.php'; ?>
 </body>

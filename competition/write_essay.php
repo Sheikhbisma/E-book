@@ -34,16 +34,12 @@ $user_name = ($user_res->num_rows>0) ? $user_res->fetch_assoc()['customer_name']
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Write Your Essay</title>
+<?php include '../components/meta-links.php' ?>
 <style>
-body {
-    margin:0; padding:0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #f4f2ef, #e6d8c3);
-}
-.container {
+
+.containeres {
     max-width: 750px;
     margin: 20px auto;
-    background: #5C3A21;
     color: #fff;
     border-radius: 15px;
     padding: 30px 40px;
@@ -59,7 +55,6 @@ body {
 .user-name {
     font-size: 18px;
     font-weight: bold;
-    color: #FFD700;
     margin-bottom: 10px;
 }
 .topic {
@@ -89,23 +84,8 @@ textarea {
 .stats span {
     font-weight: bold;
 }
-button {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: bold;
-    background: #FFD700;
-    color: #5C3A21;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: transform 0.25s, background 0.25s;
-}
-button:hover {
-    background: #e6c200;
-    transform: translateY(-3px);
-}
+
+
 @media(max-width: 600px){
     .container {padding: 20px 15px;}
     .topic {font-size: 18px;}
@@ -115,21 +95,30 @@ button:hover {
 }
 </style>
 </head>
-<body>
-<div class="container">
-    <div class="header">
-        <div class="user-name">User: <?=htmlspecialchars($user_name)?></div>
-        <div class="topic">Topic: <?=htmlspecialchars($topic)?></div>
+<body class="pt">
+    <?php include '../components/header.php' ?>
+<div class="containeres card">
+   <div class="essay-header">
+    <div class="user-block cream ">
+        <i class="bi bi-person-circle"></i>
+        <span><?=htmlspecialchars($user_name)?></span>
     </div>
+
+    <div class="topic-block cream">
+        <i class="bi bi-journal-text"></i>
+        <span><?=htmlspecialchars($topic)?></span>
+    </div>
+</div>
+
     <form method="POST" action="submit_essay.php" id="essayForm">
         <input type="hidden" name="event_id" value="<?=$event_id?>">
         <input type="hidden" name="topic" value="<?=htmlspecialchars($topic)?>">
-        <textarea name="essay_text" id="essay_text" placeholder="Start writing your essay..." required></textarea>
-        <div class="stats">
+        <textarea name="essay_text" id="essay_text" class="text-dark" placeholder="Start writing your essay..." required></textarea>
+        <div class="stats woodendark">
             <div>Time Left: <span id="timer">01:00</span></div>
             <div>Word Count: <span id="wordCount">0</span></div>
         </div>
-        <button type="submit">Submit Essay</button>
+        <button type="submit" class="btn-gold rounded-2">Submit Essay</button>
     </form>
 </div>
 
@@ -170,5 +159,7 @@ form.addEventListener('submit', ()=>{
     alert('Your essay has been submitted. The result will be shown shortly.');
 });
 </script>
+ <?php include '../components/footer.php' ?>
+  <?php include '../components/script.php' ?>
 </body>
 </html>

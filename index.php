@@ -2,10 +2,10 @@
 session_start();
 include './components/homecontent.php';
 
-if(isset($_SESSION['userid'])){
-    $user_id = $_SESSION['userid'];
-totalItems($conn , $user_id);
-}
+// if(isset($_SESSION['userid'])){
+//     $user_id = $_SESSION['userid'];
+// totalItems($conn , $user_id);
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,17 +16,10 @@ totalItems($conn , $user_id);
     
 <?php include './components/meta-links.php' ?>   
 <link rel="stylesheet" href="./css/user.css">
-    
     <style>
-        :root {
-            --headings: #FFE082;
-        }
+    /* ===== NAVBAR UI IMPROVEMENT ===== */
 
-    
-    h1, h2, h3, h4, h5, h6 {
-            /* font-family: 'Cinzel', serif; */
-            color: var(--headings) !important;
-        }
+
 
 </style>
 </head>
@@ -73,6 +66,11 @@ totalItems($conn , $user_id);
                          <i class="fas fa-trophy me-1"></i> Competition
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="./dealer/dealer.php">
+                         <i class="fas fa-trophy me-1"></i> Dealer
+                     </a>
+                 </li>
 
                <div class="d-flex gap-2 ms-5">
                   <!-- Cart Icon -->
@@ -112,25 +110,39 @@ totalItems($conn , $user_id);
      </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Discover. Read. Compete.</h1>
-            <p>Elegant dark library with floating book cards</p>
-            <div class="mt-4">
-                <button class="btn btn-lg me-3" style="background: var(--accent-gold); color: var(--wood-dark); font-weight: bold;">
-                    <i class="fas fa-search me-2"></i>Browse Books
-                </button>
-                <button class="btn btn-lg btn-outline-light">
-                    <i class="fas fa-user-plus me-2"></i>Join Free
-                </button>
+  
+   <!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 hero-content">
+                <h1>welcome to our <br>premium e-book store</h1>
+                <p>
+                    A premium dark-themed digital library where books, competitions,
+                    and creativity come together. Explore the future of reading.
+                </p>
+                <div class="mt-4">
+                    <a href="./books/index.php" class="btn btn-primary-custom btn-lg">
+                        <i class="fas fa-rocket me-2"></i>Explore Now
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="hero-image-wrap text-center">
+    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=1000&auto=format&fit=crop" 
+         class="img-fluid" 
+         alt="Elite E-books" 
+         style="filter: drop-shadow(0 0 30px rgba(255,193,7,0.3)); border-radius: 15px; max-width: 80%;">
+</div>
             </div>
         </div>
     </div>
+</section>
+
 
     <!-- New Releases -->
     <section id="new" class="container py-5">
-        <h2 class="section-title cream"><i class="fas fa-star me-2"></i>📘 New Releases</h2>
+        <h2 class="section-title cream"><i class="fas fa-star me-2"></i> New Releases</h2>
         <div class="row g-4">
             <!-- fetch books -->
            <?php while($new_release = mysqli_fetch_assoc($new)){ ?>
@@ -148,16 +160,20 @@ totalItems($conn , $user_id);
             <?php } ?>
 
     </section>
-<section id="banner" class="mb-5">
-            <div class="container">
-                <h4 class="text-uppercase">mid season sale</h4>
-                <h1 class="fw-bold">Autumn Collection Upto <br> 20% Off</h1>
-                <button class="text-uppercase">shop now</button>
+ <section id="banner" class="mb-5">
+            <div class="pe-5 w-50">
+                <div class="banner-content  ps-5 py-5 rounded">
+                    <h3 class="fw-bold text-light mb-3">Join Our Writing Competitions!</h3>
+                    <p class="text-light mb-4">Showcase your talent and win exciting prizes in our upcoming writing contests. Whether you're into fiction, poetry, or essays, we have a competition for you.</p>
+                    <a href="./competition/user_dashboard.php" class="btn btn-gold btn-lg">
+                        <i class="fas fa-trophy me-2"></i>Explore Competitions
+                    </a>
+                </div>
             </div>
         </section>
     <!-- Best Sellers -->
     <section id="best" class="container py-5">
-        <h2 class="section-title cream"><i class="fas fa-fire me-2"></i>🔥 Best Sellers</h2>
+        <h2 class="section-title cream"><i class="fas fa-fire me-2"></i> Best Sellers</h2>
         <div class="row g-4">
               <!-- fetch books -->
            <?php while($best_seller = mysqli_fetch_assoc($best)){ ?>
@@ -179,7 +195,7 @@ totalItems($conn , $user_id);
 
     <!-- Upcoming Competitions -->
     <section id="competitions" class="container py-5">
-        <h2 class="section-title cream"><i class="fas fa-trophy me-2"></i>🏆 Upcoming Competitions</h2>
+        <h2 class="section-title cream"><i class="fas fa-trophy me-2"></i> Upcoming Competitions</h2>
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="competition-card">
@@ -242,7 +258,7 @@ totalItems($conn , $user_id);
 
     <!-- Winners -->
     <section id="winners" class="container py-5">
-        <h2 class="section-title cream"><i class="fas fa-award me-2"></i>🏅 Recent Winners</h2>
+        <h2 class="section-title cream"><i class="fas fa-award me-2"></i> Recent Winners</h2>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="winner-card">
@@ -326,3 +342,4 @@ totalItems($conn , $user_id);
 
 </body>
 </html>
+

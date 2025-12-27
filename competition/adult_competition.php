@@ -109,8 +109,8 @@ form button:hover {
      <input type="text" name="name" placeholder="Full Name" class="text-dark" required value="<?php echo htmlspecialchars($user['customer_name']); ?>">
 <input type="email" name="email" placeholder="Email" class="text-dark"  required value="<?php echo htmlspecialchars($user['customer_email']); ?>">
 
-      <input type="file" name="pdf_file" accept="application/pdf" required>
-      <button type="submit">Submit PDF</button>
+      <input type="file" class="text-dark" name="pdf_file" accept="application/pdf" required>
+      <button type="submit" class="btn-gold">Submit PDF</button>
   </form>
 </div>
 <?php include '../components/footer.php' ?>
