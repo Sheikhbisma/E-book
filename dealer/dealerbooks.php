@@ -215,5 +215,4 @@ $update = false;
     <?php include '../components/script.php' ?>
     <script src="../js/admin.js"></script>
 </body>
-
 </html>
