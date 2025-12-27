@@ -51,7 +51,7 @@
                 </p>
 
                 <p class="small mb-3">
-                    <i class="fas fa-phone me-2"></i>
+                   <i class="fas fa-phone me-2"></i>
                     +92 300 1234567
                 </p>
                 <div class="d-flex gap-3">
