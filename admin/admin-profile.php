@@ -56,7 +56,6 @@ if (isset($_POST['update_password'])) {
             align-items: center;
             justify-content: center;
         }
-
         .profile-card {
             width: 330px;
             background: #fff;
