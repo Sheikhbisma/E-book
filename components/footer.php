@@ -54,7 +54,6 @@
                     <i class="fas fa-phone me-2"></i>
                     +92 300 1234567
                 </p>
-
                 <div class="d-flex gap-3">
                     <a href="https://www.facebook.com/profile.php?id=61557254610407&sk=friends" target="_blank"><i class=" fab fa-facebook fs-5"></i></a>
                     <a href="https://www.instagram.com/syeda_2701/" target="_blank"><i class="fab fa-instagram fs-5"></i></a>
