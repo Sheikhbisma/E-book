@@ -1,4 +1,4 @@
-<?php 
+<?php  
 include '../auth/check.php';
 include '../auth/dbconnect.php';
 
@@ -21,7 +21,6 @@ $image    = $_SESSION['customerimage'];
 <style>
 :root {
     --sidebar-width: 240px;
- 
 }
 
 body {
@@ -30,11 +29,11 @@ body {
     background-color: #fdfaf5;
 }
 
-/* --- SIDEBAR DESKTOP --- */
-/* sidebar laptop view mein hamesha fixed rahegi */
+/* SIDEBAR */
 .sidebar {
     height: 100vh;
-    background: url('../images/header.png'), linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
+    background: url('../images/header.png'),
+    linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
     color: #fff;
     padding-top: 20px;
     position: fixed;
@@ -60,16 +59,15 @@ body {
     min-width: 30px;
 }
 
-/* --- MAIN AREA --- */
+/* MAIN AREA */
 .content-area{
     margin-left: var(--sidebar-width);
     padding: 40px;
-    transition: 0.3s;
 }
 
-/* --- MOBILE TOGGLE BUTTON --- */
+/* MOBILE BUTTON */
 .user-menu-btn {
-    display: none; /* Laptop par hide */
+    display: none;
     position: fixed;
     top: 15px;
     left: 15px;
@@ -94,6 +92,7 @@ body {
     box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
+/* PROFILE IMAGE */
 .profile-img-wrapper{
     width:160px;
     height:160px;
@@ -102,12 +101,48 @@ body {
     overflow:hidden;
     border:6px solid #d4af37;
     background:#fff;
+    position: relative;
 }
 
 .profile-img-wrapper img{
     width:100%;
     height:100%;
     object-fit:cover;
+}
+
+/* 🔥 PREMIUM EDIT BUTTON */
+.edit-btn{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+
+    background: rgba(0,0,0,0.75);
+    color:#fff;
+
+    border:2px solid #d4af37;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+
+    box-shadow:0 6px 15px rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+
+    transition: all 0.3s ease;
+    opacity:0.95;
+}
+
+.edit-btn:hover{
+    background:#d4af37;
+    color:#4d362e;
+    transform: scale(1.12);
+    box-shadow:0 8px 20px rgba(212,175,55,0.9);
 }
 
 /* INFO CARD */
@@ -129,36 +164,22 @@ body {
     font-size:18px;
 }
 
-.info-row:last-child{ border-bottom:none; }
-.info-label{ font-weight:700; color:#4d362e; }
+.info-label{
+    font-weight:700;
+    color:#4d362e;
+}
 
-/* --- RESPONSIVE LOGIC (Mobile & Tablet) --- */
+/* RESPONSIVE */
 @media(max-width: 991px){
-    .sidebar {
-        left: -240px; /* Sidebar hide */
-    }
+    .sidebar { left:-240px; }
+    .sidebar.active { left:0; }
+    .content-area{ margin-left:0; padding:80px 20px; }
+    .user-menu-btn{ display:block; }
 
-    .sidebar.active {
-        left: 0; /* Slide in on click */
-        box-shadow: 5px 0 15px rgba(0,0,0,0.4);
-    }
-
-    .content-area{
-        margin-left:0;
-        padding: 80px 20px 20px 20px; /* Space for toggle button */
-    }
-
-    .user-menu-btn {
-        display: block; /* Show toggle button */
-    }
-
-    .info-row {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .profile-header {
-        padding: 20px;
+    .edit-btn{
+        width:48px;
+        height:48px;
+        font-size:20px;
     }
 }
 </style>
@@ -172,70 +193,69 @@ body {
 
 <div class="sidebar" id="userSidebar">
     <h2 class="text-center mb-4 fw-bold" style="color:#d4af37;">User Panel</h2>
-    <a href="dashboard.php"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
-    <a href="competition.php"><i class="bi bi-trophy-fill"></i> <span>Competition</span></a>
-    <a href="books.php"><i class="bi bi-book"></i> <span>Books</span></a>
-    <a href="orders.php"><i class="bi bi-cart"></i> <span>Orders</span></a>
-    <a href="profile.php"><i class="bi bi-person-lines-fill"></i> <span>Profile</span></a>
-    <a href="logout.php"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+    <a href="dashboard.php"><i class="bi bi-speedometer2"></i> Dashboard</a>
+    <a href="competition.php"><i class="bi bi-trophy-fill"></i> Competition</a>
+    <a href="books.php"><i class="bi bi-book"></i> Books</a>
+    <a href="orders.php"><i class="bi bi-cart"></i> Orders</a>
+    <a href="profile.php"><i class="bi bi-person-lines-fill"></i> Profile</a>
+    <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
 </div>
-
 
 <div class="content-area">
 
     <div class="profile-header">
         <div class="profile-img-wrapper">
-            <img src="../img/<?php echo $image; ?>" alt="Profile Image">
+            <img id="profilePreview" src="../img/<?php echo $image; ?>">
 
+            <!-- EDIT IMAGE BUTTON -->
+            <button class="edit-btn" onclick="document.getElementById('imageInput').click()">
+                <i class="bi bi-camera-fill"></i>
+            </button>
+
+            <!-- LOCAL FILE INPUT -->
+            <input type="file" id="imageInput" accept="image/*" hidden>
         </div>
 
-        <h2 class="mt-3 fw-bold golden">
-            <?php echo strtoupper($name); ?>
-        </h2>
-        <p class="woodendark mb-0"><?php echo $email; ?></p>
+        <h2 class="mt-3 fw-bold golden"><?php echo strtoupper($name); ?></h2>
+        <p class="woodendark"><?php echo $email; ?></p>
     </div>
 
     <div class="info-card">
-        <h3 class="woodendark fw-bold text-center mb-4">Personal Information</h3>
-
         <div class="info-row">
             <span class="info-label">Full Name</span>
-            <span class="info-value"><?php echo $name; ?></span>
+            <span><?php echo $name; ?></span>
         </div>
-
         <div class="info-row">
             <span class="info-label">Email</span>
-            <span class="info-value"><?php echo $email; ?></span>
-
+            <span><?php echo $email; ?></span>
         </div>
-
         <div class="info-row">
             <span class="info-label">Phone</span>
-            <span class="info-value"><?php echo $number; ?></span>
+            <span><?php echo $number; ?></span>
         </div>
-
         <div class="info-row">
             <span class="info-label">Location</span>
-            <span class="info-value"><?php echo $location; ?></span>
+            <span><?php echo $location; ?></span>
         </div>
     </div>
-
 </div>
 
 <script>
-    const userMenuBtn = document.getElementById('userMenuBtn');
-    const userSidebar = document.getElementById('userSidebar');
+const userMenuBtn = document.getElementById('userMenuBtn');
+const userSidebar = document.getElementById('userSidebar');
 
-    userMenuBtn.addEventListener('click', function() {
-        userSidebar.classList.toggle('active');
-    });
+userMenuBtn.onclick = () => userSidebar.classList.toggle('active');
 
-    // Bahar click karne par sidebar band ho jaye
-    document.addEventListener('click', function(event) {
-        if (!userSidebar.contains(event.target) && !userMenuBtn.contains(event.target)) {
-            userSidebar.classList.remove('active');
+document.getElementById('imageInput').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    if(file){
+        const reader = new FileReader();
+        reader.onload = e => {
+            document.getElementById('profilePreview').src = e.target.result;
         }
-    });
+        reader.readAsDataURL(file);
+    }
+});
 </script>
 
 <?php include '../components/script.php'; ?>

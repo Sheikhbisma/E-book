@@ -1,3 +1,4 @@
+
 <button class="mobile-nav-toggle" id="mobileToggle">
     <i class="bi bi-list"></i>
 </button>
@@ -21,18 +22,20 @@
 <div class="content-area">
     </div>
     <script>
-        const mobileToggle = document.getElementById('mobileToggle');
+const mobileToggle = document.getElementById('mobileToggle');
 const sidebar = document.getElementById('sidebar');
 
-mobileToggle.addEventListener('click', () => {
-    // Sidebar ko active class dena ya hatana
+mobileToggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // Click event ko document tak jane se rokta hai
     sidebar.classList.toggle('active');
 });
 
-// Sidebar ke bahar click karne par band ho jaye (Optional)
+// Sidebar ke bahar click karne par band ho jaye
 document.addEventListener('click', (e) => {
-    if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
-        sidebar.classList.remove('active');
+    if (sidebar.classList.contains('active')) {
+        if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
+            sidebar.classList.remove('active');
+        }
     }
 });
     </script>
