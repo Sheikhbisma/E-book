@@ -8,6 +8,10 @@ if (isset($_SESSION['dealerid'])) {
 
 }
 
+<<<<<<<<< Temporary merge branch 1
+=========
+
+>>>>>>>>> Temporary merge branch 2
 
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];
@@ -209,10 +213,8 @@ $update = false;
 
         </div>
     </div>
-
-
+    
     <?php include '../components/script.php' ?>
     <script src="../js/admin.js"></script>
 </body>
-
 </html>

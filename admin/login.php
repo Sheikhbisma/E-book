@@ -66,7 +66,6 @@ if (isset($_POST['login'])) {
             <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
           </div>
         </div>
-
         <button name="login" class="btn btn-pdf w-100">Login</button>
       </form>
 
