@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../auth/dbconnect.php";
+include "../auth/functions.php";
 
 /* fetch user name */
 if(isset($_SESSION['userid'])){
@@ -392,5 +393,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php include '../components/footer.php' ?>
+<?php
+
+if(isset($_SESSION['msg'])){
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+    }
+?>
 </body>
 </html>

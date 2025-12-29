@@ -19,35 +19,10 @@ $image    = $_SESSION['customerimage'];
 <?php include '../components/meta-links.php'; ?>
 
 <style>
-:root {
-    --sidebar-width: 240px;
- 
-}
 
 
 
-/* --- MAIN AREA --- */
-.content-area{
-    margin-left: var(--sidebar-width);
-    padding: 40px;
-    transition: 0.3s;
-}
 
-/* --- MOBILE TOGGLE BUTTON --- */
-.user-menu-btn {
-    display: none; /* Laptop par hide */
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1100;
-    background: var(--brown-theme);
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 24px;
-    cursor: pointer;
-}
 
 /* PROFILE HEADER */
 .profile-header{
@@ -100,19 +75,6 @@ $image    = $_SESSION['customerimage'];
 
 /* --- RESPONSIVE LOGIC (Mobile & Tablet) --- */
 @media(max-width: 991px){
-    .sidebar {
-        left: -240px; /* Sidebar hide */
-    }
-
-    .sidebar.active {
-        left: 0; /* Slide in on click */
-        box-shadow: 5px 0 15px rgba(0,0,0,0.4);
-    }
-
-    .content-area{
-        margin-left:0;
-        padding: 80px 20px 20px 20px; /* Space for toggle button */
-    }
 
     .user-menu-btn {
         display: block; /* Show toggle button */

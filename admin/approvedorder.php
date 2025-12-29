@@ -7,7 +7,7 @@ if(isset($order_id)){
     $execute_update = mysqli_query($conn , $update);
 if($execute_update){
     $_SESSION['approved'] = showErr("Order updated to approved" , "success");
-    header('location: view-orders.php');
+    header('location: view-approved.php');
     exit;
 }else{
     $_SESSION['approved'] = showErr("There is an error" , "danger");

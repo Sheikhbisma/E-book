@@ -1,6 +1,5 @@
 <?php
 include '../auth/dbconnect.php';
-include '../auth/functions.php';
 include '../auth/check.php';
 // INSERT BOOK
 if (isset($_POST['submit'])) {
@@ -152,12 +151,12 @@ if (!$result) {
                             <div class="card b-card h-100 mb-3 shadow-sm" style="max-width: 540px; border-radius: 12px;">
                                 <div class="row g-0 align-items-center">
                                     <!-- Image -->
-                                    <div class="col-md-4 position-relative">
+                                    <div class="col-4 position-relative">
                                         <img src="../<?php echo $row['cover_image'] ?>" class="img-fluid rounded-start h-100" alt="Book Cover">
                                     </div>
 
                                     <!-- Card Body -->
-                                    <div class="col-md-8">
+                                    <div class="col-8">
                                         <div class="card-body">
                                             <!-- Title & Author -->
                                             <h5 class="card-title fw-bold"><?php echo $row['title'] ?></h5>

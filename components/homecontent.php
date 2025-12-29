@@ -14,4 +14,8 @@ $children = mysqli_query(
      ON c.user_id = u.customer_id
      WHERE c.status = 'winner'"
 );
+$select_prize=mysqli_query($conn , "select * from settings where name = 'price'");
+$prize = mysqli_fetch_assoc($select_prize);
+$select_adultprize=mysqli_query($conn , "select * from settings where name = 'essay_prize'");
+$adultPrize = mysqli_fetch_assoc($select_adultprize);
 ?>

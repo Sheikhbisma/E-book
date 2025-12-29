@@ -9,56 +9,6 @@
     <?php include '../components/meta-links.php'; ?>
 
     <style>
-        :root {
-            --sidebar-width: 240px;
-          
-        }
-
-      
-
-        /* --- Content Area Desktop --- */
-        .content-area {
-            margin-left: var(--sidebar-width);
-            padding: 30px;
-            transition: 0.3s;
-        }
-
-        /* --- Mobile Toggle Button --- */
-        .user-menu-btn {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1100;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        /* --- Responsive Logic (Mobile & Tablet) --- */
-        @media (max-width: 991px) {
-            .sidebar {
-                left: -240px; /* Hide sidebar */
-            }
-
-            .sidebar.active {
-                left: 0; /* Slide in on click */
-                box-shadow: 5px 0 15px rgba(0,0,0,0.4);
-            }
-
-            .content-area {
-                margin-left: 0;
-                padding: 80px 15px 20px 15px;
-            }
-
-            .user-menu-btn {
-                display: block;
-            }
-        }
 
         /* --- Glass Cards & Progress --- */
         .glass-card {
@@ -94,8 +44,11 @@
 
    <?php  include './user-sidebar.php' ?>
 
-    <div class="content-area">
-        <h2 class="mb-4 main-title golden">👋 Welcome Back</h2>
+    <div class="content-area pt">
+       <div class="d-flex justify-content-between">
+         <h2 class="mb-4 main-title golden">👋 Welcome Back</h2>
+         <a class="w-0 p-0" id="close">close</a>
+       </div>
 
         <div class="row g-4">
             <div class="col-md-3">
@@ -237,5 +190,7 @@ if(isset($_SESSION['send_mail'])){
  
 
     <?php include '../components/script.php'; ?>
+
+
 </body>
 </html>

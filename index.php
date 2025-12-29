@@ -2,10 +2,11 @@
 session_start();
 include './components/homecontent.php';
 
-// if(isset($_SESSION['userid'])){
-//     $user_id = $_SESSION['userid'];
-// totalItems($conn , $user_id);
-// }
+if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+totalItems($conn , $user_id);
+}
+$logIn = $_SESSION['userid'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +40,7 @@ include './components/homecontent.php';
          <div class="collapse navbar-collapse" id="navbarNav">
              <!-- Mobile Search Box -->
 
-             <ul class="navbar-nav ms-auto align-items-center gap-3">
+             <ul class="navbar-nav ms-auto align-items-center gap-2">
                  <li class="nav-item">
                      <a class="nav-link" href="./index.php">
                          <i class="fas fa-home me-1"></i> Home
@@ -269,7 +270,7 @@ include './components/homecontent.php';
                         <h6 class="card-title woodendark">Adult Writting Winner</h6>
                         <p class="card-text mb-1"><strong>Winner:</strong> <?php echo $selectwinner['name']?></p>
                         <p class="card-text mb-1"><strong>Story:</strong> "Express Yourself"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $500 + Featured</p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> <?php echo "$".$prize['value'] .".00" ?></p>
                         <p class="card-text small mt-2">"A masterpiece of modern storytelling with deep emotional resonance."</p>
                     </div>
                 </div>
@@ -287,7 +288,7 @@ include './components/homecontent.php';
                         <h6 class="card-title woodendark">Essay Writting Winner</h6>
                         <p class="card-text mb-1"><strong>Winner:</strong><?php echo $selectwinner['customer_name']?></p>
                         <p class="card-text mb-1"><strong>Story:</strong> <?php echo $selectwinner['topic']?></p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $500 + Featured</p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> <?php echo "$".$adultPrize['value'] .".00" ?></p>
                         <p class="card-text small mt-2"> <?php echo $selectwinner['essay_text']?></p>
                     </div>
                 </div>
@@ -299,7 +300,46 @@ include './components/homecontent.php';
         
         
     </section>
+<!-- modal -->
+ <div class="modal fade" id="modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header header">
+        <h5 class="modal-title fw-bold">Welcome To The Ebook Website</h5>
+        <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4 card">
 
+  <div class="row align-items-center">
+
+    <!-- Text Section -->
+    <div class="col-md-7">
+      <p class="woodendark fw-semibold">
+        Free books are generously provided by the authors for our readers.
+        To access and enjoy these books, please log in or create an account from the
+        <strong>Account</strong> section in the navigation bar.
+        After logging in, you can visit your <strong>Dashboard</strong> and start exploring your free library.
+      </p>
+
+      <div class="mt-3">
+        <a href="./user/login.php" class="btn btn-custom me-2">Login</a>
+        <a href="./user/register.php" class="btn btn-gold">Register</a>
+      </div>
+    </div>
+
+    <!-- Image Section -->
+    <div class="col-md-5 text-center">
+      <img src="./img/1765293894_watchmen.jpg" class="img-fluid rounded shadow" alt="">
+    </div>
+
+  </div>
+
+</div>
+
+     
+    </div>
+  </div>
+</div>
 <!-- footer -->
  <?php include './components/footer.php' ?>    
     <!-- Bootstrap JS Bundle -->
@@ -328,6 +368,16 @@ navLinks.forEach(link => {
     }
 });
 });
+window.onload = function () {
+    let logIn = <?php echo $logIn ? 'true' : 'false' ?>;
+    if(!logIn){
+    setTimeout(() => {
+        const modal = new bootstrap.Modal(document.getElementById('modal'));
+        modal.show();
+    }, 1000);
+}
+};
+
 </script>
 
 

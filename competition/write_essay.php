@@ -85,7 +85,10 @@ textarea {
     font-weight: bold;
 }
 
-
+button.a{
+    background: grey !important;
+    pointer-events: none;
+}
 @media(max-width: 600px){
     .container {padding: 20px 15px;}
     .topic {font-size: 18px;}
@@ -128,7 +131,7 @@ const wordCountEl = document.getElementById('wordCount');
 const timerEl = document.getElementById('timer');
 const form = document.getElementById('essayForm');
 
-let remaining = 60; // 1 min
+let remaining = 20; // 1 min
 
 // Word count update
 textarea.addEventListener('input', ()=>{
@@ -147,13 +150,17 @@ function tick(){
         alert('Time finished. You can no longer submit.');
         textarea.disabled = true;
         form.querySelector('button').disabled = true;
+        form.querySelector('button').classList.add('a')  ;
+        setTimeout(redirect , 2000)
         return;
     }
     remaining--;
     setTimeout(tick,1000);
 }
 tick();
-
+function redirect(){
+    return window.location.href='user_dashboard.php';
+}
 // Alert on submission
 form.addEventListener('submit', ()=>{
     alert('Your essay has been submitted. The result will be shown shortly.');

@@ -1,21 +1,4 @@
-Conversation opened. 1 unread message.
 
-Skip to content
-Using Gmail with screen readers
-Enable desktop notifications for Gmail.
-   OK  No thanks
-1 of 53
-(no subject)
-Inbox
-
-Bisma Sheikh <bismasheikh2006@gmail.com>
-Attachments
-3:59 PM (0 minutes ago)
-to me
-
-
- One attachment
-  •  Scanned by Gmail
 <?php
 include './session.php';
 include '../auth/dbconnect.php';

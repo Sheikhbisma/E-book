@@ -260,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body>
     <?php include './sidebar.php' ?>
-    <div class="content-area px-5 pb-5">
+    <div class="content-area px-md-5 pb-md-5">
         <header class="header mb-5 bg-white rounded">
 
             <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i>Competition </h1>

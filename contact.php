@@ -81,7 +81,7 @@ input, textarea {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <!-- Mobile Search Box -->
 
-                <ul class="navbar-nav ms-auto align-items-center gap-3">
+                <ul class="navbar-nav ms-auto align-items-center gap-2">
                     <li class="nav-item">
                         <a class="nav-link " href="./index.php">
                             <i class="fas fa-home me-1"></i> Home

@@ -29,7 +29,7 @@ $adult_entries = mysqli_query($conn, $adult_entries_query);
     <?php include 'user-sidebar.php' ?>
     <div class="content-area">
         <main>
-            <section class="px-5 pb-5">
+            <section class="px-md-5 pb-md-5">
                 <header class="header p-4 mb-5 text-center rounded" style="border-bottom: 6px solid var(--accent-gold);">
                     <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="bi bi-pencil-square me-2"></i>Competition Entries</h1>
                     <p class="mb-1 text-light">All your competition submissions are displayed here.</p>

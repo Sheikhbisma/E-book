@@ -12,7 +12,23 @@
           url('../images/bg.png'),
           linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95)) !important;
        font-family: "Inter", sans-serif !important;
+      overflow-x: hidden;
   }
+   ::-webkit-scrollbar {
+  width: 13px;
+  border-radius: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 15px var(--wood-medium);
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--accent-gold);
+  border-radius: 5px;
+}
 
   .pt {
       padding-top: 70px !important;
@@ -314,43 +330,7 @@
 #banner h1{
     color: #fff;
 }
-  /* --- Mobile Toggle Button --- */
-        .user-menu-btn {
-            display: none !important;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1100;
-            background: var(--brown-theme);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        /* --- Responsive Logic (Mobile & Tablet) --- */
-        @media (max-width: 991px) {
-            .sidebar {
-                left: -240px; /* Hide sidebar */
-            }
-
-            .sidebar.active {
-                left: 0; /* Slide in on click */
-                box-shadow: 5px 0 15px rgba(0,0,0,0.4);
-            }
-
-            .content-area {
-                margin-left: 0;
-                padding: 80px 15px 20px 15px;
-            }
-
-            .user-menu-btn {
-                display: block;
-            }
-        }
+ 
   .sidebar a:hover {
       background: var(--wood-medium);
       color: var(--paper-cream);
@@ -360,7 +340,7 @@
 }
   .content-area {
       margin-left: 240px;
-      /* padding: 25px; */
+      padding: 0 25px 25px 25px;
   }
 
   .btn-edit {
@@ -436,7 +416,9 @@
       font-weight: 600;
       color: #343a40;
   }
-
+.hide{
+    display: none !important;
+}
   /* LOGOUT BUTTON */
   .logout-container {
       text-align: center;
@@ -1444,3 +1426,31 @@
       background: var(--wood-dark) !important;
       color: var(--headings) !important;
   }
+@media(max-width:992px){
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        z-index: 999;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: 0.3s ease;
+        padding-top: 60px;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    .content-area{
+        margin-left: 0px;
+        padding: 5px;
+    }
+}
+
+
+
+
+
+ 
