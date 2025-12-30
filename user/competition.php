@@ -13,7 +13,10 @@ $competition_entries = mysqli_query($conn, $competition_entries_query);
 // Adult entries
 $adult_entries_query = "SELECT * FROM adult_entries WHERE user_id = $user_id ORDER BY submitted_at DESC";
 $adult_entries = mysqli_query($conn, $adult_entries_query);
-
+$select_prize=mysqli_query($conn , "select * from settings where name = 'price'");
+$prize = mysqli_fetch_assoc($select_prize);
+$select_adultprize=mysqli_query($conn , "select * from settings where name = 'essay_prize'");
+$adultPrize = mysqli_fetch_assoc($select_adultprize);
 ?>
 
 <!DOCTYPE html>
@@ -52,10 +55,17 @@ $adult_entries = mysqli_query($conn, $adult_entries_query);
 
                                 <!-- Main Content -->
                                 <div class="d-flex flex-column flex-md-row">
-                                    <div class="flex-grow-1 mb-3 mb-md-0">
+                                    <div class="flex-grow-1 mb-3 mb-md-0 woodendark">
                                         <h6 class="fw-bold woodendark">Topic: <?php echo htmlspecialchars($entry['topic']) ?></h6>
                                         <p class="mb-1"><strong>Words:</strong> <?php echo $entry['word_count'] ?></p>
                                         <p class="mb-1"><strong>Submitted At:</strong> <?php echo $entry['submitted_at'] ?></p>
+                                        <?php if($entry['status'] == 'winner'){ ?>
+                                            <h4 class="fst-italic"><strong>Congratulations You Are The Winner <i class="bi bi-trophy-fill"></i>The prize is given to you by the author.</strong></h4>
+                                            <p class="mb-1"><strong>Prize:</strong> <?php echo "$".$prize['value'] .".00"?></p>
+
+                                            <?php }else{ ?>
+                                                   <h4 class="fst-italic woodmedium"><strong>You didn’t win this time, but thank you for participating. Better luck next time!</strong></h4>
+                                                <?php } ?>
                                         <div class="mt-2">
                                            <a href="./view-essay.php?id=<?= $entry['id'] ?>" class="btn btn-gold">View Essay</a>
 
@@ -84,6 +94,13 @@ $adult_entries = mysqli_query($conn, $adult_entries_query);
                                     <p class="mb-1"><strong>Name:</strong> <?php echo $adult['name'] ?></p>
                                     <p class="mb-1"><strong>Email:</strong> <?php echo $adult['email'] ?></p>
                                     <p class="mb-1"><strong>Submitted At:</strong> <?php echo $adult['submitted_at'] ?></p>
+                                     <?php if($adult['status'] == 'winner'){ ?>
+                                           <h4 class="fst-italic"><strong>Congratulations You Are The Winner <i class="bi bi-trophy-fill"></i>The prize is given to you by the author.</strong></h4>
+                                            <p class="mb-1"><strong>Prize:</strong> <?php echo "$". $adultPrize['value'] .".00" ?></p>
+
+                                            <?php }else{ ?>
+                                                 <h4 class="fst-italic woodmedium"><strong>You didn’t win this time, but thank you for participating. Better luck next time!</strong></h4>
+                                                <?php } ?>
                                     <div class="mt-2">
                                         <a href="../competition/uploads/adult/<?php echo $adult['pdf_file'] ?>" target="_blank" class="btn btn-gold">View PDF</a>
                                     </div>

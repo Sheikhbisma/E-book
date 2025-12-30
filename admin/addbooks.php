@@ -194,7 +194,7 @@ if (isset($_GET['book_id'])) {
                                                     <i class="fas fa-trash"></i> Delete
                                                 </a>
 
-                                                <a href="#" class="btn btn-md btn-pdf "><i class="fas fa-book-open"></i>PDF</a>
+                                                <a href="../<?php echo $row['pdf_path'] ?>" class="btn btn-md btn-pdf "><i class="fas fa-book-open"></i>PDF</a>
                                             </div>
                                         </div>
                                     </div>

@@ -1,6 +1,6 @@
 <?php
 include '../auth/dbconnect.php';
-include '../auth/check.php';
+include 'session.php';
 // INSERT BOOK
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];
@@ -69,7 +69,7 @@ if (!$result) {
         ?>
         <div class="container">
 
-            <header class="header p-4 mb-5 bg-white rounded">
+            <header class="header p-4 mb-5 bg-white rounded header">
 
                 <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i> Add Free Book</h1>
                 <!-- Button -->
@@ -85,7 +85,7 @@ if (!$result) {
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <div class="modal-body">
+                            <div class="modal-body card">
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     <div class="row g-3 text-start">
                                         <div class="col-md-6">
@@ -174,18 +174,18 @@ if (!$result) {
                                             </div>
 
                                             <!-- Buttons -->
-                                            <div class="d-flex justify-content-between">
+                                            <div class="d-flex justify-content-between gap-2">
                                                 
-                                                <a href="./edit-books.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-edit">
+                                                <a href="./edit-books.php?id=<?php echo $row['id']; ?>" class="btn btn-md btn-edit">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
                                                 <a href="./delete-books.php?id=<?php echo $row['id']; ?>"
                                                     onclick="return confirm('Are you sure you want to delete this book?');"
-                                                    class="btn btn-sm btn-delete">
+                                                    class="btn btn-md btn-delete">
                                                     <i class="fas fa-trash"></i> Delete
                                                 </a>
 
-                                                <a href="" class="btn btn-sm btn-pdf flex-fill"><i class="fas fa-book-open"></i>PDF</a>
+                                                <a href="../<?php echo $row['pdf_path'] ?>" class="btn px-0 btn-md btn-pdf flex-fill"><i class="fas fa-book-open"></i>PDF</a>
 
                                                 </a>
 

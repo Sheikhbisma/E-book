@@ -20,12 +20,12 @@ if (isset($_POST['login'])) {
       $_SESSION['id'] = $user['id'];
       $_SESSION['email'] = $user['email'];
       $_SESSION['loginmsg'] = showErr("Login Successfull", "success");
-      header('location: addbooks.php');
+      header('location: dashboard.php');
     } else {
-      $_SESSION['msg'] = showErr("Invalid email or password", "success");
+      $_SESSION['msg'] = showErr("Invalid email or password", "danger");
     }
   } else {
-    $_SESSION['msg'] = showErr("Invalid email or password", "success");
+    $_SESSION['msg'] = showErr("email not found", "danger");
   }
 }
 ?>

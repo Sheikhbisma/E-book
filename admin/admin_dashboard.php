@@ -177,77 +177,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
 
-        @media screen and (max-width: 768px) {
-
-            table,
-            thead,
-            tbody,
-            th,
-            td,
-            tr {
-                display: block;
-            }
-
-            thead tr {
-                display: none;
-            }
-
-            tr {
-                margin-bottom: 15px;
-                border-bottom: 2px solid #ddd;
-                padding-bottom: 10px;
-            }
-
-            td {
-                border: none;
-                position: relative;
-                padding-left: 45%;
-                text-align: left;
-            }
-
-            td:before {
-                position: absolute;
-                left: 10px;
-                width: 40%;
-                white-space: nowrap;
-                font-weight: bold;
-            }
-
-            td:nth-of-type(1):before {
-                content: "Name";
-            }
-
-            td:nth-of-type(2):before {
-                content: "Words";
-            }
-
-            td:nth-of-type(3):before {
-                content: "Essay";
-            }
-
-            td:nth-of-type(4):before {
-                content: "Status";
-            }
-
-            td:nth-of-type(5):before {
-                content: "Topic";
-            }
-
-            td:nth-of-type(6):before {
-                content: "Date";
-            }
-
-            td:nth-of-type(7):before {
-                content: "Action";
-            }
-        }
-
+       
         @media screen and (max-width:480px) {
             .container {
                 padding: 10px;
             }
 
-            button,
             select,
             input[type=text] {
                 width: 100%;
@@ -260,7 +195,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body>
     <?php include './sidebar.php' ?>
-    <div class="content-area px-md-5 pb-md-5">
+    <main>
+        <section>
+            <div class="content-area px-md-5 pb-md-5">
         <header class="header mb-5 bg-white rounded">
 
             <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i>Competition </h1>
@@ -272,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class="section container">
                 <h2>Children Essay Competition</h2>
 
-                <table>
+                <table class="responsive-child">
                     <tr>
                         <th>Name</th>
                         <th>Words</th>
@@ -302,7 +239,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 <select name="child_status">
                                     <option value="winner">Winner</option>
                                     <option value="loser">Loser</option>
-                                    <option value="abandoned">Abandoned</option>
                                 </select>
                                 <button class="btn-custom">Save</button>
                                 </form>
@@ -316,7 +252,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class="section">
                 <h2>Adult PDF / Book Competition</h2>
 
-                <table>
+                <table class="responsive-adult">>
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
@@ -379,6 +315,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         </div>
     </div>
+        </section>
+    </main>
     <?php include '../components/script.php' ?>
 </body>
 
