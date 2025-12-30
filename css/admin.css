@@ -52,15 +52,29 @@ body {
 
 
 
+  ::-webkit-scrollbar {
+  width: 13px;
+  border-radius: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 15px var(--wood-medium);
+    border-radius: 5px;
+}
 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--accent-gold);
+  border-radius: 5px;
+}
 
 /* Labels + Inputs */
 form input[type="text"],
 form input[type="email"] {
     width: 100%;
     padding: 10px;
-    margin-top: 6px;
-    margin-bottom: 15px;
+    /* margin-top: 6px; */
+    /* margin-bottom: 15px; */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
@@ -269,6 +283,9 @@ form input[type="submit"]:hover {
                 width: 70px;
                 height: 70px;
             }
+            .ord{
+                padding: 0 10px;
+            }
         }
         .woodmedium{
     color: var(--wood-medium);
@@ -329,4 +346,84 @@ form input[type="submit"]:hover {
     border: 1px solid #c8b89a;
         box-sizing: border-box; /* Add this */
 
+}
+@media (max-width: 768px) {
+
+  .responsive-child, 
+  .responsive-child thead, 
+  .responsive-child tbody, 
+  .responsive-child th, 
+  .responsive-child td, 
+  .responsive-child tr {
+      display: block;
+  }
+
+  .responsive-child thead { display: none; }
+
+  .responsive-child tr {
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 8px;
+  }
+
+  .responsive-child td {
+      padding-left: 45%;
+      position: relative;
+  }
+
+  .responsive-child td::before {
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+  }
+
+  .responsive-child td:nth-child(1)::before { content: "Name"; }
+  .responsive-child td:nth-child(2)::before { content: "Words"; }
+  .responsive-child td:nth-child(3)::before { content: "Essay"; }
+  .responsive-child td:nth-child(4)::before { content: "Status"; }
+  .responsive-child td:nth-child(5)::before { content: "Topic"; }
+  .responsive-child td:nth-child(6)::before { content: "Date"; }
+  .responsive-child td:nth-child(7)::before { content: "Action"; }
+
+  /* Adult table */
+
+  .responsive-adult,
+  .responsive-adult thead,
+  .responsive-adult tbody,
+  .responsive-adult th,
+  .responsive-adult td,
+  .responsive-adult tr {
+      display: block;
+  }
+
+  .responsive-adult thead { display: none; }
+
+  .responsive-adult tr {
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 8px;
+  }
+
+  .responsive-adult td {
+      padding-left: 45%;
+      position: relative;
+  }
+
+  .responsive-adult td::before {
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+  }
+
+  .responsive-adult td:nth-child(1)::before { content: "Name"; }
+  .responsive-adult td:nth-child(2)::before { content: "Email"; }
+  .responsive-adult td:nth-child(3)::before { content: "PDF"; }
+  .responsive-adult td:nth-child(4)::before { content: "Status"; }
+  .responsive-adult td:nth-child(5)::before { content: "Date"; }
+  .responsive-adult td:nth-child(6)::before { content: "Action"; }
+  .content-area{
+    padding: 10px;
+  }
 }

@@ -35,7 +35,7 @@ $stmt->execute();
 
 echo "<script>
 if(confirm('Submission successful! Admin will announce winners later.')) {
-    window.location='../index.php';
+    window.location='./user_dashboard.php';
 }
 </script>";
 

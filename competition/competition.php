@@ -1,9 +1,11 @@
 <?php
 session_start();
 include "../auth/dbconnect.php";
+include "../auth/functions.php";
 
 if (!isset($_SESSION['userid'])) {
-    echo "<script>alert('Only registered customer will participate in competitions '); window.location='../user/login.php';</script>";
+    $_SESSION['msg'] = showErr("Only Registered Or Login Usr Can Paticipate inthe competition","danger");
+    header('location: user_dashboard.php');
     exit;
 }
 

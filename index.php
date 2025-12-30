@@ -2,10 +2,11 @@
 session_start();
 include './components/homecontent.php';
 
-// if(isset($_SESSION['userid'])){
-//     $user_id = $_SESSION['userid'];
-// totalItems($conn , $user_id);
-// }
+if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+totalItems($conn , $user_id);
+}
+$logIn = $_SESSION['userid'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +40,7 @@ include './components/homecontent.php';
          <div class="collapse navbar-collapse" id="navbarNav">
              <!-- Mobile Search Box -->
 
-             <ul class="navbar-nav ms-auto align-items-center gap-3">
+             <ul class="navbar-nav ms-auto align-items-center gap-2">
                  <li class="nav-item">
                      <a class="nav-link" href="./index.php">
                          <i class="fas fa-home me-1"></i> Home
@@ -66,17 +67,20 @@ include './components/homecontent.php';
                          <i class="fas fa-trophy me-1"></i> Competition
                      </a>
                  </li>
-                   <li class="nav-item dropdown">
+                  <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="dealerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-user-circle me-1"></i> Dealer
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dealerDropdown">
         <li>
-            <a class="dropdown-item" href="../dealer/dealer.php">
+            <a class="dropdown-item" href="./dealer/dealer.php">
                 <i class="fas fa-user-tie me-2"></i> Dealer sawera
             </a>
         </li>
+        
+    </ul>
+</li>
         
     </ul>
 </li>
@@ -168,17 +172,7 @@ include './components/homecontent.php';
             <?php } ?>
 
     </section>
- <section id="banner" class="mb-5">
-            <div class="pe-5 w-50">
-                <div class="banner-content  ps-5 py-5 rounded">
-                    <h3 class="fw-bold text-light mb-3">Join Our Writing Competitions!</h3>
-                    <p class="text-light mb-4">Showcase your talent and win exciting prizes in our upcoming writing contests. Whether you're into fiction, poetry, or essays, we have a competition for you.</p>
-                    <a href="./competition/user_dashboard.php" class="btn btn-gold btn-lg">
-                        <i class="fas fa-trophy me-2"></i>Explore Competitions
-                    </a>
-                </div>
-            </div>
-        </section>
+ 
     <!-- Best Sellers -->
     <section id="best" class="container py-5">
         <h2 class="section-title cream"><i class="fas fa-fire me-2"></i> Best Sellers</h2>
@@ -264,91 +258,95 @@ include './components/homecontent.php';
         </div>
     </section>
 
-    <!-- Winners -->
+     <!-- Winners -->
     <section id="winners" class="container py-5">
-        <h2 class="section-title cream"><i class="fas fa-award me-2"></i> Recent Winners</h2>
+        <h2 class="section-title cream"><i class="fas fa-award me-2"></i>🏅 Recent Winners</h2>
         <div class="row g-4">
+            <?php  while($selectwinner=mysqli_fetch_assoc($winner)){ ?>
             <div class="col-md-4">
                 <div class="winner-card">
                     <div class="winner-badge">2025</div>
                     <div class="card-body">
-                        <h6 class="card-title woodendark">Short Story Winner</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> John Carter</p>
-                        <p class="card-text mb-1"><strong>Story:</strong> "The Rising Dawn"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $500 + Featured</p>
+                        <h6 class="card-title woodendark">Adult Writting Winner</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong> <?php echo $selectwinner['name']?></p>
+                        <p class="card-text mb-1"><strong>Story:</strong> "Express Yourself"</p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> <?php echo "$".$prize['value'] .".00" ?></p>
                         <p class="card-text small mt-2">"A masterpiece of modern storytelling with deep emotional resonance."</p>
                     </div>
                 </div>
             </div>
+            <?php }?>
+        
+        </div>
+         <br>
+         <div class="row g-4">
+            <?php  while($selectwinner=mysqli_fetch_assoc($children)){ ?>
             <div class="col-md-4">
                 <div class="winner-card">
                     <div class="winner-badge">2025</div>
                     <div class="card-body">
-                        <h6 class="card-title woodendark">Poetry Champion</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Alicia Gomez</p>
-                        <p class="card-text mb-1"><strong>Collection:</strong> "Moonlight Whispers"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $300 + Publication</p>
-                        <p class="card-text small mt-2">"Lyrical beauty that captures the soul of contemporary poetry."</p>
+                        <h6 class="card-title woodendark">Essay Writting Winner</h6>
+                        <p class="card-text mb-1"><strong>Winner:</strong><?php echo $selectwinner['customer_name']?></p>
+                        <p class="card-text mb-1"><strong>Story:</strong> <?php echo $selectwinner['topic']?></p>
+                        <p class="card-text mb-1"><strong>Prize:</strong> <?php echo "$".$adultPrize['value'] .".00" ?></p>
+                        <p class="card-text small mt-2"> <?php echo $selectwinner['essay_text']?></p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="winner-card">
-                    <div class="winner-badge">2024</div>
-                    <div class="card-body">
-                        <h6 class="card-title woodendark">Essay Winner</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Rohan Ali</p>
-                        <p class="card-text mb-1"><strong>Essay:</strong> "Books vs E-Books"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $400 + Certificate</p>
-                        <p class="card-text small mt-2">"A balanced and insightful analysis of digital versus traditional reading."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="winner-card">
-                    <div class="winner-badge">2024</div>
-                    <div class="card-body">
-                        <h6 class="card-title woodendark">Poetry Runner-up</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Sara Khan</p>
-                        <p class="card-text mb-1"><strong>Poem:</strong> "Silent Pages"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $150 + Certificate</p>
-                        <p class="card-text small mt-2">"Elegant verses that speak volumes in their silence."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="winner-card">
-                    <div class="winner-badge">2023</div>
-                    <div class="card-body">
-                        <h6 class="card-title woodendark">Short Story Winner</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Michael Lee</p>
-                        <p class="card-text mb-1"><strong>Story:</strong> "Echoes of Yesterday"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $500 + Featured</p>
-                        <p class="card-text small mt-2">"A haunting narrative that stays with the reader long after the last page."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="winner-card">
-                    <div class="winner-badge">2023</div>
-                    <div class="card-body">
-                        <h6 class="card-title woodendark">Essay Runner-up</h6>
-                        <p class="card-text mb-1"><strong>Winner:</strong> Emma Wilson</p>
-                        <p class="card-text mb-1"><strong>Essay:</strong> "Digital Literacy"</p>
-                        <p class="card-text mb-1"><strong>Prize:</strong> $200 + Certificate</p>
-                        <p class="card-text small mt-2">"A well-researched perspective on literacy in the digital age."</p>
-                    </div>
-                </div>
-            </div>
+            <?php }?>
+         
         </div>
-    </section>
 
+        
+        
+    </section>
+<!-- modal -->
+ <div class="modal fade" id="modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header header">
+        <h5 class="modal-title fw-bold">Welcome To The Ebook Website</h5>
+        <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4 card">
+
+  <div class="row align-items-center">
+
+    <!-- Text Section -->
+    <div class="col-md-7">
+      <p class="woodendark fw-semibold">
+        Free books are generously provided by the authors for our readers.
+        To access and enjoy these books, please log in or create an account from the
+        <strong>Account</strong> section in the navigation bar.
+        After logging in, you can visit your <strong>Dashboard</strong> and start exploring your free library.
+      </p>
+
+      <div class="mt-3">
+        <a href="./user/login.php" class="btn btn-custom me-2">Login</a>
+        <a href="./user/register.php" class="btn btn-gold">Register</a>
+      </div>
+    </div>
+
+    <!-- Image Section -->
+    <div class="col-md-5 text-center">
+      <img src="./img/1765293894_watchmen.jpg" class="img-fluid rounded shadow" alt="">
+    </div>
+
+  </div>
+
+</div>
+
+     
+    </div>
+  </div>
+</div>
 <!-- footer -->
  <?php include './components/footer.php' ?>    
     <!-- Bootstrap JS Bundle -->
 <?php include './components/script.php' ?>  
 <script>
-const currentPath = window.location.pathname;
+document.addEventListener('DOMContentLoaded', function() {
+   const currentPath = window.location.pathname;
 const navLinks = document.querySelectorAll('.navbar .nav-link');
 
 navLinks.forEach(link => {
@@ -369,6 +367,17 @@ navLinks.forEach(link => {
         }
     }
 });
+});
+window.onload = function () {
+    let logIn = <?php echo $logIn ? 'true' : 'false' ?>;
+    if(!logIn){
+    setTimeout(() => {
+        const modal = new bootstrap.Modal(document.getElementById('modal'));
+        modal.show();
+    }, 1000);
+}
+};
+
 </script>
 
 

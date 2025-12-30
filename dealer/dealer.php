@@ -9,27 +9,6 @@ if(isset($_SESSION['userid'])){
 
     totalItems($conn , $user_id);
 }
-if(isset($_POST['place_order'])){
-
-    $dealer_id       = $_POST['dealer_id'];
-    $dealer_book_id  = $_POST['dealer_book_id'];
-    $full_name       = $_POST['full_name'];
-    $email           = $_POST['email'];
-    $city            = $_POST['city'];
-    $address         = $_POST['address'];
-    $book_title      = $_POST['book_title'];
-    $book_format     = $_POST['book_format'];
-    $payment_method  = $_POST['payment_method'];
-    $grand_total     = $_POST['grand_total'];
-
-    mysqli_query($conn, "INSERT INTO dealer_orders
-    (dealer_id, dealer_book_id, full_name, email, city, address, book_title, book_format, payment_method, payment_status, order_status, grand_total, created_at)
-    VALUES
-    ('$dealer_id','$dealer_book_id','$full_name','$email','$city','$address','$book_title','$book_format','$payment_method','Pending','New','$grand_total',NOW())");
-
-    $success = "Order submitted successfully! Dealer will contact you soon.";
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -51,13 +30,20 @@ if(isset($_POST['place_order'])){
     <?php include '../components/header.php' ?>
 
 <section>
-    <?php if(isset($success)){ ?>
-<div class="contact-success"><?= $success ?></div>
-<?php } ?>
-
+    
   <div class="container w-100 d-flex justify-content-end">
       <div class="w-25">
+        <?php  
+    if(isset($_SESSION['cart_msg'])){
+        echo $_SESSION['cart_msg'];
+        unset($_SESSION['cart_msg']);
+    }
+    if(isset($_SESSION['msg'])){
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+    }
     
+    ?>
       </div>
   </div>
     <div class="container-cards">
@@ -82,20 +68,7 @@ if(isset($_POST['place_order'])){
                  <?php echo "$".$row['price']; ?>
             </div>
 
-     <div class="card-actions">
-<button class="card-icon-btn btn-gold"
-    data-book='<?= htmlspecialchars(json_encode([
-        "id" => $row["id"],
-        "dealer" => $row["dealer_id"],
-        "title" => $row["title"]
-    ]), ENT_QUOTES, "UTF-8") ?>'
-    onclick="handleOrderClick(this)">
-    <i class="fas fa-shopping-bag"></i>
-</button>
-
-
-</div>
-
+            <!-- 🔥 ICON BUTTONS ONLY -->
            
         </div>
 
@@ -103,67 +76,8 @@ if(isset($_POST['place_order'])){
 
 <?php } ?>
 </div>
-<div class="modal fade" id="orderModal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content glass-card">
-
-      <form method="POST">
-        <div class="modal-header">
-          <h5>Place Order</h5>
-          <button class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-
-        <div class="modal-body">
-
-          <input type="hidden" name="dealer_id" id="dealer_id">
-          <input type="hidden" name="dealer_book_id" id="dealer_book_id">
-
-          <input type="text" name="book_title" id="book_title" readonly>
-
-          <input type="text" name="full_name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <input type="text" name="city" placeholder="City" required>
-          <input type="text" name="address" placeholder="Delivery Address" required>
-
-          <select name="book_format" required>
-            <option value="PDF">PDF</option>
-            <option value="Hard Copy">Hard Copy</option>
-          </select>
-
-          <select name="payment_method" required>
-            <option value="COD">Cash on Delivery</option>
-            <option value="Bank Transfer">Bank Transfer</option>
-          </select>
-
-          <input type="number" name="grand_total" placeholder="Total Price" required>
-
-        </div>
-
-        <div class="modal-footer">
-          <button type="submit" name="place_order" class="btn btn-gold">Submit Order</button>
-        </div>
-      </form>
-
-    </div>
-  </div>
-</div>
-
 </section>
-<script>
-function openOrder(bookId, dealerId, title) {
-    console.log(bookId, dealerId, title);
-
-    document.getElementById('dealer_book_id').value = bookId;
-    document.getElementById('dealer_id').value = dealerId;
-    document.getElementById('book_title').value = title;
-
-    var modal = new bootstrap.Modal(document.getElementById('orderModal'));
-    modal.show();
-}
-</script>
-
 <?php include '../components/script.php' ?>
-
 
 
 </body>

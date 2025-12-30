@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2025 at 01:32 AM
+-- Generation Time: Dec 30, 2025 at 04:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,10 +62,13 @@ CREATE TABLE `adult_entries` (
 
 INSERT INTO `adult_entries` (`id`, `user_id`, `name`, `email`, `pdf_file`, `status`, `submitted_at`) VALUES
 (1, 7, 'subhan', 'subhan@gmail.com', '7_1765912987.pdf', 'submitted', '2025-12-17 00:23:07'),
-(2, 1, 'Bisma sheikh', 'bismasheikh@gmail.com', '1_1766002389.pdf', 'winner', '2025-12-18 01:13:09'),
 (3, 2, 'Sidra', 'sidra@gmail.com', '2_1766534143.pdf', 'submitted', '2025-12-24 04:55:43'),
-(4, 3, 'sawera', 'sawera@gmail.com', '3_1766534237.pdf', 'submitted', '2025-12-24 04:57:17'),
-(5, 4, 'wania', 'wania@gmail.com', '4_1766534314.pdf', 'submitted', '2025-12-24 04:58:34');
+(4, 3, 'sawera', 'sawera@gmail.com', '3_1766534237.pdf', 'winner', '2025-12-24 04:57:17'),
+(5, 4, 'wania', 'wania@gmail.com', '4_1766534314.pdf', 'winner', '2025-12-24 04:58:34'),
+(6, 2, 'Sidra', 'sidra@gmail.com', '2_1766857817.pdf', 'winner', '2025-12-27 22:50:17'),
+(8, 11, 'mehjabeen', 'mehjabeenrehman@gmail.com', '11_1766993140.pdf', 'submitted', '2025-12-29 12:25:40'),
+(10, 18, 'Bisma', 'bismasheikh2006@gmail.com', '18_1767040940.pdf', 'loser', '2025-12-30 01:42:20'),
+(11, 3, 'sawera', 'sawera@gmail.com', '3_1767044318.pdf', 'submitted', '2025-12-30 02:38:38');
 
 -- --------------------------------------------------------
 
@@ -150,11 +153,12 @@ CREATE TABLE `competition_entries` (
 --
 
 INSERT INTO `competition_entries` (`id`, `event_id`, `user_id`, `topic`, `essay_text`, `word_count`, `status`, `submitted_at`, `topic_id`, `start_time`, `end_time`) VALUES
-(11, 1, 10, 'my lovely home', 'my lovely home', 3, '', '2025-12-24 05:04:08', NULL, '2025-12-24 00:04:08', '2025-12-24 00:05:08'),
-(12, 1, 5, 'A day in my life', 'A day in my life', 5, '', '2025-12-24 05:06:40', NULL, '2025-12-24 00:06:40', '2025-12-24 00:07:40'),
-(13, 1, 9, 'education', 'Education is very powerful key', 5, '', '2025-12-24 05:08:26', NULL, '2025-12-24 00:08:26', '2025-12-24 00:09:26'),
-(14, 1, 6, 'picnic', 'A perfect day for me and you.', 7, '', '2025-12-24 05:14:08', NULL, '2025-12-24 00:14:08', '2025-12-24 00:15:08'),
-(15, 1, 8, 'my hero', 'my hero is Muhammad He is the best personailty', 9, '', '2025-12-24 05:17:07', NULL, '2025-12-24 00:17:07', '2025-12-24 00:18:07');
+(12, 1, 5, 'A day in my life', 'A day in my life', 5, 'loser', '2025-12-24 05:06:40', 0, '2025-12-29 20:48:44', '2025-12-24 00:07:40'),
+(13, 1, 9, 'education', 'Education is very powerful key', 5, 'winner', '2025-12-24 05:08:26', 0, '2025-12-27 20:05:32', '2025-12-24 00:09:26'),
+(14, 1, 6, 'picnic', 'A perfect day for me and you.', 7, 'winner', '2025-12-24 05:14:08', 0, '2025-12-27 20:05:26', '2025-12-24 00:15:08'),
+(15, 1, 8, 'my hero', 'my hero is Muhammad He is the best personailty', 9, 'winner', '2025-12-24 05:17:07', 0, '2025-12-27 20:05:20', '2025-12-24 00:18:07'),
+(21, 1, 18, 'picnic', 'A picnic is a wonderful way to spend quality time with loved ones, surrounded by nature and delicious food. In this essay, we will explore the joys of a picnic', 30, 'winner', '2025-12-30 01:41:05', 0, '2025-12-29 20:41:33', '2025-12-29 20:42:05'),
+(22, 1, 3, 'my hero', 'my hero is my father.', 5, '', '2025-12-30 02:39:03', NULL, '2025-12-29 21:39:03', '2025-12-29 21:40:03');
 
 -- --------------------------------------------------------
 
@@ -221,20 +225,11 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `email`, `message`, `created_at`) VALUES
-(1, 'sidra', 'sidra@gmail.com', 'nnnnnnnnn', '2025-12-07 19:13:27'),
-(5, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:23:49'),
-(6, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:25:49'),
-(7, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:30:59'),
-(8, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:31:14'),
-(9, 'bisma', 'bisma@gmail.com', 'nothing', '2025-12-07 19:32:07'),
-(10, 'ifra', 'ifra@gmail.com', 'no', '2025-12-07 19:32:28'),
-(11, 'ifra', 'ifra@gmail.com', 'no', '2025-12-07 19:33:10'),
-(12, 'ifra', 'ifra@gmail.com', 'no', '2025-12-07 19:36:15'),
-(13, 'dfhdfh', 'ali@gmail.com', 'nnnnnn', '2025-12-07 19:36:35'),
-(14, 'anabiya', 'biya@gmail.com', 'nqqq', '2025-12-07 22:40:58'),
-(15, 'wania', 'wania@mail.com', 'kkkk', '2025-12-07 22:53:06'),
-(16, 'sara', 'sara@gmail.com', 'uuuuuuuu', '2025-12-08 19:27:32'),
-(17, 'sawera', 'sawera@mail.com', 'wdjklabv', '2025-12-20 11:33:46');
+(24, 'subhan', 'subhan@gmail.com', 'i have a query about books!', '2025-12-30 07:35:44'),
+(25, 'wania', 'wania@gmail.com', 'How To Place Order?', '2025-12-30 07:36:45'),
+(26, 'sawera', 'sawera@gmail.com', 'This Website Is Very Informative!', '2025-12-30 07:37:52'),
+(27, 'Sidra', 'sidra@gmail.com', 'how many categories you have?', '2025-12-30 07:39:07'),
+(28, 'Bisma', 'bismasheikh2006@gmail.com', 'winner prize?', '2025-12-30 07:41:07');
 
 -- --------------------------------------------------------
 
@@ -258,7 +253,6 @@ CREATE TABLE `customer_register` (
 --
 
 INSERT INTO `customer_register` (`customer_id`, `customer_name`, `customer_email`, `customer_contact`, `customer_image`, `customer_address`, `customer_location`, `customer_pass`) VALUES
-(1, 'Bisma sheikh', 'bismasheikh@gmail.com', '03212038938', 'register-1.jfif', 'kljlknfwhjholKM', 'KarachiPakistan', '$2y$10$7fvwUZNEFCak/cIKfOJmq.QtWa9Sj/fUl5h8FGTpaTdueGRZzjgTC'),
 (2, 'Sidra', 'sidra@gmail.com', '03987058903', '1765722453693ec95532d82-register-1.jfif', 'H-no-24,north karachi', 'KarachiPakistan', '$2y$10$5ADmfNcj1ojS6NtFciy1neQKAqMDL.LTCDecss3dna9Q/tqB2p9i6'),
 (3, 'sawera', 'sawera@gmail.com', '03874390876', '1765722599693ec9e7483d1-register-1.jfif', 'Apt 504, north nazimabad', 'KarachiPakistan', '$2y$10$JnDcYXU6nDvQ4mzESu6ViOLDyJKGa51w0YKvkiIzm/a00JU0nbP8q'),
 (4, 'wania', 'wania@gmail.com', '03892689765', '1765722658693eca229b11d-register-1.jfif', 'Apt 404, surjani town', 'KarachiPakistan', '$2y$10$iihHqHwwD8Yfo8h1kn7G0uaGzV.hgWEMlZ5seGDQSuZ5ATU/t6B4.'),
@@ -269,7 +263,8 @@ INSERT INTO `customer_register` (`customer_id`, `customer_name`, `customer_email
 (9, 'bilal', 'bilal@gmail.com', '03780987439', '1765723059693ecbb37e9e9-register-2.jfif', 'Apt 504, north nazimabad', 'KarachiPakistan', '$2y$10$jzN7yUVQLcVRyAmxP5.kqemurjL.VkmMcg4LownN0/siMuYC.d9cK'),
 (10, 'rafay', 'rafay@gmail.com', '03679812456', '1765723116693ecbec3d272-register-2.jfif', 'Apt 504, north karachi', 'KarachiPakistan', '$2y$10$gAwOpgbQLTnK1U9uyHOin.gXdw8Px06ZEawpUzE1kYnqQcWLezaH6'),
 (11, 'mehjabeen', 'mehjabeenrehman@gmail.com', '03987058903', '17661481136945481182a7d-lucent-general-knowledge.jpg', 'h-no:xyz.north karahi', 'KarachiPakistan', '$2y$10$GIJ.WRR2vTeRxxUoHGMwlu/EuPj.XXR2J8bXwxpSCDdsxv/nmdKeK'),
-(15, 'sawera', 'subhan12890973@gmail.com', '03212038938', '1766795423694f289fb1bde-3.jpg', 'h-no:xyzhello', 'Karachi,Pakistan', '$2y$10$4NwW.ck9G27D1tDg5YnRF.ajTpDHCgVFNZXkGA3C3WFhNdXWud8j2');
+(15, 'sawera', 'subhan12890973@gmail.com', '03212038938', '1766795423694f289fb1bde-3.jpg', 'h-no:xyzhello', 'Karachi,Pakistan', '$2y$10$4NwW.ck9G27D1tDg5YnRF.ajTpDHCgVFNZXkGA3C3WFhNdXWud8j2'),
+(18, 'Bisma', 'bismasheikh2006@gmail.com', '03212038938', '17670403006952e52c5a03f-register-1.jfif', 'h-no:xyz,north', 'Karachi,Pakistan', '$2y$10$LUMOubG.ZCmBlpdSV8Pd/exwoj.LzTqjgQo3wmQ9pNEhCP9a5PeHK');
 
 -- --------------------------------------------------------
 
@@ -406,9 +401,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `full_name`, `email`, `city`, `address`, `book_format`, `payment_method`, `payment_status`, `order_status`, `grand_total`, `created_at`) VALUES
-(17, 1, 'bisma', 'bismasheikh2006@gmail.com', 'karachi', ' h-no:xyz', 'cd', 'creditcard', 'Received', 'delivered', 54.00, '2025-12-21 07:51:43'),
-(21, 2, 'Bisma sheikh', 'syedasaweranoorhussainshah27@gmail.com', 'karachi', ' hguj', 'pdf', 'paypal', 'Pending', 'Pending', 80.00, '2025-12-26 12:06:32'),
-(22, 2, 'Syedasawera', 'syedasaweranoorhussainshah27@gmail.com', 'karachi', ' hvgyu', 'pdf', 'paypal', 'Pending', 'Pending', 80.00, '2025-12-26 12:07:44');
+(27, 18, 'Bisma', 'bismasheikh2006@gmail.com', 'karachi', ' h-no:xyz', 'hardcopy', 'creditcard', 'Received', 'delivered', 170.00, '2025-12-29 20:33:28'),
+(28, 18, 'Bisma', 'bismasheikh2006@gmail.com', 'karachi', ' h-no:xyz', 'pdf', 'paypal', 'Received', 'Done', 70.00, '2025-12-29 20:37:56'),
+(30, 2, 'Bisma', 'sidra@gmail.com', 'karachi', ' h-no:xyz', 'pdf', 'creditcard', 'Received', 'Done', 90.00, '2025-12-29 22:14:00');
 
 -- --------------------------------------------------------
 
@@ -429,8 +424,10 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `book_id`, `quantity`, `book_title`) VALUES
-(23, 17, 11, 2, '100 Bullets'),
-(27, 21, 12, 1, 'Aesops fables');
+(34, 27, 11, 2, '100 Bullets'),
+(35, 27, 28, 1, 'Goodnight Moon'),
+(36, 28, 14, 1, 'The Sandman'),
+(38, 30, 15, 1, 'The-Alchemist');
 
 -- --------------------------------------------------------
 
@@ -449,7 +446,9 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `name`, `value`) VALUES
-(1, 'shipping_rate', 5);
+(1, 'shipping_rate', 5),
+(2, 'price', 25),
+(3, 'essay_prize', 10);
 
 --
 -- Indexes for dumped tables
@@ -579,43 +578,43 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `adult_entries`
 --
 ALTER TABLE `adult_entries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `competition_entries`
 --
 ALTER TABLE `competition_entries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `competition_topics`
 --
 ALTER TABLE `competition_topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `customer_register`
 --
 ALTER TABLE `customer_register`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `dealers`
@@ -645,19 +644,19 @@ ALTER TABLE `freebooks`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

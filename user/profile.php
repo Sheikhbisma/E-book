@@ -19,69 +19,10 @@ $image    = $_SESSION['customerimage'];
 <?php include '../components/meta-links.php'; ?>
 
 <style>
-:root {
-    --sidebar-width: 240px;
- 
-}
 
-body {
-    margin: 0;
-    overflow-x: hidden;
-    background-color: #fdfaf5;
-}
 
-/* --- SIDEBAR DESKTOP --- */
-/* sidebar laptop view mein hamesha fixed rahegi */
-.sidebar {
-    height: 100vh;
-    background: url('../images/header.png'), linear-gradient(rgba(77, 54, 46, 0.95), rgba(77, 54, 46, 0.95));
-    color: #fff;
-    padding-top: 20px;
-    position: fixed;
-    width: var(--sidebar-width);
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    transition: 0.3s;
-}
 
-.sidebar a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-}
 
-.sidebar a i {
-    margin-right: 15px;
-    font-size: 20px;
-    min-width: 30px;
-}
-
-/* --- MAIN AREA --- */
-.content-area{
-    margin-left: var(--sidebar-width);
-    padding: 40px;
-    transition: 0.3s;
-}
-
-/* --- MOBILE TOGGLE BUTTON --- */
-.user-menu-btn {
-    display: none; /* Laptop par hide */
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1100;
-    background: var(--brown-theme);
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 24px;
-    cursor: pointer;
-}
 
 /* PROFILE HEADER */
 .profile-header{
@@ -134,19 +75,6 @@ body {
 
 /* --- RESPONSIVE LOGIC (Mobile & Tablet) --- */
 @media(max-width: 991px){
-    .sidebar {
-        left: -240px; /* Sidebar hide */
-    }
-
-    .sidebar.active {
-        left: 0; /* Slide in on click */
-        box-shadow: 5px 0 15px rgba(0,0,0,0.4);
-    }
-
-    .content-area{
-        margin-left:0;
-        padding: 80px 20px 20px 20px; /* Space for toggle button */
-    }
 
     .user-menu-btn {
         display: block; /* Show toggle button */

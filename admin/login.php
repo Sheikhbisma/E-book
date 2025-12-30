@@ -20,12 +20,12 @@ if (isset($_POST['login'])) {
       $_SESSION['id'] = $user['id'];
       $_SESSION['email'] = $user['email'];
       $_SESSION['loginmsg'] = showErr("Login Successfull", "success");
-      header('location: addbooks.php');
+      header('location: dashboard.php');
     } else {
-      $_SESSION['msg'] = showErr("Invalid email or password", "success");
+      $_SESSION['msg'] = showErr("Invalid email or password", "danger");
     }
   } else {
-    $_SESSION['msg'] = showErr("Invalid email or password", "success");
+    $_SESSION['msg'] = showErr("email not found", "danger");
   }
 }
 ?>
@@ -33,7 +33,9 @@ if (isset($_POST['login'])) {
 <html>
 
 <head>
-  <title>Admin Login</title>
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Admin Login</title>
   <?php include 'inc/link.php'; ?>
 </head>
 
@@ -66,7 +68,6 @@ if (isset($_POST['login'])) {
             <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
           </div>
         </div>
-
         <button name="login" class="btn btn-pdf w-100">Login</button>
       </form>
 
@@ -78,6 +79,7 @@ if (isset($_POST['login'])) {
     let show = document.querySelector('.show');
     let password = document.querySelector('#password');
     show.addEventListener('click', () => {
+      console.log('h');
       // if password is not empty
       if (password.value != '') {
         // if input type is password then change the type into text

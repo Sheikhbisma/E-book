@@ -84,9 +84,9 @@ $paid_books = mysqli_query($conn, "
 <body>
   <?php include 'user-sidebar.php'; ?>
     <!-- From Uiverse.io by 0xnihilism --> 
-<div class="content-area">
+<div class="content-area ">
   <div class="container">
-    <div class="header text-center py-3">
+    <div class="header text-center py-3 px-2">
       <h3 class="fw-bold">Your Books – Read & Download</h3>
       <p class="paper-cream">
        <strong> All your books are displayed here.</strong><br>

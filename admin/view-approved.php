@@ -19,7 +19,7 @@ $execute = mysqli_query($conn , $select_orders);
     <?php include 'sidebar.php' ?>
  <div class="content-area">
        <main>
-        <section class="px-5 pb-5">
+        <section class="px-md-5 pb-md-5 ord">
              <header class="header p-4 mb-5 bg-white rounded">
 
                 <h1 class="fw-bold mb-3 mb-md-0 text-center"><i class="fa-solid fa-book fs-1"></i> Approved Orders</h1>

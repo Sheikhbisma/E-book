@@ -99,8 +99,7 @@ overflow: hidden;
              </div>
          </div>
      </div>
-     <?php include '../components/script.php'; ?>
-     <script>
+      <script>
          // get icon for click
          let show = document.querySelector('.show');
          let password = document.querySelector('#password');
@@ -122,6 +121,8 @@ overflow: hidden;
              }
          });
      </script>
+     <?php include '../components/script.php'; ?>
+    
  </body>
 
  </html>

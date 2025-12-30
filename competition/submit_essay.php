@@ -51,7 +51,7 @@ if($startRes->num_rows == 0){
 
 /* ⏰ TIME CHECK (STRICT) */
 if(time() > strtotime($end_time)){
-    die("Time expire ho chuka hai");
+    die("Time expired");
 }
 
 /* Word count */
@@ -87,6 +87,6 @@ $upd->bind_param(
 );
 $upd->execute();
 
-header('location: user-dadhboard.php');
+header('location: user_dashboard.php');
 exit;
 ?>
